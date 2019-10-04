@@ -1,0 +1,49 @@
+@import 'libs/bootstrap-reboot.min';
+@import 'fonts/stylesheet';
+
+@import 'base/variables';
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+h1 {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+h2 {
+    font-size: 19px;
+    line-height: 22px;
+}
+
+h3 {
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: 10px;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+
+@import 'modules/header';
