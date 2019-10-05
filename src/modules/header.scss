@@ -20,7 +20,10 @@
         color: $color-ds50;
         font-size: 14px;
         font-weight: 300;
+    }
 
+    &__link:hover {
+        color: $color-ds50;
     }
 
     &__item {

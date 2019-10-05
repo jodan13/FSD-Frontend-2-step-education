@@ -1,8 +1,14 @@
 doctype html
 link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+link(rel="shortcut icon" type="image/png" href="../src/img/favicon.ico")
 html(lang='ru')
     head
         title=pageTitle
     body
         include ../modules/header
+        section.main
+            div(class=`main__inspiration container`) Лучшие номера для вашей работы,<br> отдыха и просто вдохновения
+        
+        include ../modules/footer
         block content
+        

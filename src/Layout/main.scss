@@ -1,12 +1,17 @@
-@import 'libs/bootstrap-reboot.min';
-@import 'fonts/stylesheet';
+@import '../libs/bootstrap-reboot.min';
+@import '../fonts/stylesheet';
 
-@import 'base/variables';
+@import '../base/variables';
 
 * {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     line-height: 24px;
+
+}
+
+p {
+    color: $color-ds75;
 }
 
 h1 {
@@ -35,7 +40,6 @@ h3 {
     font-weight: normal;
     font-style: normal;
     font-size: 24px;
-    /* Preferred icon size */
     display: inline-flex;
     vertical-align: middle;
     line-height: 10px;
@@ -46,4 +50,6 @@ h3 {
     direction: ltr;
 }
 
-@import 'modules/header';
+@import '../modules/header';
+@import '../index.scss';
+@import '../modules/footer.scss';

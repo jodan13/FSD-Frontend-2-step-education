@@ -1,0 +1,118 @@
+.footer {
+  &__main {
+    margin-top: 100px;
+  }
+
+  &__main div {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+
+  &__main li {
+    margin-top: 20px;
+  }
+
+  &__main ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  &__main a {
+    color: $color-ds50;
+
+    font-size: 14px;
+    font-weight: 300;
+    width: 143px;
+  }
+
+  &__main a:hover {
+    color: $color-ds50;
+  }
+
+  &__subscribe p {
+
+    margin: 20px 0 0;
+  }
+
+  &__subscribe form {
+    border: 1px solid $color-ds25;
+    border-radius: 4px;
+    height: 44px;
+    width: 260px;
+    margin-top: 20px;
+  }
+
+  &__subscribe input {
+    border-radius: 4px;
+    border: none;
+    height: 42px;
+    outline: none;
+    text-indent: 15px;
+    width: 216px;
+  }
+
+  &__subscribe button {
+    position: absolute;
+    background: url(../img/arrow_forward.svg) no-repeat 50% 50%;
+    height: 44px;
+    width: 44px;
+    border: none;
+  }
+
+
+  &__info,
+  &__subscribe {
+    width: 260px;
+
+  }
+
+  &__info p {
+    margin-top: 20px;
+  }
+
+  &__widgets {
+    border-top: 1px solid $color-ds25;
+    margin-top: 100px;
+  }
+
+  &__widgets div {
+    justify-content: space-between;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+    margin: 0;
+
+  }
+
+  &__twitter,
+  &__facebook,
+  &__instagram {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  &__item {
+    margin-left: 20px;
+    list-style-type: none;
+  }
+
+  &__twitter {
+    background-image: url(../img/twitter.svg);
+  }
+
+  &__facebook {
+    background-image: url(../img/facebook.svg);
+  }
+
+  &__instagram {
+    background-image: url(../img/instagram.svg);
+  }
+}

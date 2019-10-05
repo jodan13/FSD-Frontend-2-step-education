@@ -1,0 +1,12 @@
+.main {
+    height: 830px;
+    width: 100%;
+    background: url(../img/main-bg.jpg) center no-repeat;
+    background-size: cover;
+
+    &__inspiration {
+        text-align: right;
+        vertical-align: bottom;
+    }
+
+}
