@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/ui-kit.js"],"names":[],"mappings":";;;;;AACA,aADA,QAAA,uBACA,QAAA","file":"ui-kit.1cfda149.js","sourceRoot":"..\\src","sourcesContent":["import \"../layout/main.scss\";\r\nimport \"./ui-kit.scss\";\r\n"]}

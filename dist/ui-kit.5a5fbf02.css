@@ -520,5 +520,121 @@ h3 {
 .footer__instagram {
   background-image: url(/instagram.d9b27572.svg);
 }
+.body_ui-kit {
+  background: #E5E5E5;
+}
 
-/*# sourceMappingURL=/main.38198c25.css.map */
+.ui-kit {
+  background: #fff;
+  width: 1440px;
+  margin: 40px auto;
+}
+
+.ui-kit > p {
+  position: absolute;
+  top: 20px;
+}
+
+.ui-kit img {
+  position: absolute;
+  padding: 30px;
+}
+
+.container {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 145px 0;
+}
+
+ul {
+  list-style: none inside none;
+  padding-left: 90px;
+}
+
+li {
+  position: relative;
+  margin: 20px;
+  width: 180px;
+  height: 70px;
+}
+
+.colors li:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -110px;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+}
+
+.colors h2 {
+  padding-top: 8px;
+}
+
+li:nth-child(1):before {
+  background-color: #1f2041;
+}
+
+li:nth-child(2):before {
+  background: rgba(31, 32, 65, 0.75);
+}
+
+li:nth-child(3):before {
+  background: rgba(31, 32, 65, 0.5);
+}
+
+li:nth-child(4):before {
+  background: rgba(31, 32, 65, 0.25);
+}
+
+li:nth-child(5):before {
+  background: rgba(31, 32, 65, 0.05);
+}
+
+li:nth-child(6):before {
+  background: #BC9CFF;
+}
+
+li:nth-child(7):before {
+  background: #6FCF97;
+}
+
+.font {
+  width: 417px;
+}
+.font_h {
+  display: flex;
+}
+.font_h2 {
+  margin-top: 54px;
+}
+.font_h3 {
+  margin-top: 53px;
+}
+.font_body {
+  margin-top: 53px;
+}
+.font_type {
+  margin-right: 30px;
+  width: 37px;
+  color: rgba(31, 32, 65, 0.25);
+  text-align: right;
+}
+.font_type_h1 {
+  font-size: 24px;
+}
+.font_type_h2 {
+  font-size: 19px;
+}
+.font_type_h3 {
+  font-size: 12px;
+}
+.font_type_body {
+  font-size: 14px;
+}
+.font_example {
+  width: 350px;
+}
+
+/*# sourceMappingURL=/ui-kit.5a5fbf02.css.map */

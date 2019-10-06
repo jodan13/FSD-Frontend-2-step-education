@@ -8,7 +8,6 @@
     align-items: flex-start;
   }
 
-
   &__main li {
     margin-top: 20px;
   }
@@ -21,7 +20,6 @@
 
   &__main a {
     color: $color-ds50;
-
     font-size: 14px;
     font-weight: 300;
     width: 143px;
@@ -32,7 +30,6 @@
   }
 
   &__subscribe p {
-
     margin: 20px 0 0;
   }
 
@@ -44,6 +41,10 @@
     margin-top: 20px;
   }
 
+  &__subscribe form:hover {
+    border: 1px solid $color-ds50;
+  }
+
   &__subscribe input {
     border-radius: 4px;
     border: none;
@@ -51,6 +52,10 @@
     outline: none;
     text-indent: 15px;
     width: 216px;
+  }
+
+  &__subscribe input::-webkit-input-placeholder {
+    color: $color-ds25;
   }
 
   &__subscribe button {
@@ -61,11 +66,9 @@
     border: none;
   }
 
-
   &__info,
   &__subscribe {
     width: 260px;
-
   }
 
   &__info p {
@@ -86,7 +89,6 @@
     justify-content: center;
     padding: 24px 0;
     margin: 0;
-
   }
 
   &__twitter,

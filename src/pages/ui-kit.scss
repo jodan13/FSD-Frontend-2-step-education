@@ -1,0 +1,131 @@
+@import '../base/variables';
+
+.body_ui-kit {
+    background: #E5E5E5;
+}
+
+.ui-kit {
+    background: #fff;
+    width: 1440px;
+    margin: 40px auto;
+}
+
+.ui-kit>p {
+    position: absolute;
+    top: 20px;
+}
+
+.ui-kit img {
+    position: absolute;
+    padding: 30px;
+
+}
+
+.container {
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 145px 0;
+}
+
+ul {
+    list-style: none inside none;
+    padding-left: 90px;
+}
+
+li {
+    position: relative;
+    margin: 20px;
+    width: 180px;
+    height: 70px;
+}
+
+.colors li:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -110px;
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+}
+
+.colors h2 {
+    padding-top: 8px;
+}
+
+li:nth-child(1):before {
+    background-color: $color-ds100;
+}
+
+li:nth-child(2):before {
+    background: $color-ds75;
+}
+
+li:nth-child(3):before {
+    background: $color-ds50;
+}
+
+li:nth-child(4):before {
+    background: $color-ds25;
+}
+
+li:nth-child(5):before {
+    background: $color-ds5;
+}
+
+li:nth-child(6):before {
+    background: $color-purple;
+}
+
+li:nth-child(7):before {
+    background: $color-green;
+}
+
+.font {
+    width: 417px;
+
+    &_h {
+        display: flex;
+    }
+
+    &_h2 {
+        margin-top: 54px;
+    }
+
+    &_h3 {
+        margin-top: 53px;
+    }
+
+    &_body {
+        margin-top: 53px;
+    }
+
+    &_type {
+        margin-right: 30px;
+        width: 37px;
+        color: $color-ds25;
+        text-align: right;
+    }
+
+    &_type_h1 {
+        font-size: 24px;
+    }
+
+    &_type_h2 {
+        font-size: 19px;
+    }
+
+    &_type_h3 {
+        font-size: 12px;
+    }
+
+    &_type_body {
+        font-size: 14px;
+    }
+
+    &_example {
+        width: 350px;
+    }
+
+
+}
