@@ -1,3 +1,49 @@
+* {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+p {
+  color: rgba(31, 32, 65, 0.75);
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+h2 {
+  font-size: 19px;
+  line-height: 22px;
+}
+
+h3 {
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 10px;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
 /*!
  * Bootstrap Reboot v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -520,8 +566,34 @@ h3 {
 .footer__instagram {
   background-image: url(/instagram.d9b27572.svg);
 }
+
+.text-field {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  border: solid 1px rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+  color: rgba(31, 32, 65, 0.75);
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  padding: 13px;
+}
+.text-field::placeholder {
+  color: rgba(31, 32, 65, 0.25);
+}
+.text-field:hover {
+  border-color: rgba(31, 32, 65, 0.5);
+}
+.text-field:focus {
+  border-color: rgba(31, 32, 65, 0.5);
+  outline: none;
+}
+.text-field:focus::placeholder {
+  color: rgba(31, 32, 65, 0.75);
+}
+
 .body_ui-kit {
-  background: #E5E5E5;
+  background: #e5e5e5;
 }
 
 .ui-kit {
@@ -530,7 +602,7 @@ h3 {
   margin: 40px auto;
 }
 
-.ui-kit > p {
+p.colors-title {
   position: absolute;
   top: 20px;
 }
@@ -635,6 +707,35 @@ li:nth-child(7):before {
 }
 .font_example {
   width: 350px;
+}
+
+p.form-title {
+  position: absolute;
+  top: 1000px;
+}
+
+.form__col {
+  display: flex;
+  width: 320px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form__col h3 {
+  margin: 20px 0 0 0;
+}
+.form__col p {
+  line-height: 15px;
+  margin: 20px 0 0 0;
+  text-transform: uppercase;
+  color: rgba(31, 32, 65, 0.5);
+}
+.form__text-field {
+  margin-top: 5px;
+  width: 320px;
+}
+.form__text-field--hover {
+  margin-top: 5px;
+  border-color: rgba(31, 32, 65, 0.5);
 }
 
 /*# sourceMappingURL=/ui-kit.5a5fbf02.css.map */

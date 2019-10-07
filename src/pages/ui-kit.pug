@@ -1,10 +1,11 @@
 doctype html
+include ../components/text-field.pug
 html(lang='ru')
 	head
 		title ui-kit
 	body.body_ui-kit
 		main.ui-kit
-			p Colors & Type
+			p.colors-title Colors & Type
 			img(src='../img/logo-gray.svg')
 			section
 				.container
@@ -48,5 +49,28 @@ html(lang='ru')
 							.font_type(class='font_type_body') Body
 							.font_example 
 								p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
+		main.ui-kit
+			p.form-title Form Elements
+			img(src='../img/logo-gray.svg')
+			section
+				.container
+					.form
+						.form__row
+							.form__col
+								h3 Text Field
+								p Default
+								+text-field("email", "Email", {class: "form__text-field"})
+								h3 Text Field
+								p Hover / Focus
+								+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
+							.form__col
+							.form__col
+						.form__row
+							.form__col
+							.form__col
+							.form__col
+						.form__row
+							.form__col
+							.form__col
 
 	script(src='./ui-kit.js')

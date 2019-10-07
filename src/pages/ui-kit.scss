@@ -1,7 +1,10 @@
-@import '../base/variables';
+@import "../base/variables.scss";
+@import "../base/global.scss";
+@import "../layout/main.scss";
+@import "../components/text-field.scss";
 
 .body_ui-kit {
-    background: #E5E5E5;
+    background: #e5e5e5;
 }
 
 .ui-kit {
@@ -10,7 +13,7 @@
     margin: 40px auto;
 }
 
-.ui-kit>p {
+p.colors-title {
     position: absolute;
     top: 20px;
 }
@@ -18,7 +21,6 @@
 .ui-kit img {
     position: absolute;
     padding: 30px;
-
 }
 
 .container {
@@ -40,7 +42,7 @@ li {
 }
 
 .colors li:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     left: -110px;
@@ -126,6 +128,39 @@ li:nth-child(7):before {
     &_example {
         width: 350px;
     }
+}
 
+p.form-title {
+    position: absolute;
+    top: 1000px;
+}
 
+.form {
+    &__col {
+        display: flex;
+        width: 320px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__col h3 {
+        margin: 20px 0 0 0;
+    }
+
+    &__col p {
+        line-height: 15px;
+        margin: 20px 0 0 0;
+        text-transform: uppercase;
+        color: $color-ds50;
+    }
+
+    &__text-field {
+        margin-top: 5px;
+        width: 320px;
+    }
+
+    &__text-field--hover {
+        margin-top: 5px;
+        border-color: $color-ds50;
+    }
 }
