@@ -1,7 +1,9 @@
 doctype html
 include ../components/text-field.pug
+include ../components/dropdown.pug
 html(lang='ru')
 	head
+		script(	src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
 		title ui-kit
 	body.body_ui-kit
 		main.ui-kit
@@ -63,6 +65,10 @@ html(lang='ru')
 								h3 Text Field
 								p Hover / Focus
 								+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
+								h3 Dropdown
+								p Default
+								
+								+dropdown("guest", "Сколько гостей")
 							.form__col
 							.form__col
 						.form__row
@@ -74,3 +80,4 @@ html(lang='ru')
 							.form__col
 
 	script(src='./ui-kit.js')
+	script(src='../components/dropdown.js')
