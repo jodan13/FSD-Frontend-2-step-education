@@ -1,9 +1,10 @@
 doctype html
 include ../components/text-field.pug
 include ../components/dropdown.pug
+include ../components/masked.pug
 html(lang='ru')
 	head
-		script(	src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
 		title ui-kit
 	body.body_ui-kit
 		main.ui-kit
@@ -67,8 +68,11 @@ html(lang='ru')
 								+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
 								h3 Dropdown
 								p Default
-								
 								+dropdown("guest", "Сколько гостей")
+								h3 masked text field
+								p Default
+								+masked-inputs()
+							
 							.form__col
 							.form__col
 						.form__row
@@ -79,5 +83,13 @@ html(lang='ru')
 							.form__col
 							.form__col
 
+
+	script(src="../libs/moment.min.js" type="text/javascript")
+	script(src="../libs/jquery.daterangepicker.js")
 	script(src='./ui-kit.js')
 	script(src='../components/dropdown.js')
+
+		
+
+	
+	

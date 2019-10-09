@@ -1,5 +1,7 @@
 import "./dropdown.scss";
-
+var jquery = require("jquery");
+window.$ = window.jQuery = jquery; // notice the definition of global variables here
+require("jquery-ui-dist/jquery-ui.js");
 /*
  * numbercategoryselector.js
  * Author & copyright (c) 2017: Sakri Koskimies
@@ -29,7 +31,7 @@ let $input,
     $input = $(this);
     $goriginalPlaceholder = $input.attr("placeholder");
 
-    var settings = $.extend(
+    let settings = $.extend(
       {
         // Defaults.
         categoryNames: ["Adults", "Children"],
@@ -54,24 +56,33 @@ let $input,
 
     $gparent = createHTML();
 
-    if (settings.closeOnOutsideClick) {
-      $(document).mouseup(function(e) {
-        if (
-          !$input.is(e.target) &&
-          !$gparent.is(e.target) &&
-          $gparent.has(e.target).length === 0 &&
-          !$("div.guest.display").is(e.target) &&
-          $("div.guest.display").has(e.target).length === 0
-        ) {
-          if (settings.fade) {
-            $gparent.fadeOut(200);
-          } else {
-            $gparent.hide();
-          }
+    $(document).mouseup(function(e) {
+      if (
+        !$input.is(e.target) &&
+        !$gparent.is(e.target) &&
+        $gparent.has(e.target).length === 0 &&
+        !$("div.guest.display").is(e.target) &&
+        $("div.guest.display").has(e.target).length === 0
+      ) {
+        if (settings.fade) {
+          $gparent.fadeOut(200);
+        } else {
+          $gparent.hide();
         }
-      });
-    }
+      }
+    });
 
+    // $(document).mouseup(function(e) {
+    //   // событие клика по веб-документу
+    //   var div = $(this); // тут указываем ID элемента
+    //   if (
+    //     !div.is(e.target) && // если клик был не по нашему блоку
+    //     div.has(e.target).length === 0
+    //   ) {
+    //     // и не по его дочерним элементам
+    //     $gparent.hide(); // скрываем его
+    //   }
+    // });
     $(this).click(function() {
       switchSelector();
     });
@@ -82,7 +93,7 @@ let $input,
 
     function doCallback() {
       if (typeof options.callback == "function") {
-        var callbackResult = {};
+        let callbackResult = {};
         for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
           callbackResult[settings.categoryNames[$gi]] = settings.categoryValues[$gi];
         }
@@ -290,6 +301,7 @@ let $input,
         }
         return false;
       });
+
       $gzero = $("<div class='NCSG room'></div><a class='NCSG reset' href=''>Очистить</a>").appendTo($gparent);
       $gzero.click(function() {
         for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
@@ -327,7 +339,7 @@ let $input,
     }
 
     function newFilledArray(len, val) {
-      var rv = new Array(len);
+      let rv = new Array(len);
       while (--len >= 0) {
         rv[len] = val;
       }

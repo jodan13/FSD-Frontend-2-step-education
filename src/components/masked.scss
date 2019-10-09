@@ -1,0 +1,34 @@
+@import "../base/variables.scss";
+
+
+.masked__inputs {
+    margin-top: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: white;
+    border: solid 1px $color-ds25;
+    border-radius: 4px;
+    color: $color-ds75;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    padding: 13px;
+
+    &::placeholder {
+        color: $color-ds25;
+    }
+
+    &:hover {
+        border-color: $color-ds50;
+
+    }
+
+    &:focus {
+        border-color: $color-ds50;
+
+        &::placeholder {
+            color: $color-ds75;
+        }
+
+        outline: none;
+    }
+}

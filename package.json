@@ -1,11 +1,11 @@
 {
-  "name": "FSD",
+  "name": "fsd",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.pug --open",
-    "build": "parcel build src/index.pug -d docs --public-url ./"
+    "build": "parcel build src/index.pug src/pages/ui-kit.pug -d docs --public-url ./"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +24,10 @@
     "cssnano": "^4.1.10",
     "pug": "^2.0.4",
     "sass": "^1.23.0"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-ui-dist": "^1.12.1",
+    "moment": "^2.24.0"
   }
 }

@@ -592,6 +592,32 @@ h3 {
   color: rgba(31, 32, 65, 0.75);
 }
 
+.masked__inputs {
+  margin-top: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  border: solid 1px rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+  color: rgba(31, 32, 65, 0.75);
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  padding: 13px;
+}
+.masked__inputs::placeholder {
+  color: rgba(31, 32, 65, 0.25);
+}
+.masked__inputs:hover {
+  border-color: rgba(31, 32, 65, 0.5);
+}
+.masked__inputs:focus {
+  border-color: rgba(31, 32, 65, 0.5);
+  outline: none;
+}
+.masked__inputs:focus::placeholder {
+  color: rgba(31, 32, 65, 0.75);
+}
+
 .body_ui-kit {
   background: #e5e5e5;
 }
