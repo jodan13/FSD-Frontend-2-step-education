@@ -20,498 +20,512 @@ require("jquery-ui-dist/jquery-ui.js");
 })(function($, moment) {
   "use strict";
 
-    // mask
+  // mask
 
+  var Mask = function(el, mask, options) {
+    var p = {
+      invalid: [],
+      getCaret: function() {
+        try {
+          var sel,
+            pos = 0,
+            ctrl = el.get(0),
+            dSel = document.selection,
+            cSelStart = ctrl.selectionStart;
 
-    var Mask = function (el, mask, options) {
+          // IE Support
+          if (dSel && navigator.appVersion.indexOf("MSIE 10") === -1) {
+            sel = dSel.createRange();
+            sel.moveStart("character", -p.val().length);
+            pos = sel.text.length;
+          }
+          // Firefox support
+          else if (cSelStart || cSelStart === "0") {
+            pos = cSelStart;
+          }
 
-        var p = {
-            invalid: [],
-            getCaret: function () {
-                try {
-                    var sel,
-                        pos = 0,
-                        ctrl = el.get(0),
-                        dSel = document.selection,
-                        cSelStart = ctrl.selectionStart;
+          return pos;
+        } catch (e) {}
+      },
+      setCaret: function(pos) {
+        try {
+          if (el.is(":focus")) {
+            var range,
+              ctrl = el.get(0);
 
-                    // IE Support
-                    if (dSel && navigator.appVersion.indexOf('MSIE 10') === -1) {
-                        sel = dSel.createRange();
-                        sel.moveStart('character', -p.val().length);
-                        pos = sel.text.length;
-                    }
-                    // Firefox support
-                    else if (cSelStart || cSelStart === '0') {
-                        pos = cSelStart;
-                    }
-
-                    return pos;
-                } catch (e) {}
-            },
-            setCaret: function(pos) {
-                try {
-                    if (el.is(':focus')) {
-                        var range, ctrl = el.get(0);
-
-                        // Firefox, WebKit, etc..
-                        if (ctrl.setSelectionRange) {
-                            ctrl.setSelectionRange(pos, pos);
-                        } else { // IE
-                            range = ctrl.createTextRange();
-                            range.collapse(true);
-                            range.moveEnd('character', pos);
-                            range.moveStart('character', pos);
-                            range.select();
-                        }
-                    }
-                } catch (e) {}
-            },
-            events: function() {
-                el
-                .on('keydown.mask', function(e) {
-                    el.data('mask-keycode', e.keyCode || e.which);
-                    el.data('mask-previus-value', el.val());
-                })
-                .on($.jMaskGlobals.useInput ? 'input.mask' : 'keyup.mask', p.behaviour)
-                .on('paste.mask drop.mask', function() {
-                    setTimeout(function() {
-                        el.keydown().keyup();
-                    }, 100);
-                })
-                .on('change.mask', function(){
-                    el.data('changed', true);
-                })
-                .on('blur.mask', function(){
-                    if (oldValue !== p.val() && !el.data('changed')) {
-                        el.trigger('change');
-                    }
-                    el.data('changed', false);
-                })
-                // it's very important that this callback remains in this position
-                // otherwhise oldValue it's going to work buggy
-                .on('blur.mask', function() {
-                    oldValue = p.val();
-                })
-                // select all text on focus
-                .on('focus.mask', function (e) {
-                    if (options.selectOnFocus === true) {
-                        $(e.target).select();
-                    }
-                })
-                // clear the value if it not complete the mask
-                .on('focusout.mask', function() {
-                    if (options.clearIfNotMatch && !regexMask.test(p.val())) {
-                       p.val('');
-                   }
-                });
-            },
-            getRegexMask: function() {
-                var maskChunks = [], translation, pattern, optional, recursive, oRecursive, r;
-
-                for (var i = 0; i < mask.length; i++) {
-                    translation = jMask.translation[mask.charAt(i)];
-
-                    if (translation) {
-
-                        pattern = translation.pattern.toString().replace(/.{1}$|^.{1}/g, '');
-                        optional = translation.optional;
-                        recursive = translation.recursive;
-
-                        if (recursive) {
-                            maskChunks.push(mask.charAt(i));
-                            oRecursive = {digit: mask.charAt(i), pattern: pattern};
-                        } else {
-                            maskChunks.push(!optional && !recursive ? pattern : (pattern + '?'));
-                        }
-
-                    } else {
-                        maskChunks.push(mask.charAt(i).replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-                    }
-                }
-
-                r = maskChunks.join('');
-
-                if (oRecursive) {
-                    r = r.replace(new RegExp('(' + oRecursive.digit + '(.*' + oRecursive.digit + ')?)'), '($1)?')
-                         .replace(new RegExp(oRecursive.digit, 'g'), oRecursive.pattern);
-                }
-
-                return new RegExp(r);
-            },
-            destroyEvents: function() {
-                el.off(['input', 'keydown', 'keyup', 'paste', 'drop', 'blur', 'focusout', ''].join('.mask '));
-            },
-            val: function(v) {
-                var isInput = el.is('input'),
-                    method = isInput ? 'val' : 'text',
-                    r;
-
-                if (arguments.length > 0) {
-                    if (el[method]() !== v) {
-                        el[method](v);
-                    }
-                    r = el;
-                } else {
-                    r = el[method]();
-                }
-
-                return r;
-            },
-            calculateCaretPosition: function(caretPos, newVal) {
-                var newValL = newVal.length,
-                    oValue  = el.data('mask-previus-value') || '',
-                    oValueL = oValue.length;
-
-                // edge cases when erasing digits
-                if (el.data('mask-keycode') === 8 && oValue !== newVal) {
-                    caretPos = caretPos - (newVal.slice(0, caretPos).length - oValue.slice(0, caretPos).length);
-
-                // edge cases when typing new digits
-                } else if (oValue !== newVal) {
-                    // if the cursor is at the end keep it there
-                    if (caretPos >= oValueL) {
-                        caretPos = newValL;
-                    } else {
-                        caretPos = caretPos + (newVal.slice(0, caretPos).length - oValue.slice(0, caretPos).length);
-                    }
-                }
-
-                return caretPos;
-            },
-            behaviour: function(e) {
-                e = e || window.event;
-                p.invalid = [];
-
-                var keyCode = el.data('mask-keycode');
-
-                if ($.inArray(keyCode, jMask.byPassKeys) === -1) {
-                    var newVal   = p.getMasked(),
-                        caretPos = p.getCaret();
-
-                    setTimeout(function(caretPos, newVal) {
-                      p.setCaret(p.calculateCaretPosition(caretPos, newVal));
-                    }, 10, caretPos, newVal);
-
-                    p.val(newVal);
-                    p.setCaret(caretPos);
-                    return p.callbacks(e);
-                }
-            },
-            getMasked: function(skipMaskChars, val) {
-                var buf = [],
-                    value = val === undefined ? p.val() : val + '',
-                    m = 0, maskLen = mask.length,
-                    v = 0, valLen = value.length,
-                    offset = 1, addMethod = 'push',
-                    resetPos = -1,
-                    lastMaskChar,
-                    check;
-
-                if (options.reverse) {
-                    addMethod = 'unshift';
-                    offset = -1;
-                    lastMaskChar = 0;
-                    m = maskLen - 1;
-                    v = valLen - 1;
-                    check = function () {
-                        return m > -1 && v > -1;
-                    };
-                } else {
-                    lastMaskChar = maskLen - 1;
-                    check = function () {
-                        return m < maskLen && v < valLen;
-                    };
-                }
-
-                var lastUntranslatedMaskChar;
-                while (check()) {
-                    var maskDigit = mask.charAt(m),
-                        valDigit = value.charAt(v),
-                        translation = jMask.translation[maskDigit];
-
-                    if (translation) {
-                        if (valDigit.match(translation.pattern)) {
-                            buf[addMethod](valDigit);
-                             if (translation.recursive) {
-                                if (resetPos === -1) {
-                                    resetPos = m;
-                                } else if (m === lastMaskChar) {
-                                    m = resetPos - offset;
-                                }
-
-                                if (lastMaskChar === resetPos) {
-                                    m -= offset;
-                                }
-                            }
-                            m += offset;
-                        } else if (valDigit === lastUntranslatedMaskChar) {
-                            // matched the last untranslated (raw) mask character that we encountered
-                            // likely an insert offset the mask character from the last entry; fall
-                            // through and only increment v
-                            lastUntranslatedMaskChar = undefined;
-                        } else if (translation.optional) {
-                            m += offset;
-                            v -= offset;
-                        } else if (translation.fallback) {
-                            buf[addMethod](translation.fallback);
-                            m += offset;
-                            v -= offset;
-                        } else {
-                          p.invalid.push({p: v, v: valDigit, e: translation.pattern});
-                        }
-                        v += offset;
-                    } else {
-                        if (!skipMaskChars) {
-                            buf[addMethod](maskDigit);
-                        }
-
-                        if (valDigit === maskDigit) {
-                            v += offset;
-                        } else {
-                            lastUntranslatedMaskChar = maskDigit;
-                        }
-
-                        m += offset;
-                    }
-                }
-
-                var lastMaskCharDigit = mask.charAt(lastMaskChar);
-                if (maskLen === valLen + 1 && !jMask.translation[lastMaskCharDigit]) {
-                    buf.push(lastMaskCharDigit);
-                }
-
-                return buf.join('');
-            },
-            callbacks: function (e) {
-                var val = p.val(),
-                    changed = val !== oldValue,
-                    defaultArgs = [val, e, el, options],
-                    callback = function(name, criteria, args) {
-                        if (typeof options[name] === 'function' && criteria) {
-                            options[name].apply(this, args);
-                        }
-                    };
-
-                callback('onChange', changed === true, defaultArgs);
-                callback('onKeyPress', changed === true, defaultArgs);
-                callback('onComplete', val.length === mask.length, defaultArgs);
-                callback('onInvalid', p.invalid.length > 0, [val, e, el, p.invalid, options]);
-            }
-        };
-
-        el = $(el);
-        var jMask = this, oldValue = p.val(), regexMask;
-
-        mask = typeof mask === 'function' ? mask(p.val(), undefined, el,  options) : mask;
-
-        // public methods
-        jMask.mask = mask;
-        jMask.options = options;
-        jMask.remove = function() {
-            var caret = p.getCaret();
-            p.destroyEvents();
-            p.val(jMask.getCleanVal());
-            p.setCaret(caret);
-            return el;
-        };
-
-        // get value without mask
-        jMask.getCleanVal = function() {
-           return p.getMasked(true);
-        };
-
-        // get masked value without the value being in the input or element
-        jMask.getMaskedVal = function(val) {
-           return p.getMasked(false, val);
-        };
-
-       jMask.init = function(onlyMask) {
-            onlyMask = onlyMask || false;
-            options = options || {};
-
-            jMask.clearIfNotMatch  = $.jMaskGlobals.clearIfNotMatch;
-            jMask.byPassKeys       = $.jMaskGlobals.byPassKeys;
-            jMask.translation      = $.extend({}, $.jMaskGlobals.translation, options.translation);
-
-            jMask = $.extend(true, {}, jMask, options);
-
-            regexMask = p.getRegexMask();
-
-            if (onlyMask) {
-                p.events();
-                p.val(p.getMasked());
+            // Firefox, WebKit, etc..
+            if (ctrl.setSelectionRange) {
+              ctrl.setSelectionRange(pos, pos);
             } else {
-                if (options.placeholder) {
-                    el.attr('placeholder' , options.placeholder);
-                }
-
-                // this is necessary, otherwise if the user submit the form
-                // and then press the "back" button, the autocomplete will erase
-                // the data. Works fine on IE9+, FF, Opera, Safari.
-                if (el.data('mask')) {
-                  el.attr('autocomplete', 'off');
-                }
-
-                // detect if is necessary let the user type freely.
-                // for is a lot faster than forEach.
-                for (var i = 0, maxlength = true; i < mask.length; i++) {
-                    var translation = jMask.translation[mask.charAt(i)];
-                    if (translation && translation.recursive) {
-                        maxlength = false;
-                        break;
-                    }
-                }
-
-                if (maxlength) {
-                    el.attr('maxlength', mask.length);
-                }
-
-                p.destroyEvents();
-                p.events();
-
-                var caret = p.getCaret();
-                p.val(p.getMasked());
-                p.setCaret(caret);
+              // IE
+              range = ctrl.createTextRange();
+              range.collapse(true);
+              range.moveEnd("character", pos);
+              range.moveStart("character", pos);
+              range.select();
             }
-        };
+          }
+        } catch (e) {}
+      },
+      events: function() {
+        el.on("keydown.mask", function(e) {
+          el.data("mask-keycode", e.keyCode || e.which);
+          el.data("mask-previus-value", el.val());
+        })
+          .on($.jMaskGlobals.useInput ? "input.mask" : "keyup.mask", p.behaviour)
+          .on("paste.mask drop.mask", function() {
+            setTimeout(function() {
+              el.keydown().keyup();
+            }, 100);
+          })
+          .on("change.mask", function() {
+            el.data("changed", true);
+          })
+          .on("blur.mask", function() {
+            if (oldValue !== p.val() && !el.data("changed")) {
+              el.trigger("change");
+            }
+            el.data("changed", false);
+          })
+          // it's very important that this callback remains in this position
+          // otherwhise oldValue it's going to work buggy
+          .on("blur.mask", function() {
+            oldValue = p.val();
+          })
+          // select all text on focus
+          .on("focus.mask", function(e) {
+            if (options.selectOnFocus === true) {
+              $(e.target).select();
+            }
+          })
+          // clear the value if it not complete the mask
+          .on("focusout.mask", function() {
+            if (options.clearIfNotMatch && !regexMask.test(p.val())) {
+              p.val("");
+            }
+          });
+      },
+      getRegexMask: function() {
+        var maskChunks = [],
+          translation,
+          pattern,
+          optional,
+          recursive,
+          oRecursive,
+          r;
 
-        jMask.init(!el.is('input'));
+        for (var i = 0; i < mask.length; i++) {
+          translation = jMask.translation[mask.charAt(i)];
+
+          if (translation) {
+            pattern = translation.pattern.toString().replace(/.{1}$|^.{1}/g, "");
+            optional = translation.optional;
+            recursive = translation.recursive;
+
+            if (recursive) {
+              maskChunks.push(mask.charAt(i));
+              oRecursive = { digit: mask.charAt(i), pattern: pattern };
+            } else {
+              maskChunks.push(!optional && !recursive ? pattern : pattern + "?");
+            }
+          } else {
+            maskChunks.push(mask.charAt(i).replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"));
+          }
+        }
+
+        r = maskChunks.join("");
+
+        if (oRecursive) {
+          r = r
+            .replace(new RegExp("(" + oRecursive.digit + "(.*" + oRecursive.digit + ")?)"), "($1)?")
+            .replace(new RegExp(oRecursive.digit, "g"), oRecursive.pattern);
+        }
+
+        return new RegExp(r);
+      },
+      destroyEvents: function() {
+        el.off(["input", "keydown", "keyup", "paste", "drop", "blur", "focusout", ""].join(".mask "));
+      },
+      val: function(v) {
+        var isInput = el.is("input"),
+          method = isInput ? "val" : "text",
+          r;
+
+        if (arguments.length > 0) {
+          if (el[method]() !== v) {
+            el[method](v);
+          }
+          r = el;
+        } else {
+          r = el[method]();
+        }
+
+        return r;
+      },
+      calculateCaretPosition: function(caretPos, newVal) {
+        var newValL = newVal.length,
+          oValue = el.data("mask-previus-value") || "",
+          oValueL = oValue.length;
+
+        // edge cases when erasing digits
+        if (el.data("mask-keycode") === 8 && oValue !== newVal) {
+          caretPos = caretPos - (newVal.slice(0, caretPos).length - oValue.slice(0, caretPos).length);
+
+          // edge cases when typing new digits
+        } else if (oValue !== newVal) {
+          // if the cursor is at the end keep it there
+          if (caretPos >= oValueL) {
+            caretPos = newValL;
+          } else {
+            caretPos = caretPos + (newVal.slice(0, caretPos).length - oValue.slice(0, caretPos).length);
+          }
+        }
+
+        return caretPos;
+      },
+      behaviour: function(e) {
+        e = e || window.event;
+        p.invalid = [];
+
+        var keyCode = el.data("mask-keycode");
+
+        if ($.inArray(keyCode, jMask.byPassKeys) === -1) {
+          var newVal = p.getMasked(),
+            caretPos = p.getCaret();
+
+          setTimeout(
+            function(caretPos, newVal) {
+              p.setCaret(p.calculateCaretPosition(caretPos, newVal));
+            },
+            10,
+            caretPos,
+            newVal
+          );
+
+          p.val(newVal);
+          p.setCaret(caretPos);
+          return p.callbacks(e);
+        }
+      },
+      getMasked: function(skipMaskChars, val) {
+        var buf = [],
+          value = val === undefined ? p.val() : val + "",
+          m = 0,
+          maskLen = mask.length,
+          v = 0,
+          valLen = value.length,
+          offset = 1,
+          addMethod = "push",
+          resetPos = -1,
+          lastMaskChar,
+          check;
+
+        if (options.reverse) {
+          addMethod = "unshift";
+          offset = -1;
+          lastMaskChar = 0;
+          m = maskLen - 1;
+          v = valLen - 1;
+          check = function() {
+            return m > -1 && v > -1;
+          };
+        } else {
+          lastMaskChar = maskLen - 1;
+          check = function() {
+            return m < maskLen && v < valLen;
+          };
+        }
+
+        var lastUntranslatedMaskChar;
+        while (check()) {
+          var maskDigit = mask.charAt(m),
+            valDigit = value.charAt(v),
+            translation = jMask.translation[maskDigit];
+
+          if (translation) {
+            if (valDigit.match(translation.pattern)) {
+              buf[addMethod](valDigit);
+              if (translation.recursive) {
+                if (resetPos === -1) {
+                  resetPos = m;
+                } else if (m === lastMaskChar) {
+                  m = resetPos - offset;
+                }
+
+                if (lastMaskChar === resetPos) {
+                  m -= offset;
+                }
+              }
+              m += offset;
+            } else if (valDigit === lastUntranslatedMaskChar) {
+              // matched the last untranslated (raw) mask character that we encountered
+              // likely an insert offset the mask character from the last entry; fall
+              // through and only increment v
+              lastUntranslatedMaskChar = undefined;
+            } else if (translation.optional) {
+              m += offset;
+              v -= offset;
+            } else if (translation.fallback) {
+              buf[addMethod](translation.fallback);
+              m += offset;
+              v -= offset;
+            } else {
+              p.invalid.push({ p: v, v: valDigit, e: translation.pattern });
+            }
+            v += offset;
+          } else {
+            if (!skipMaskChars) {
+              buf[addMethod](maskDigit);
+            }
+
+            if (valDigit === maskDigit) {
+              v += offset;
+            } else {
+              lastUntranslatedMaskChar = maskDigit;
+            }
+
+            m += offset;
+          }
+        }
+
+        var lastMaskCharDigit = mask.charAt(lastMaskChar);
+        if (maskLen === valLen + 1 && !jMask.translation[lastMaskCharDigit]) {
+          buf.push(lastMaskCharDigit);
+        }
+
+        return buf.join("");
+      },
+      callbacks: function(e) {
+        var val = p.val(),
+          changed = val !== oldValue,
+          defaultArgs = [val, e, el, options],
+          callback = function(name, criteria, args) {
+            if (typeof options[name] === "function" && criteria) {
+              options[name].apply(this, args);
+            }
+          };
+
+        callback("onChange", changed === true, defaultArgs);
+        callback("onKeyPress", changed === true, defaultArgs);
+        callback("onComplete", val.length === mask.length, defaultArgs);
+        callback("onInvalid", p.invalid.length > 0, [val, e, el, p.invalid, options]);
+      }
     };
 
-    $.maskWatchers = {};
-    var HTMLAttributes = function () {
-        var input = $(this),
-            options = {},
-            prefix = 'data-mask-',
-            mask = input.attr('data-mask');
+    el = $(el);
+    var jMask = this,
+      oldValue = p.val(),
+      regexMask;
 
-        if (input.attr(prefix + 'reverse')) {
-            options.reverse = true;
+    mask = typeof mask === "function" ? mask(p.val(), undefined, el, options) : mask;
+
+    // public methods
+    jMask.mask = mask;
+    jMask.options = options;
+    jMask.remove = function() {
+      var caret = p.getCaret();
+      p.destroyEvents();
+      p.val(jMask.getCleanVal());
+      p.setCaret(caret);
+      return el;
+    };
+
+    // get value without mask
+    jMask.getCleanVal = function() {
+      return p.getMasked(true);
+    };
+
+    // get masked value without the value being in the input or element
+    jMask.getMaskedVal = function(val) {
+      return p.getMasked(false, val);
+    };
+
+    jMask.init = function(onlyMask) {
+      onlyMask = onlyMask || false;
+      options = options || {};
+
+      jMask.clearIfNotMatch = $.jMaskGlobals.clearIfNotMatch;
+      jMask.byPassKeys = $.jMaskGlobals.byPassKeys;
+      jMask.translation = $.extend({}, $.jMaskGlobals.translation, options.translation);
+
+      jMask = $.extend(true, {}, jMask, options);
+
+      regexMask = p.getRegexMask();
+
+      if (onlyMask) {
+        p.events();
+        p.val(p.getMasked());
+      } else {
+        if (options.placeholder) {
+          el.attr("placeholder", options.placeholder);
         }
 
-        if (input.attr(prefix + 'clearifnotmatch')) {
-            options.clearIfNotMatch = true;
+        // this is necessary, otherwise if the user submit the form
+        // and then press the "back" button, the autocomplete will erase
+        // the data. Works fine on IE9+, FF, Opera, Safari.
+        if (el.data("mask")) {
+          el.attr("autocomplete", "off");
         }
 
-        if (input.attr(prefix + 'selectonfocus') === 'true') {
-           options.selectOnFocus = true;
+        // detect if is necessary let the user type freely.
+        // for is a lot faster than forEach.
+        for (var i = 0, maxlength = true; i < mask.length; i++) {
+          var translation = jMask.translation[mask.charAt(i)];
+          if (translation && translation.recursive) {
+            maxlength = false;
+            break;
+          }
         }
 
-        if (notSameMaskObject(input, mask, options)) {
-            return input.data('mask', new Mask(this, mask, options));
+        if (maxlength) {
+          el.attr("maxlength", mask.length);
         }
+
+        p.destroyEvents();
+        p.events();
+
+        var caret = p.getCaret();
+        p.val(p.getMasked());
+        p.setCaret(caret);
+      }
+    };
+
+    jMask.init(!el.is("input"));
+  };
+
+  $.maskWatchers = {};
+  var HTMLAttributes = function() {
+      var input = $(this),
+        options = {},
+        prefix = "data-mask-",
+        mask = input.attr("data-mask");
+
+      if (input.attr(prefix + "reverse")) {
+        options.reverse = true;
+      }
+
+      if (input.attr(prefix + "clearifnotmatch")) {
+        options.clearIfNotMatch = true;
+      }
+
+      if (input.attr(prefix + "selectonfocus") === "true") {
+        options.selectOnFocus = true;
+      }
+
+      if (notSameMaskObject(input, mask, options)) {
+        return input.data("mask", new Mask(this, mask, options));
+      }
     },
     notSameMaskObject = function(field, mask, options) {
-        options = options || {};
-        var maskObject = $(field).data('mask'),
-            stringify = JSON.stringify,
-            value = $(field).val() || $(field).text();
-        try {
-            if (typeof mask === 'function') {
-                mask = mask(value);
-            }
-            return typeof maskObject !== 'object' || stringify(maskObject.options) !== stringify(options) || maskObject.mask !== mask;
-        } catch (e) {}
+      options = options || {};
+      var maskObject = $(field).data("mask"),
+        stringify = JSON.stringify,
+        value = $(field).val() || $(field).text();
+      try {
+        if (typeof mask === "function") {
+          mask = mask(value);
+        }
+        return typeof maskObject !== "object" || stringify(maskObject.options) !== stringify(options) || maskObject.mask !== mask;
+      } catch (e) {}
     },
     eventSupported = function(eventName) {
-        var el = document.createElement('div'), isSupported;
+      var el = document.createElement("div"),
+        isSupported;
 
-        eventName = 'on' + eventName;
-        isSupported = (eventName in el);
+      eventName = "on" + eventName;
+      isSupported = eventName in el;
 
-        if ( !isSupported ) {
-            el.setAttribute(eventName, 'return;');
-            isSupported = typeof el[eventName] === 'function';
+      if (!isSupported) {
+        el.setAttribute(eventName, "return;");
+        isSupported = typeof el[eventName] === "function";
+      }
+      el = null;
+
+      return isSupported;
+    };
+
+  $.fn.mask = function(mask, options) {
+    options = options || {};
+    var selector = this.selector,
+      globals = $.jMaskGlobals,
+      interval = globals.watchInterval,
+      watchInputs = options.watchInputs || globals.watchInputs,
+      maskFunction = function() {
+        if (notSameMaskObject(this, mask, options)) {
+          return $(this).data("mask", new Mask(this, mask, options));
         }
-        el = null;
+      };
 
-        return isSupported;
-    };
+    $(this).each(maskFunction);
 
-    $.fn.mask = function(mask, options) {
-        options = options || {};
-        var selector = this.selector,
-            globals = $.jMaskGlobals,
-            interval = globals.watchInterval,
-            watchInputs = options.watchInputs || globals.watchInputs,
-            maskFunction = function() {
-                if (notSameMaskObject(this, mask, options)) {
-                    return $(this).data('mask', new Mask(this, mask, options));
-                }
-            };
-
-        $(this).each(maskFunction);
-
-        if (selector && selector !== '' && watchInputs) {
-            clearInterval($.maskWatchers[selector]);
-            $.maskWatchers[selector] = setInterval(function(){
-                $(document).find(selector).each(maskFunction);
-            }, interval);
-        }
-        return this;
-    };
-
-    $.fn.masked = function(val) {
-        return this.data('mask').getMaskedVal(val);
-    };
-
-    $.fn.unmask = function() {
-        clearInterval($.maskWatchers[this.selector]);
-        delete $.maskWatchers[this.selector];
-        return this.each(function() {
-            var dataMask = $(this).data('mask');
-            if (dataMask) {
-                dataMask.remove().removeData('mask');
-            }
-        });
-    };
-
-    $.fn.cleanVal = function() {
-        return this.data('mask').getCleanVal();
-    };
-
-    $.applyDataMask = function(selector) {
-        selector = selector || $.jMaskGlobals.maskElements;
-        var $selector = (selector instanceof $) ? selector : $(selector);
-        $selector.filter($.jMaskGlobals.dataMaskAttr).each(HTMLAttributes);
-    };
-
-    var globals = {
-        maskElements: 'input,td,span,div',
-        dataMaskAttr: '*[data-mask]',
-        dataMask: true,
-        watchInterval: 300,
-        watchInputs: true,
-        // old versions of chrome dont work great with input event
-        useInput: !/Chrome\/[2-4][0-9]|SamsungBrowser/.test(window.navigator.userAgent) && eventSupported('input'),
-        watchDataMask: false,
-        byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
-        translation: {
-            '0': {pattern: /\d/},
-            '9': {pattern: /\d/, optional: true},
-            '#': {pattern: /\d/, recursive: true},
-            'A': {pattern: /[a-zA-Z0-9]/},
-            'S': {pattern: /[a-zA-Z]/}
-        }
-    };
-
-    $.jMaskGlobals = $.jMaskGlobals || {};
-    globals = $.jMaskGlobals = $.extend(true, {}, globals, $.jMaskGlobals);
-
-    // looking for inputs with data-mask attribute
-    if (globals.dataMask) {
-        $.applyDataMask();
+    if (selector && selector !== "" && watchInputs) {
+      clearInterval($.maskWatchers[selector]);
+      $.maskWatchers[selector] = setInterval(function() {
+        $(document)
+          .find(selector)
+          .each(maskFunction);
+      }, interval);
     }
+    return this;
+  };
 
-    setInterval(function() {
-        if ($.jMaskGlobals.watchDataMask) {
-            $.applyDataMask();
-        }
-    }, globals.watchInterval);
+  $.fn.masked = function(val) {
+    return this.data("mask").getMaskedVal(val);
+  };
 
+  $.fn.unmask = function() {
+    clearInterval($.maskWatchers[this.selector]);
+    delete $.maskWatchers[this.selector];
+    return this.each(function() {
+      var dataMask = $(this).data("mask");
+      if (dataMask) {
+        dataMask.remove().removeData("mask");
+      }
+    });
+  };
 
+  $.fn.cleanVal = function() {
+    return this.data("mask").getCleanVal();
+  };
 
+  $.applyDataMask = function(selector) {
+    selector = selector || $.jMaskGlobals.maskElements;
+    var $selector = selector instanceof $ ? selector : $(selector);
+    $selector.filter($.jMaskGlobals.dataMaskAttr).each(HTMLAttributes);
+  };
+
+  var globals = {
+    maskElements: "input,td,span,div",
+    dataMaskAttr: "*[data-mask]",
+    dataMask: true,
+    watchInterval: 300,
+    watchInputs: true,
+    // old versions of chrome dont work great with input event
+    useInput: !/Chrome\/[2-4][0-9]|SamsungBrowser/.test(window.navigator.userAgent) && eventSupported("input"),
+    watchDataMask: false,
+    byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
+    translation: {
+      "0": { pattern: /\d/ },
+      "9": { pattern: /\d/, optional: true },
+      "#": { pattern: /\d/, recursive: true },
+      A: { pattern: /[a-zA-Z0-9]/ },
+      S: { pattern: /[a-zA-Z]/ }
+    }
+  };
+
+  $.jMaskGlobals = $.jMaskGlobals || {};
+  globals = $.jMaskGlobals = $.extend(true, {}, globals, $.jMaskGlobals);
+
+  // looking for inputs with data-mask attribute
+  if (globals.dataMask) {
+    $.applyDataMask();
+  }
+
+  setInterval(function() {
+    if ($.jMaskGlobals.watchDataMask) {
+      $.applyDataMask();
+    }
+  }, globals.watchInterval);
 
   $.dateRangePickerLanguages = {
     //default language: English
@@ -565,595 +579,6 @@ require("jquery-ui-dist/jquery-ui.js");
       hour: "Hour",
       minute: "Minute"
     },
-    id: {
-      selected: "Terpilih:",
-      day: "Hari",
-      days: "Hari",
-      apply: "Tutup",
-      "week-1": "sen",
-      "week-2": "sel",
-      "week-3": "rab",
-      "week-4": "kam",
-      "week-5": "jum",
-      "week-6": "sab",
-      "week-7": "min",
-      "week-number": "W",
-      "month-name": [
-        "januari",
-        "februari",
-        "maret",
-        "april",
-        "mei",
-        "juni",
-        "juli",
-        "agustus",
-        "september",
-        "oktober",
-        "november",
-        "desember"
-      ],
-      shortcuts: "Pintas",
-      "custom-values": "Nilai yang ditentukan",
-      past: "Yang Lalu",
-      following: "Mengikuti",
-      previous: "Sebelumnya",
-      "prev-week": "Minggu",
-      "prev-month": "Bulan",
-      "prev-year": "Tahun",
-      next: "Selanjutnya",
-      "next-week": "Minggu",
-      "next-month": "Bulan",
-      "next-year": "Tahun",
-      "less-than": "Tanggal harus lebih dari %d hari",
-      "more-than": "Tanggal harus kurang dari %d hari",
-      "default-more": "Jarak tanggal harus lebih lama dari %d hari",
-      "default-single": "Silakan pilih tanggal",
-      "default-less": "Jarak rentang tanggal tidak boleh lebih lama dari %d hari",
-      "default-range": "Rentang tanggal harus antara %d dan %d hari",
-      "default-default": "Silakan pilih rentang tanggal",
-      time: "Waktu",
-      hour: "Jam",
-      minute: "Menit"
-    },
-    az: {
-      selected: "Seçildi:",
-      day: " gün",
-      days: " gün",
-      apply: "tətbiq",
-      "week-1": "1",
-      "week-2": "2",
-      "week-3": "3",
-      "week-4": "4",
-      "week-5": "5",
-      "week-6": "6",
-      "week-7": "7",
-      "month-name": [
-        "yanvar",
-        "fevral",
-        "mart",
-        "aprel",
-        "may",
-        "iyun",
-        "iyul",
-        "avqust",
-        "sentyabr",
-        "oktyabr",
-        "noyabr",
-        "dekabr"
-      ],
-      shortcuts: "Qısayollar",
-      past: "Keçmiş",
-      following: "Növbəti",
-      previous: "&nbsp;&nbsp;&nbsp;",
-      "prev-week": "Öncəki həftə",
-      "prev-month": "Öncəki ay",
-      "prev-year": "Öncəki il",
-      next: "&nbsp;&nbsp;&nbsp;",
-      "next-week": "Növbəti həftə",
-      "next-month": "Növbəti ay",
-      "next-year": "Növbəti il",
-      "less-than": "Tarix aralığı %d gündən çox olmamalıdır",
-      "more-than": "Tarix aralığı %d gündən az olmamalıdır",
-      "default-more": "%d gündən çox bir tarix seçin",
-      "default-single": "Tarix seçin",
-      "default-less": "%d gündən az bir tarix seçin",
-      "default-range": "%d və %d gün aralığında tarixlər seçin",
-      "default-default": "Tarix aralığı seçin"
-    },
-    bg: {
-      selected: "Избрано:",
-      day: "Ден",
-      days: "Дни",
-      apply: "Затвори",
-      "week-1": "пн",
-      "week-2": "вт",
-      "week-3": "ср",
-      "week-4": "чт",
-      "week-5": "пт",
-      "week-6": "сб",
-      "week-7": "нд",
-      "week-number": "С",
-      "month-name": [
-        "януари",
-        "февруари",
-        "март",
-        "април",
-        "май",
-        "юни",
-        "юли",
-        "август",
-        "септември",
-        "октомври",
-        "ноември",
-        "декември"
-      ],
-      shortcuts: "Преки пътища",
-      "custom-values": "Персонализирани стойности",
-      past: "Минал",
-      following: "Следващ",
-      previous: "Предишен",
-      "prev-week": "Седмица",
-      "prev-month": "Месец",
-      "prev-year": "Година",
-      next: "Следващ",
-      "next-week": "Седмица",
-      "next-month": "Месец",
-      "next-year": "Година",
-      "less-than": "Периодът от време не трябва да е повече от %d дни",
-      "more-than": "Периодът от време не трябва да е по-малко от %d дни",
-      "default-more": "Моля изберете период по-дълъг от %d дни",
-      "default-single": "Моля изберете дата",
-      "default-less": "Моля изберете период по-къс от %d дни",
-      "default-range": "Моля изберете период между %d и %d дни",
-      "default-default": "Моля изберете период",
-      time: "Време",
-      hour: "Час",
-      minute: "Минута"
-    },
-    //simplified chinese
-    cn: {
-      selected: "已选择:",
-      day: "天",
-      days: "天",
-      apply: "确定",
-      "week-1": "一",
-      "week-2": "二",
-      "week-3": "三",
-      "week-4": "四",
-      "week-5": "五",
-      "week-6": "六",
-      "week-7": "日",
-      "week-number": "周",
-      "month-name": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-      shortcuts: "快捷选择",
-      past: "过去",
-      following: "将来",
-      previous: "&nbsp;&nbsp;&nbsp;",
-      "prev-week": "上周",
-      "prev-month": "上个月",
-      "prev-year": "去年",
-      next: "&nbsp;&nbsp;&nbsp;",
-      "next-week": "下周",
-      "next-month": "下个月",
-      "next-year": "明年",
-      "less-than": "所选日期范围不能大于%d天",
-      "more-than": "所选日期范围不能小于%d天",
-      "default-more": "请选择大于%d天的日期范围",
-      "default-less": "请选择小于%d天的日期范围",
-      "default-range": "请选择%d天到%d天的日期范围",
-      "default-single": "请选择一个日期",
-      "default-default": "请选择一个日期范围",
-      time: "时间",
-      hour: "小时",
-      minute: "分钟"
-    },
-    cz: {
-      selected: "Vybráno:",
-      day: "Den",
-      days: "Dny",
-      apply: "Zavřít",
-      "week-1": "po",
-      "week-2": "út",
-      "week-3": "st",
-      "week-4": "čt",
-      "week-5": "pá",
-      "week-6": "so",
-      "week-7": "ne",
-      "month-name": [
-        "leden",
-        "únor",
-        "březen",
-        "duben",
-        "květen",
-        "červen",
-        "červenec",
-        "srpen",
-        "září",
-        "říjen",
-        "listopad",
-        "prosinec"
-      ],
-      shortcuts: "Zkratky",
-      past: "po",
-      following: "následující",
-      previous: "předchozí",
-      "prev-week": "týden",
-      "prev-month": "měsíc",
-      "prev-year": "rok",
-      next: "další",
-      "next-week": "týden",
-      "next-month": "měsíc",
-      "next-year": "rok",
-      "less-than": "Rozsah data by neměl být větší než %d dnů",
-      "more-than": "Rozsah data by neměl být menší než %d dnů",
-      "default-more": "Prosím zvolte rozsah data větší než %d dnů",
-      "default-single": "Prosím zvolte datum",
-      "default-less": "Prosím zvolte rozsah data menší než %d dnů",
-      "default-range": "Prosím zvolte rozsah data mezi %d a %d dny",
-      "default-default": "Prosím zvolte rozsah data"
-    },
-    de: {
-      selected: "Auswahl:",
-      day: "Tag",
-      days: "Tage",
-      apply: "Schließen",
-      "week-1": "mo",
-      "week-2": "di",
-      "week-3": "mi",
-      "week-4": "do",
-      "week-5": "fr",
-      "week-6": "sa",
-      "week-7": "so",
-      "month-name": [
-        "januar",
-        "februar",
-        "märz",
-        "april",
-        "mai",
-        "juni",
-        "juli",
-        "august",
-        "september",
-        "oktober",
-        "november",
-        "dezember"
-      ],
-      shortcuts: "Schnellwahl",
-      past: "Vorherige",
-      following: "Folgende",
-      previous: "Vorherige",
-      "prev-week": "Woche",
-      "prev-month": "Monat",
-      "prev-year": "Jahr",
-      next: "Nächste",
-      "next-week": "Woche",
-      "next-month": "Monat",
-      "next-year": "Jahr",
-      "less-than": "Datumsbereich darf nicht größer sein als %d Tage",
-      "more-than": "Datumsbereich darf nicht kleiner sein als %d Tage",
-      "default-more": "Bitte mindestens %d Tage auswählen",
-      "default-single": "Bitte ein Datum auswählen",
-      "default-less": "Bitte weniger als %d Tage auswählen",
-      "default-range": "Bitte einen Datumsbereich zwischen %d und %d Tagen auswählen",
-      "default-default": "Bitte ein Start- und Enddatum auswählen",
-      Time: "Zeit",
-      hour: "Stunde",
-      minute: "Minute"
-    },
-    es: {
-      selected: "Seleccionado:",
-      day: "Día",
-      days: "Días",
-      apply: "Cerrar",
-      "week-1": "lu",
-      "week-2": "ma",
-      "week-3": "mi",
-      "week-4": "ju",
-      "week-5": "vi",
-      "week-6": "sa",
-      "week-7": "do",
-      "month-name": [
-        "enero",
-        "febrero",
-        "marzo",
-        "abril",
-        "mayo",
-        "junio",
-        "julio",
-        "agosto",
-        "septiembre",
-        "octubre",
-        "noviembre",
-        "diciembre"
-      ],
-      shortcuts: "Accesos directos",
-      past: "Pasado",
-      following: "Siguiente",
-      previous: "Anterior",
-      "prev-week": "Semana",
-      "prev-month": "Mes",
-      "prev-year": "Año",
-      next: "Siguiente",
-      "next-week": "Semana",
-      "next-month": "Mes",
-      "next-year": "Año",
-      "less-than": "El rango no debería ser mayor de %d días",
-      "more-than": "El rango no debería ser menor de %d días",
-      "default-more": "Por favor selecciona un rango mayor a %d días",
-      "default-single": "Por favor selecciona un día",
-      "default-less": "Por favor selecciona un rango menor a %d días",
-      "default-range": "Por favor selecciona un rango entre %d y %d días",
-      "default-default": "Por favor selecciona un rango de fechas."
-    },
-    fr: {
-      selected: "Sélection:",
-      day: "Jour",
-      days: "Jours",
-      apply: "Fermer",
-      "week-1": "lu",
-      "week-2": "ma",
-      "week-3": "me",
-      "week-4": "je",
-      "week-5": "ve",
-      "week-6": "sa",
-      "week-7": "di",
-      "month-name": [
-        "janvier",
-        "février",
-        "mars",
-        "avril",
-        "mai",
-        "juin",
-        "juillet",
-        "août",
-        "septembre",
-        "octobre",
-        "novembre",
-        "décembre"
-      ],
-      shortcuts: "Raccourcis",
-      past: "Passé",
-      following: "Suivant",
-      previous: "Précédent",
-      "prev-week": "Semaine",
-      "prev-month": "Mois",
-      "prev-year": "Année",
-      next: "Suivant",
-      "next-week": "Semaine",
-      "next-month": "Mois",
-      "next-year": "Année",
-      "less-than": "L'intervalle ne doit pas être supérieure à %d jours",
-      "more-than": "L'intervalle ne doit pas être inférieure à %d jours",
-      "default-more": "Merci de choisir une intervalle supérieure à %d jours",
-      "default-single": "Merci de choisir une date",
-      "default-less": "Merci de choisir une intervalle inférieure %d jours",
-      "default-range": "Merci de choisir une intervalle comprise entre %d et %d jours",
-      "default-default": "Merci de choisir une date"
-    },
-    hu: {
-      selected: "Kiválasztva:",
-      day: "Nap",
-      days: "Nap",
-      apply: "Ok",
-      "week-1": "h",
-      "week-2": "k",
-      "week-3": "sz",
-      "week-4": "cs",
-      "week-5": "p",
-      "week-6": "sz",
-      "week-7": "v",
-      "month-name": [
-        "január",
-        "február",
-        "március",
-        "április",
-        "május",
-        "június",
-        "július",
-        "augusztus",
-        "szeptember",
-        "október",
-        "november",
-        "december"
-      ],
-      shortcuts: "Gyorsválasztó",
-      past: "Múlt",
-      following: "Következő",
-      previous: "Előző",
-      "prev-week": "Hét",
-      "prev-month": "Hónap",
-      "prev-year": "Év",
-      next: "Következő",
-      "next-week": "Hét",
-      "next-month": "Hónap",
-      "next-year": "Év",
-      "less-than": "A kiválasztás nem lehet több %d napnál",
-      "more-than": "A kiválasztás nem lehet több %d napnál",
-      "default-more": "Válassz ki egy időszakot ami hosszabb mint %d nap",
-      "default-single": "Válassz egy napot",
-      "default-less": "Válassz ki egy időszakot ami rövidebb mint %d nap",
-      "default-range": "Válassz ki egy %d - %d nap hosszú időszakot",
-      "default-default": "Válassz ki egy időszakot"
-    },
-    it: {
-      selected: "Selezionati:",
-      day: "Giorno",
-      days: "Giorni",
-      apply: "Chiudi",
-      "week-1": "lu",
-      "week-2": "ma",
-      "week-3": "me",
-      "week-4": "gi",
-      "week-5": "ve",
-      "week-6": "sa",
-      "week-7": "do",
-      "month-name": [
-        "gennaio",
-        "febbraio",
-        "marzo",
-        "aprile",
-        "maggio",
-        "giugno",
-        "luglio",
-        "agosto",
-        "settembre",
-        "ottobre",
-        "novembre",
-        "dicembre"
-      ],
-      shortcuts: "Scorciatoie",
-      past: "Scorso",
-      following: "Successivo",
-      previous: "Precedente",
-      "prev-week": "Settimana",
-      "prev-month": "Mese",
-      "prev-year": "Anno",
-      next: "Prossimo",
-      "next-week": "Settimana",
-      "next-month": "Mese",
-      "next-year": "Anno",
-      "less-than": "L'intervallo non dev'essere maggiore di %d giorni",
-      "more-than": "L'intervallo non dev'essere minore di %d giorni",
-      "default-more": "Seleziona un intervallo maggiore di %d giorni",
-      "default-single": "Seleziona una data",
-      "default-less": "Seleziona un intervallo minore di %d giorni",
-      "default-range": "Seleziona un intervallo compreso tra i %d e i %d giorni",
-      "default-default": "Seleziona un intervallo di date"
-    },
-    ko: {
-      selected: "기간:",
-      day: "일",
-      days: "일간",
-      apply: "닫기",
-      "week-1": "월",
-      "week-2": "화",
-      "week-3": "수",
-      "week-4": "목",
-      "week-5": "금",
-      "week-6": "토",
-      "week-7": "일",
-      "week-number": "주",
-      "month-name": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-      shortcuts: "단축키들",
-      past: "지난(오늘기준)",
-      following: "이후(오늘기준)",
-      previous: "이전",
-      "prev-week": "1주",
-      "prev-month": "1달",
-      "prev-year": "1년",
-      next: "다음",
-      "next-week": "1주",
-      "next-month": "1달",
-      "next-year": "1년",
-      "less-than": "날짜 범위는 %d 일보다 많을 수 없습니다",
-      "more-than": "날짜 범위는 %d 일보다 작을 수 없습니다",
-      "default-more": "날짜 범위를 %d 일보다 길게 선택해 주세요",
-      "default-single": "날짜를 선택해 주세요",
-      "default-less": "%d 일보다 작은 날짜를 선택해 주세요",
-      "default-range": "%d와 %d 일 사이의 날짜 범위를 선택해 주세요",
-      "default-default": "날짜 범위를 선택해 주세요",
-      time: "시각",
-      hour: "시",
-      minute: "분"
-    },
-    no: {
-      selected: "Valgt:",
-      day: "Dag",
-      days: "Dager",
-      apply: "Lukk",
-      "week-1": "ma",
-      "week-2": "ti",
-      "week-3": "on",
-      "week-4": "to",
-      "week-5": "fr",
-      "week-6": "lø",
-      "week-7": "sø",
-      "month-name": [
-        "januar",
-        "februar",
-        "mars",
-        "april",
-        "mai",
-        "juni",
-        "juli",
-        "august",
-        "september",
-        "oktober",
-        "november",
-        "desember"
-      ],
-      shortcuts: "Snarveier",
-      "custom-values": "Egendefinerte Verdier",
-      past: "Over", // Not quite sure about the context of this one
-      following: "Følger",
-      previous: "Forrige",
-      "prev-week": "Uke",
-      "prev-month": "Måned",
-      "prev-year": "År",
-      next: "Neste",
-      "next-week": "Uke",
-      "next-month": "Måned",
-      "next-year": "År",
-      "less-than": "Datoperioden skal ikkje være lengre enn %d dager",
-      "more-than": "Datoperioden skal ikkje være kortere enn %d dager",
-      "default-more": "Vennligst velg ein datoperiode lengre enn %d dager",
-      "default-single": "Vennligst velg ein dato",
-      "default-less": "Vennligst velg ein datoperiode mindre enn %d dager",
-      "default-range": "Vennligst velg ein datoperiode mellom %d og %d dager",
-      "default-default": "Vennligst velg ein datoperiode",
-      time: "Tid",
-      hour: "Time",
-      minute: "Minutter"
-    },
-    nl: {
-      selected: "Geselecteerd:",
-      day: "Dag",
-      days: "Dagen",
-      apply: "Ok",
-      "week-1": "ma",
-      "week-2": "di",
-      "week-3": "wo",
-      "week-4": "do",
-      "week-5": "vr",
-      "week-6": "za",
-      "week-7": "zo",
-      "month-name": [
-        "januari",
-        "februari",
-        "maart",
-        "april",
-        "mei",
-        "juni",
-        "juli",
-        "augustus",
-        "september",
-        "oktober",
-        "november",
-        "december"
-      ],
-      shortcuts: "Snelkoppelingen",
-      "custom-values": "Aangepaste waarden",
-      past: "Verleden",
-      following: "Komend",
-      previous: "Vorige",
-      "prev-week": "Week",
-      "prev-month": "Maand",
-      "prev-year": "Jaar",
-      next: "Volgende",
-      "next-week": "Week",
-      "next-month": "Maand",
-      "next-year": "Jaar",
-      "less-than": "Interval moet langer dan %d dagen zijn",
-      "more-than": "Interval mag niet minder dan %d dagen zijn",
-      "default-more": "Selecteer een interval langer dan %dagen",
-      "default-single": "Selecteer een datum",
-      "default-less": "Selecteer een interval minder dan %d dagen",
-      "default-range": "Selecteer een interval tussen %d en %d dagen",
-      "default-default": "Selecteer een interval",
-      time: "Tijd",
-      hour: "Uur",
-      minute: "Minuut"
-    },
     ru: {
       selected: "Выбрано:",
       day: "День",
@@ -1180,8 +605,8 @@ require("jquery-ui-dist/jquery-ui.js");
         "ноябрь",
         "декабрь"
       ],
-      shortcuts: "Быстрый выбор",
-      "custom-values": "Пользовательские значения",
+      shortcuts: "Быстрый выбор", //Быстрый выбор
+      "custom-values": "", // Пользовательские значения
       past: "Прошедшие",
       following: "Следующие",
       previous: "&nbsp;&nbsp;&nbsp;",
@@ -1202,428 +627,8 @@ require("jquery-ui-dist/jquery-ui.js");
       time: "Время",
       hour: "Часы",
       minute: "Минуты"
-    },
-    uk: {
-      selected: "Вибрано:",
-      day: "День",
-      days: "Днів",
-      apply: "Застосувати",
-      "week-1": "пн",
-      "week-2": "вт",
-      "week-3": "ср",
-      "week-4": "чт",
-      "week-5": "пт",
-      "week-6": "сб",
-      "week-7": "нд",
-      "month-name": [
-        "січень",
-        "лютий",
-        "березень",
-        "квітень",
-        "травень",
-        "червень",
-        "липень",
-        "серпень",
-        "вересень",
-        "жовтень",
-        "листопад",
-        "грудень"
-      ],
-      shortcuts: "Швидкий вибір",
-      "custom-values": "Значення користувача",
-      past: "Минулі",
-      following: "Наступні",
-      previous: "&nbsp;&nbsp;&nbsp;",
-      "prev-week": "Тиждень",
-      "prev-month": "Місяць",
-      "prev-year": "Рік",
-      next: "&nbsp;&nbsp;&nbsp;",
-      "next-week": "Тиждень",
-      "next-month": "Місяць",
-      "next-year": "Рік",
-      "less-than": "Діапазон не може бути більш ніж %d днів",
-      "more-than": "Діапазон не може бути меньш ніж %d днів",
-      "default-more": "Будь ласка виберіть діапазон більше %d днів",
-      "default-single": "Будь ласка виберіть дату",
-      "default-less": "Будь ласка виберіть діапазон менше %d днів",
-      "default-range": "Будь ласка виберіть діапазон між %d та %d днями",
-      "default-default": "Будь ласка виберіть діапазон",
-      time: "Час",
-      hour: "Години",
-      minute: "Хвилини"
-    },
-    pl: {
-      selected: "Wybrany:",
-      day: "Dzień",
-      days: "Dni",
-      apply: "Zamknij",
-      "week-1": "pon",
-      "week-2": "wt",
-      "week-3": "śr",
-      "week-4": "czw",
-      "week-5": "pt",
-      "week-6": "so",
-      "week-7": "nd",
-      "month-name": [
-        "styczeń",
-        "luty",
-        "marzec",
-        "kwiecień",
-        "maj",
-        "czerwiec",
-        "lipiec",
-        "sierpień",
-        "wrzesień",
-        "październik",
-        "listopad",
-        "grudzień"
-      ],
-      shortcuts: "Skróty",
-      "custom-values": "Niestandardowe wartości",
-      past: "Przeszłe",
-      following: "Następne",
-      previous: "Poprzednie",
-      "prev-week": "tydzień",
-      "prev-month": "miesiąc",
-      "prev-year": "rok",
-      next: "Następny",
-      "next-week": "tydzień",
-      "next-month": "miesiąc",
-      "next-year": "rok",
-      "less-than": "Okres nie powinien być dłuższy niż %d dni",
-      "more-than": "Okres nie powinien być krótszy niż  %d ni",
-      "default-more": "Wybierz okres dłuższy niż %d dni",
-      "default-single": "Wybierz datę",
-      "default-less": "Wybierz okres krótszy niż %d dni",
-      "default-range": "Wybierz okres trwający od %d do %d dni",
-      "default-default": "Wybierz okres",
-      time: "Czas",
-      hour: "Godzina",
-      minute: "Minuta"
-    },
-    se: {
-      selected: "Vald:",
-      day: "dag",
-      days: "dagar",
-      apply: "godkänn",
-      "week-1": "ma",
-      "week-2": "ti",
-      "week-3": "on",
-      "week-4": "to",
-      "week-5": "fr",
-      "week-6": "lö",
-      "week-7": "sö",
-      "month-name": [
-        "januari",
-        "februari",
-        "mars",
-        "april",
-        "maj",
-        "juni",
-        "juli",
-        "augusti",
-        "september",
-        "oktober",
-        "november",
-        "december"
-      ],
-      shortcuts: "genvägar",
-      "custom-values": "Anpassade värden",
-      past: "över",
-      following: "följande",
-      previous: "förra",
-      "prev-week": "vecka",
-      "prev-month": "månad",
-      "prev-year": "år",
-      next: "nästa",
-      "next-week": "vecka",
-      "next-month": "måned",
-      "next-year": "år",
-      "less-than": "Datumintervall bör inte vara mindre än %d dagar",
-      "more-than": "Datumintervall bör inte vara mer än %d dagar",
-      "default-more": "Välj ett datumintervall längre än %d dagar",
-      "default-single": "Välj ett datum",
-      "default-less": "Välj ett datumintervall mindre än %d dagar",
-      "default-range": "Välj ett datumintervall mellan %d och %d dagar",
-      "default-default": "Välj ett datumintervall",
-      time: "tid",
-      hour: "timme",
-      minute: "minut"
-    },
-    //Portuguese (European)
-    pt: {
-      selected: "Selecionado:",
-      day: "Dia",
-      days: "Dias",
-      apply: "Fechar",
-      "week-1": "seg",
-      "week-2": "ter",
-      "week-3": "qua",
-      "week-4": "qui",
-      "week-5": "sex",
-      "week-6": "sab",
-      "week-7": "dom",
-      "week-number": "N",
-      "month-name": [
-        "janeiro",
-        "fevereiro",
-        "março",
-        "abril",
-        "maio",
-        "junho",
-        "julho",
-        "agosto",
-        "setembro",
-        "outubro",
-        "novembro",
-        "dezembro"
-      ],
-      shortcuts: "Atalhos",
-      "custom-values": "Valores Personalizados",
-      past: "Passado",
-      following: "Seguinte",
-      previous: "Anterior",
-      "prev-week": "Semana",
-      "prev-month": "Mês",
-      "prev-year": "Ano",
-      next: "Próximo",
-      "next-week": "Próxima Semana",
-      "next-month": "Próximo Mês",
-      "next-year": "Próximo Ano",
-      "less-than": "O período selecionado não deve ser maior que %d dias",
-      "more-than": "O período selecionado não deve ser menor que %d dias",
-      "default-more": "Selecione um período superior a %d dias",
-      "default-single": "Selecione uma data",
-      "default-less": "Selecione um período inferior a %d dias",
-      "default-range": "Selecione um período de %d a %d dias",
-      "default-default": "Selecione um período",
-      time: "Tempo",
-      hour: "Hora",
-      minute: "Minuto"
-    },
-    // traditional chinese
-    tc: {
-      selected: "已選擇:",
-      day: "天",
-      days: "天",
-      apply: "確定",
-      "week-1": "一",
-      "week-2": "二",
-      "week-3": "三",
-      "week-4": "四",
-      "week-5": "五",
-      "week-6": "六",
-      "week-7": "日",
-      "week-number": "周",
-      "month-name": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-      shortcuts: "快速選擇",
-      past: "過去",
-      following: "將來",
-      previous: "&nbsp;&nbsp;&nbsp;",
-      "prev-week": "上週",
-      "prev-month": "上個月",
-      "prev-year": "去年",
-      next: "&nbsp;&nbsp;&nbsp;",
-      "next-week": "下周",
-      "next-month": "下個月",
-      "next-year": "明年",
-      "less-than": "所選日期範圍不能大於%d天",
-      "more-than": "所選日期範圍不能小於%d天",
-      "default-more": "請選擇大於%d天的日期範圍",
-      "default-less": "請選擇小於%d天的日期範圍",
-      "default-range": "請選擇%d天到%d天的日期範圍",
-      "default-single": "請選擇一個日期",
-      "default-default": "請選擇一個日期範圍",
-      time: "日期",
-      hour: "小時",
-      minute: "分鐘"
-    },
-    ja: {
-      selected: "選択しました:",
-      day: "日",
-      days: "日々",
-      apply: "閉じる",
-      "week-1": "月",
-      "week-2": "火",
-      "week-3": "水",
-      "week-4": "木",
-      "week-5": "金",
-      "week-6": "土",
-      "week-7": "日",
-      "month-name": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-      shortcuts: "クイック選択",
-      past: "過去",
-      following: "将来",
-      previous: "&nbsp;&nbsp;&nbsp;",
-      "prev-week": "先週、",
-      "prev-month": "先月",
-      "prev-year": "昨年",
-      next: "&nbsp;&nbsp;&nbsp;",
-      "next-week": "来週",
-      "next-month": "来月",
-      "next-year": "来年",
-      "less-than": "日付の範囲は ％d 日以上にすべきではありません",
-      "more-than": "日付の範囲は ％d 日を下回ってはいけません",
-      "default-more": "％d 日よりも長い期間を選択してください",
-      "default-less": "％d 日未満の期間を選択してください",
-      "default-range": "％d と％ d日の間の日付範囲を選択してください",
-      "default-single": "日付を選択してください",
-      "default-default": "日付範囲を選択してください",
-      time: "時間",
-      hour: "時間",
-      minute: "分"
-    },
-    da: {
-      selected: "Valgt:",
-      day: "Dag",
-      days: "Dage",
-      apply: "Luk",
-      "week-1": "ma",
-      "week-2": "ti",
-      "week-3": "on",
-      "week-4": "to",
-      "week-5": "fr",
-      "week-6": "lö",
-      "week-7": "sö",
-      "month-name": [
-        "januar",
-        "februar",
-        "marts",
-        "april",
-        "maj",
-        "juni",
-        "juli",
-        "august",
-        "september",
-        "oktober",
-        "november",
-        "december"
-      ],
-      shortcuts: "genveje",
-      "custom-values": "Brugerdefinerede værdier",
-      past: "Forbi",
-      following: "Følgende",
-      previous: "Forrige",
-      "prev-week": "uge",
-      "prev-month": "månad",
-      "prev-year": "år",
-      next: "Næste",
-      "next-week": "Næste uge",
-      "next-month": "Næste måned",
-      "next-year": "Næste år",
-      "less-than": "Dato interval bør ikke være med end %d dage",
-      "more-than": "Dato interval bør ikke være mindre end %d dage",
-      "default-more": "Vælg datointerval længere end %d dage",
-      "default-single": "Vælg dato",
-      "default-less": "Vælg datointerval mindre end %d dage",
-      "default-range": "Vælg datointerval mellem %d og %d dage",
-      "default-default": "Vælg datointerval",
-      time: "tid",
-      hour: "time",
-      minute: "minut"
-    },
-    // Finnish
-    fi: {
-      selected: "Valittu:",
-      day: "Päivä",
-      days: "Päivää",
-      apply: "Sulje",
-      "week-1": "ma",
-      "week-2": "ti",
-      "week-3": "ke",
-      "week-4": "to",
-      "week-5": "pe",
-      "week-6": "la",
-      "week-7": "su",
-      "week-number": "V",
-      "month-name": [
-        "tammikuu",
-        "helmikuu",
-        "maaliskuu",
-        "huhtikuu",
-        "toukokuu",
-        "kesäkuu",
-        "heinäkuu",
-        "elokuu",
-        "syyskuu",
-        "lokakuu",
-        "marraskuu",
-        "joulukuu"
-      ],
-      shortcuts: "Pikavalinnat",
-      "custom-values": "Mukautetut Arvot",
-      past: "Menneet",
-      following: "Tulevat",
-      previous: "Edellinen",
-      "prev-week": "Viikko",
-      "prev-month": "Kuukausi",
-      "prev-year": "Vuosi",
-      next: "Seuraava",
-      "next-week": "Viikko",
-      "next-month": "Kuukausi",
-      "next-year": "Vuosi",
-      "less-than": "Aikajakson tulisi olla vähemmän kuin %d päivää",
-      "more-than": "Aikajakson ei tulisi olla vähempää kuin %d päivää",
-      "default-more": "Valitse pidempi aikajakso kuin %d päivää",
-      "default-single": "Valitse päivä",
-      "default-less": "Valitse lyhyempi aikajakso kuin %d päivää",
-      "default-range": "Valitse aikajakso %d ja %d päivän väliltä",
-      "default-default": "Valitse aikajakso",
-      time: "Aika",
-      hour: "Tunti",
-      minute: "Minuutti"
-    },
-    // Catala
-    cat: {
-      selected: "Seleccionats:",
-      day: "Dia",
-      days: "Dies",
-      apply: "Tanca",
-      "week-1": "Dl",
-      "week-2": "Dm",
-      "week-3": "Dc",
-      "week-4": "Dj",
-      "week-5": "Dv",
-      "week-6": "Ds",
-      "week-7": "Dg",
-      "week-number": "S",
-      "month-name": [
-        "gener",
-        "febrer",
-        "març",
-        "abril",
-        "maig",
-        "juny",
-        "juliol",
-        "agost",
-        "setembre",
-        "octubre",
-        "novembre",
-        "desembre"
-      ],
-      shortcuts: "Dreçeres",
-      "custom-values": "Valors personalitzats",
-      past: "Passat",
-      following: "Futur",
-      previous: "Anterior",
-      "prev-week": "Setmana",
-      "prev-month": "Mes",
-      "prev-year": "Any",
-      next: "Següent",
-      "next-week": "Setmana",
-      "next-month": "Mes",
-      "next-year": "Any",
-      "less-than": "El període no hauria de ser de més de %d dies",
-      "more-than": "El període no hauria de ser de menys de %d dies",
-      "default-more": "Perfavor selecciona un període més gran de %d dies",
-      "default-single": "Perfavor selecciona una data",
-      "default-less": "Perfavor selecciona un període de menys de %d dies",
-      "default-range": "Perfavor selecciona un període d'entre %d i %d dies",
-      "default-default": "Perfavor selecciona un període",
-      time: "Temps",
-      hour: "Hora",
-      minute: "Minut"
     }
+
   };
 
   $.fn.dateRangePicker = function(opt) {
@@ -1709,7 +714,7 @@ require("jquery-ui-dist/jquery-ui.js");
     if (opt.singleMonth == "auto") opt.singleMonth = $(window).width() < 480;
     if (opt.singleMonth) opt.stickyMonths = false;
 
-    if (!opt.showTopbar) opt.autoClose = true;
+    // if (!opt.showTopbar) opt.autoClose = false; // true
 
     if (opt.startDate && typeof opt.startDate == "string") opt.startDate = moment(opt.startDate, opt.format).toDate();
     if (opt.endDate && typeof opt.endDate == "string") opt.endDate = moment(opt.endDate, opt.format).toDate();
@@ -2079,7 +1084,7 @@ require("jquery-ui-dist/jquery-ui.js");
           if (offset.left < 460) {
             //left to right
             box.css({
-              top: offset.top+ 5 + $(self).outerHeight() + parseInt($("body").css("border-top") || 0, 10),
+              top: offset.top + 5 + $(self).outerHeight() + parseInt($("body").css("border-top") || 0, 10),
               left: offset.left
             });
           } else {
@@ -3259,13 +2264,14 @@ require("jquery-ui-dist/jquery-ui.js");
 
       // Add Custom Values Dom
       if (opt.showCustomValues) {
-        html += '<div class="customValues"><b>' + (opt.customValueLabel || translate("custom-values")) + "</b>";
+        // html += '<div class="customValues"><b>' + (opt.customValueLabel || translate("custom-values")) + "</b>";
 
         if (opt.customValues) {
           for (var i = 0; i < opt.customValues.length; i++) {
             var val = opt.customValues[i];
             html +=
-              '&nbsp;<span class="custom-value"><a href="javascript:;" custom="' + val.value + '">' + val.name + "</a></span>";
+              `<button class="button-` + val.value + `" id="` + val.value + `">` + val.name + `</button>`;
+            //  '&nbsp;<span class="custom-value"><a href="javascript:;" custom="' + val.value + '">' + val.name + "</a></span>";
           }
         }
       }
@@ -3595,13 +2601,67 @@ require("jquery-ui-dist/jquery-ui.js");
   }
   $("#date-range-birthday").mask("99.99.9999");
   $("#date-range-birthday").dateRangePicker({
-    autoClose: false,
+    autoClose: true,
     format: "DD.MM.YYYY",
     singleDate: true,
     singleMonth: true,
     language: "ru",
     showTopbar: false,
     startOfWeek: "monday",
-    hoveringTooltip: false
+    hoveringTooltip: false,
+    extraClass: 'date-range-picker',
   });
+
+
+  $("#date-range-two1").mask("99.99.9999");
+  $("#date-range-two2").mask("99.99.9999");
+
+  $("#date-two-inputs").dateRangePicker({
+    singleMonth: true,
+    startDate: moment(),
+    autoClose: false,
+    showTopbar: false,
+    minDays: 2,
+    format: "DD.MM.YYYY",
+    language: "ru",
+    startOfWeek: "monday",
+    showShortcuts: false,
+    showCustomValues: true,
+    customValues:
+      //if return an array of two dates, it will select the date range between the two dates
+      [
+        {
+          name: 'ОЧИСТИТЬ',
+          value: 'date-two-inputs-clear'
+        },
+        {
+          name: 'ПРИМЕНИТЬ',
+          value: 'date-two-inputs-close'
+        }
+      ],
+    separator: " ",
+    getValue: function() {
+      if ($("#date-range-two1").val() && $("#date-range-two2").val())
+        return $("#date-range-two1").val() + " " + $("#date-range-two2").val();
+      else return "";
+    },
+    setValue: function(s, s1, s2) {
+      $("#date-range-two1").val(s1);
+      $("#date-range-two2").val(s2);
+    },
+   
+  });
+  $('#date-two-inputs-clear').click(function(evt)
+  {
+    evt.stopPropagation();
+    $('#date-two-inputs').data('dateRangePicker').clear();
+  });
+  
+  $('#date-two-inputs-close').click(function(evt)
+  {
+    evt.stopPropagation();
+    $('#date-two-inputs').data('dateRangePicker').close();
+  });
+  
 });
+  

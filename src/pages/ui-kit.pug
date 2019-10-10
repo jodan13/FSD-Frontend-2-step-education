@@ -2,6 +2,7 @@ doctype html
 include ../components/text-field.pug
 include ../components/dropdown.pug
 include ../components/masked.pug
+include ../components/date-two-inputs.pug
 html(lang='ru')
 	head
 		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
@@ -9,7 +10,7 @@ html(lang='ru')
 	body.body_ui-kit
 		main.ui-kit
 			p.colors-title Colors & Type
-			img(src='../img/logo-gray.svg')
+			img(src='./img/logo-gray.svg')
 			section
 				.container
 					.colors
@@ -54,7 +55,7 @@ html(lang='ru')
 								p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
 		main.ui-kit
 			p.form-title Form Elements
-			img(src='../img/logo-gray.svg')
+			img(src='./img/logo-gray.svg')
 			section
 				.container
 					.form
@@ -72,6 +73,10 @@ html(lang='ru')
 								h3 masked text field
 								p Default
 								+masked-inputs()
+								h3 date Dropdown
+								h3.form__date-two date Dropdown
+								+date-two-inputs()
+							
 							
 							.form__col
 							.form__col
@@ -84,11 +89,11 @@ html(lang='ru')
 							.form__col
 
 
-	script(src="../libs/moment.min.js" type="text/javascript")
-	script(src="../libs/jquery.daterangepicker.js")
-	script(src='./ui-kit.js')
-	script(src='../components/dropdown.js')
-
+	script(src="./libs/moment.min.js" type="text/javascript")
+	script(src="./libs/jquery.daterangepicker.js")
+	script(src='./pages/ui-kit.js')
+	script(src='./components/dropdown.js')
+block content
 		
 
 	

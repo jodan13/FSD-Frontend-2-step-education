@@ -1,0 +1,44 @@
+@import "../base/variables.scss";
+
+.date-two {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &__inputs {
+        margin-top: 5px;
+        box-sizing: border-box;
+        width: 150px;
+        background-color: white;
+        border: solid 1px $color-ds25;
+        border-radius: 4px;
+        color: $color-ds75;
+        background-image: url(../img/arrow-down.svg);
+        background-repeat: no-repeat;
+        background-position: 120px 22px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        padding: 13px;
+
+        &::placeholder {
+            color: $color-ds25;
+        }
+
+        &:hover {
+            border-color: $color-ds50;
+
+        }
+
+        &:focus {
+            border-color: $color-ds50;
+
+            &::placeholder {
+                color: $color-ds75;
+            }
+
+            outline: none;
+        }
+
+
+    }
+}

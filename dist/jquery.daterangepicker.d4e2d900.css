@@ -51,7 +51,22 @@
 }
 .date-picker-wrapper .footer {
   font-size: 11px;
-  padding-top: 3px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.date-picker-wrapper .footer .button-date-two-inputs-clear,
+.date-picker-wrapper .footer .button-date-two-inputs-close {
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+.date-picker-wrapper .footer .button-date-two-inputs-clear {
+  color: rgba(31, 32, 65, 0.5);
+}
+.date-picker-wrapper .footer .button-date-two-inputs-close {
+  color: #BC9CFF;
 }
 .date-picker-wrapper b {
   color: #666;
@@ -132,7 +147,6 @@
   line-height: 40px;
   font-size: 12px;
   margin-bottom: 1px;
-  color: #ffffff;
   cursor: default;
 }
 .date-picker-wrapper .month-wrapper table div.day.lastMonth, .date-picker-wrapper .month-wrapper table div.day.nextMonth {
@@ -140,7 +154,7 @@
   cursor: default;
 }
 .date-picker-wrapper .month-wrapper table .day.checked {
-  background-color: #9cdbf7;
+  background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%);
 }
 .date-picker-wrapper .month-wrapper table .week-name {
   height: 40px;
@@ -168,7 +182,6 @@
 }
 .date-picker-wrapper .month-wrapper table .day.toMonth.hovering {
   background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%);
-  border-radius: 22px;
 }
 .date-picker-wrapper .month-wrapper table .day.real-today {
   background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
@@ -332,14 +345,14 @@
   height: 20px;
 }
 .date-picker-wrapper .time1 {
-  width: 180px;
+  width: auto;
   padding: 0 5px;
   text-align: center;
 }
 
 /*time styling*/
 .time2 {
-  width: 180px;
+  width: auto;
   padding: 0 5px;
   text-align: center;
 }
@@ -367,6 +380,23 @@
   color: white !important;
   border-radius: 22px;
   font-weight: bold;
+  position: relative;
+}
+.date-picker-wrapper .first-date-selected::after {
+  background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%) !important;
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 100%;
+  right: 0px;
+}
+.date-picker-wrapper .last-date-selected::before {
+  background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%) !important;
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 100%;
+  left: 0px;
 }
 .date-picker-wrapper .date-range-length-tip {
   position: absolute;

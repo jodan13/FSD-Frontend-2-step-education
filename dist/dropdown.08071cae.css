@@ -1,6 +1,5 @@
 input[name=guest] {
   box-sizing: border-box;
-  width: 100%;
   width: 320px;
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-radius: 4px;
@@ -8,7 +7,9 @@ input[name=guest] {
   font-size: 14px;
   margin-top: 5px;
   color: rgba(31, 32, 65, 0.75);
-  background: url(/arrow-down.89ffe8bc.svg) 292px 22px no-repeat;
+  background-image: url(/arrow-down.89ffe8bc.svg);
+  background-repeat: no-repeat;
+  background-position: calc(50% + 292px) calc(50% + 22px);
   text-overflow: ellipsis;
   outline: none;
   cursor: pointer;

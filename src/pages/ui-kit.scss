@@ -3,6 +3,13 @@
 @import "../layout/main.scss";
 @import "../components/text-field.scss";
 @import "../components/masked.scss";
+@import "../components/date-two-inputs.scss";
+
+.date-picker-wrapper.date-range-picker .day.first-date-selected::after {
+    background: none !important;
+}
+
+
 
 .body_ui-kit {
     background: #e5e5e5;
@@ -163,5 +170,10 @@ p.form-title {
     &__text-field--hover {
         margin-top: 5px;
         border-color: $color-ds50;
+    }
+
+    &__date-two {
+        width: 150px;
+
     }
 }

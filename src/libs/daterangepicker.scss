@@ -58,7 +58,28 @@
 
   .footer {
     font-size: 11px;
-    padding-top: 3px;
+    padding-top: 10px;
+
+
+    display: flex;
+    justify-content: space-between;
+
+    .button-date-two-inputs-clear,
+    .button-date-two-inputs-close {
+      border: none;
+      background: none;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .button-date-two-inputs-clear {
+      color: $color-ds50;
+    }
+
+    .button-date-two-inputs-close {
+      color: $color-purple;
+    }
+
   }
 
   b {
@@ -152,7 +173,7 @@
         line-height: 40px;
         font-size: 12px;
         margin-bottom: 1px;
-        color: #ffffff;
+        // color: #ffffff;
         cursor: default;
       }
 
@@ -166,7 +187,8 @@
       }
 
       .day.checked {
-        background-color: rgb(156, 219, 247);
+        background: $color-purple-gradient25;
+
       }
 
       .week-name {
@@ -206,14 +228,18 @@
 
       &.hovering {
         background: $color-purple-gradient25;
-        border-radius: 22px
+
+        // border-radius: 22
+
       }
+
+
     }
 
-    &.nextMonth,
-    &.lastMonth {
-      // display: none;
-    }
+    // &.nextMonth,
+    // &.lastMonth {
+    //   display: none;
+    // }
 
     &.real-today {
       background: $color-green-gradient;
@@ -415,7 +441,7 @@
   }
 
   .time1 {
-    width: 180px;
+    width: auto;
     padding: 0 5px;
     text-align: center;
   }
@@ -424,7 +450,7 @@
 /*time styling*/
 
 .time2 {
-  width: 180px;
+  width: auto;
   padding: 0 5px;
   text-align: center;
 }
@@ -458,7 +484,40 @@
     color: white !important;
     border-radius: 22px;
     font-weight: bold;
+    position: relative;
+
+
   }
+
+  .first-date-selected {
+    &::after {
+      background: $color-purple-gradient25 !important;
+      position: absolute;
+      content: '';
+      width: 50%;
+      height: 100%;
+      right: 0px;
+
+    }
+  }
+
+
+
+
+
+  .last-date-selected {
+    &::before {
+      background: $color-purple-gradient25 !important;
+      position: absolute;
+      content: '';
+      width: 50%;
+      height: 100%;
+      left: 0px;
+
+    }
+  }
+
+
 
   .date-range-length-tip {
     position: absolute;

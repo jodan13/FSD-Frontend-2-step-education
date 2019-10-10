@@ -618,6 +618,44 @@ h3 {
   color: rgba(31, 32, 65, 0.75);
 }
 
+.date-two {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.date-two__inputs {
+  margin-top: 5px;
+  box-sizing: border-box;
+  width: 150px;
+  background-color: white;
+  border: solid 1px rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+  color: rgba(31, 32, 65, 0.75);
+  background-image: url(/arrow-down.89ffe8bc.svg);
+  background-repeat: no-repeat;
+  background-position: 120px 22px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  padding: 13px;
+}
+.date-two__inputs::placeholder {
+  color: rgba(31, 32, 65, 0.25);
+}
+.date-two__inputs:hover {
+  border-color: rgba(31, 32, 65, 0.5);
+}
+.date-two__inputs:focus {
+  border-color: rgba(31, 32, 65, 0.5);
+  outline: none;
+}
+.date-two__inputs:focus::placeholder {
+  color: rgba(31, 32, 65, 0.75);
+}
+
+.date-picker-wrapper.date-range-picker .day.first-date-selected::after {
+  background: none !important;
+}
+
 .body_ui-kit {
   background: #e5e5e5;
 }
@@ -762,6 +800,9 @@ p.form-title {
 .form__text-field--hover {
   margin-top: 5px;
   border-color: rgba(31, 32, 65, 0.5);
+}
+.form__date-two {
+  width: 150px;
 }
 
 /*# sourceMappingURL=/ui-kit.5a5fbf02.css.map */
