@@ -4,11 +4,17 @@
 @import "../components/text-field.scss";
 @import "../components/masked.scss";
 @import "../components/date-two-inputs.scss";
+@import "../components/filter-date-dropdown.scss";
+@import "../components/subscription-text-field.scss";
+@import "../components/checkbox.scss";
 
 .date-picker-wrapper.date-range-picker .day.first-date-selected::after {
     background: none !important;
 }
 
+.first-date-selected.left::after {
+    left: 0px;
+}
 
 
 .body_ui-kit {
@@ -144,22 +150,40 @@ p.form-title {
 }
 
 .form {
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
     &__col {
         display: flex;
         width: 320px;
         flex-wrap: wrap;
+        align-content: flex-start;
         justify-content: space-between;
+        align-items: flex-start;
     }
 
-    &__col h3 {
+    &__h3 {
         margin: 20px 0 0 0;
     }
 
-    &__col p {
+    &__h3:first-child {
+        margin: 0;
+    }
+
+    &__p {
         line-height: 15px;
         margin: 20px 0 0 0;
         text-transform: uppercase;
         color: $color-ds50;
+    }
+
+    &__p:nth-child(2) {
+        margin: 0;
+
+
     }
 
     &__text-field {
@@ -173,7 +197,20 @@ p.form-title {
     }
 
     &__date-two {
+        margin-top: 40px;
         width: 150px;
+    }
 
+    &__h3-40 {
+        margin-top: 40px;
+    }
+
+    &__col:nth-child(2) {
+        margin-left: 126px;
+        width: 260px;
+    }
+
+    &__Check {
+        width: 100%;
     }
 }

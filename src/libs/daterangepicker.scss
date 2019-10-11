@@ -64,22 +64,6 @@
     display: flex;
     justify-content: space-between;
 
-    .button-date-two-inputs-clear,
-    .button-date-two-inputs-close {
-      border: none;
-      background: none;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .button-date-two-inputs-clear {
-      color: $color-ds50;
-    }
-
-    .button-date-two-inputs-close {
-      color: $color-purple;
-    }
-
   }
 
   b {
@@ -485,7 +469,7 @@
     border-radius: 22px;
     font-weight: bold;
     position: relative;
-
+    z-index: 1;
 
   }
 
@@ -497,13 +481,10 @@
       width: 50%;
       height: 100%;
       right: 0px;
+      z-index: -1;
 
     }
   }
-
-
-
-
 
   .last-date-selected {
     &::before {
@@ -513,10 +494,9 @@
       width: 50%;
       height: 100%;
       left: 0px;
-
+      z-index: -1;
     }
   }
-
 
 
   .date-range-length-tip {

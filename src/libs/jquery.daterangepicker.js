@@ -2,10 +2,15 @@
 // author : Chunlong Liu
 // license : MIT
 // www.jszen.com
+"use strict";
 import "./daterangepicker.scss";
-var jquery = require("jquery");
-window.$ = window.jQuery = jquery; // notice the definition of global variables here
-require("jquery-ui-dist/jquery-ui.js");
+import "./moment.js";
+import "./ru.js";
+
+// var jquery = require("jquery");
+// window.$ = window.jQuery = jquery; // notice the definition of global variables here
+// require("jquery-ui-dist/jquery-ui.js");
+
 (function(factory) {
   if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
@@ -17,9 +22,12 @@ require("jquery-ui-dist/jquery-ui.js");
     // Browser globals
     factory(jQuery, moment);
   }
-})(function($, moment) {
-  "use strict";
-
+  var moment = require('moment');
+moment.locale('ru');
+})
+(function($, moment) {
+ 
+  
   // mask
 
   var Mask = function(el, mask, options) {
@@ -781,7 +789,10 @@ require("jquery-ui-dist/jquery-ui.js");
         if (typeof d1 == "string" && typeof d2 == "string") {
           d1 = moment(d1, opt.format).toDate();
           d2 = moment(d2, opt.format).toDate();
+
         }
+        
+
         setDateRange(d1, d2, silent);
       },
       clear: clearSelection,
@@ -1483,6 +1494,7 @@ require("jquery-ui-dist/jquery-ui.js");
             } else {
               $(this).removeClass("hovering");
             }
+            if (hoverTime < opt.start && !opt.end) {box.find(".first-date-selected").addClass("left");} else {box.find(".first-date-selected").removeClass("left");}
           });
 
           if (opt.start && !opt.end) {
@@ -1801,7 +1813,7 @@ require("jquery-ui-dist/jquery-ui.js");
 
         //add first-date-selected class name to the first date selected
         if (opt.start && moment(start).format("YYYY-MM-DD") == moment(time).format("YYYY-MM-DD")) {
-          $(this).addClass("first-date-selected");
+          $(this).addClass("first-date-selected")
         } else {
           $(this).removeClass("first-date-selected");
         }
@@ -1811,6 +1823,8 @@ require("jquery-ui-dist/jquery-ui.js");
         } else {
           $(this).removeClass("last-date-selected");
         }
+        
+
       });
 
       box.find(".week-number").each(function() {
@@ -2662,6 +2676,49 @@ require("jquery-ui-dist/jquery-ui.js");
     evt.stopPropagation();
     $('#date-two-inputs').data('dateRangePicker').close();
   });
+
+
+  // filter-date-dropdown
+
+  // $("#filter-date-dropdown").mask("99.AAA-99.AAA");
+
+  $("#filter-date-dropdown").dateRangePicker({
+    singleMonth: true,
+    startDate: moment(),
+    autoClose: false,
+    showTopbar: false,
+    minDays: 2,
+    format: "DD MMM",
+    separator: " - ",
+    language: "ru",
+    startOfWeek: "monday",
+    showShortcuts: false,
+    showCustomValues: true,
+    customValues:
+      //if return an array of two dates, it will select the date range between the two dates
+      [
+        {
+          name: 'ОЧИСТИТЬ',
+          value: 'filter-date-dropdown-clear'
+        },
+        {
+          name: 'ПРИМЕНИТЬ',
+          value: 'filter-date-dropdown-close'
+        }
+      ],
+   
+  });
+  $('#filter-date-dropdown-clear').click(function(evt)
+  {
+    evt.stopPropagation();
+    $('#filter-date-dropdown').data('dateRangePicker').clear();
+  });
   
+  $('#filter-date-dropdown-close').click(function(evt)
+  {
+    evt.stopPropagation();
+    $('#filter-date-dropdown').data('dateRangePicker').close();
+  });
+
 });
   

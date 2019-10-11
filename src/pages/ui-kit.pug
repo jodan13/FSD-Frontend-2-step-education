@@ -3,6 +3,12 @@ include ../components/text-field.pug
 include ../components/dropdown.pug
 include ../components/masked.pug
 include ../components/date-two-inputs.pug
+include ../components/filter-date-dropdown.pug
+include ../components/subscription-text-field.pug
+include ../components/checkbox.pug
+
+
+	
 html(lang='ru')
 	head
 		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
@@ -61,27 +67,36 @@ html(lang='ru')
 					.form
 						.form__row
 							.form__col
-								h3 Text Field
-								p Default
+								h3.form__h3 text Field
+								p.form__p default
 								+text-field("email", "Email", {class: "form__text-field"})
-								h3 Text Field
-								p Hover / Focus
+								h3.form__h3 text Field
+								p.form__p hover / Focus
 								+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
-								h3 Dropdown
-								p Default
+								h3.form__h3 dropdown
+								p.form__p default
 								+dropdown("guest", "Сколько гостей")
-								h3 masked text field
-								p Default
+								h3.form__h3 masked text field
+								p.form__p default
 								+masked-inputs()
-								h3 date Dropdown
-								h3.form__date-two date Dropdown
+								h3.form__date-two date dropdown
+								h3.form__date-two date dropdown
 								+date-two-inputs()
-							
-							
+								h3.form__h3-40 filter date dropdown
+								+filter-date-dropdown()
+								h3.form__h3-40 subscription text field
+								+subscription-text-field()
+
 							.form__col
+								h3.form__Check Checkbox Buttons
+
+								+checkbox("myCheckbox", "canSmoke") Можно курить
+								+checkbox("myCheckbox", "petsAllowed", "checked") Можно c питомцами
+								+checkbox("myCheckbox", "invite guests") Можно пригласить гостей (до 10 человек)
 							.form__col
 						.form__row
 							.form__col
+								
 							.form__col
 							.form__col
 						.form__row
@@ -89,7 +104,7 @@ html(lang='ru')
 							.form__col
 
 
-	script(src="./libs/moment.min.js" type="text/javascript")
+	script(src="./libs/moment.js" type="text/javascript")
 	script(src="./libs/jquery.daterangepicker.js")
 	script(src='./pages/ui-kit.js')
 	script(src='./components/dropdown.js')

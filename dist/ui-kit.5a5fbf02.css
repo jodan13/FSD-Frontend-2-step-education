@@ -652,8 +652,161 @@ h3 {
   color: rgba(31, 32, 65, 0.75);
 }
 
+.button-date-two-inputs-clear,
+.button-date-two-inputs-close {
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.button-date-two-inputs-clear {
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.button-date-two-inputs-close {
+  color: #BC9CFF;
+}
+
+.filter-date-dropdown {
+  margin-top: 5px;
+  box-sizing: border-box;
+  width: 266px;
+  background-color: white;
+  border: solid 1px rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+  color: rgba(31, 32, 65, 0.75);
+  background-image: url(/arrow-down.89ffe8bc.svg);
+  background-repeat: no-repeat;
+  background-position: 236px 22px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  padding: 13px;
+}
+.filter-date-dropdown::placeholder {
+  color: rgba(31, 32, 65, 0.25);
+}
+.filter-date-dropdown:hover {
+  border-color: rgba(31, 32, 65, 0.5);
+}
+.filter-date-dropdown:focus {
+  border-color: rgba(31, 32, 65, 0.5);
+  outline: none;
+}
+.filter-date-dropdown:focus::placeholder {
+  color: rgba(31, 32, 65, 0.75);
+}
+
+.button-filter-date-dropdown-clear,
+.button-filter-date-dropdown-close {
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.button-filter-date-dropdown-clear {
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.button-filter-date-dropdown-close {
+  color: #BC9CFF;
+}
+
+.subscription-text-field {
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+  height: 44px;
+  width: 266px;
+  margin-top: 5px;
+}
+.subscription-text-field:hover {
+  border: 1px solid rgba(31, 32, 65, 0.5);
+}
+.subscription-text-field__input {
+  border-radius: 4px;
+  border: none;
+  height: 42px;
+  outline: none;
+  text-indent: 15px;
+  width: 216px;
+}
+.subscription-text-field__input::-webkit-input-placeholder {
+  color: rgba(31, 32, 65, 0.25);
+}
+.subscription-text-field__button {
+  position: absolute;
+  background: url(/arrow_forward.04b75f4b.svg) no-repeat 50% 50%;
+  height: 44px;
+  width: 44px;
+  border: none;
+}
+
+.checkbox {
+  position: relative;
+  min-height: 30px;
+  padding-left: 30px;
+}
+.checkbox__input {
+  position: absolute;
+  right: 10px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  margin: -1px;
+  border: none;
+  outline: none;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.checkbox__presentation {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: solid 1px #BC9CFF;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.checkbox__input:checked + .checkbox__label > .checkbox__presentation {
+  background-image: url(/checkbox__tick.e500f428.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.checkbox__input:disabled + .checkbox__label {
+  cursor: auto;
+}
+.checkbox__input:disabled + .checkbox__label > .checkbox__presentation {
+  border-color: rgba(31, 32, 65, 0.25);
+  cursor: auto;
+}
+.checkbox__input:focus + .checkbox__label > .checkbox__presentation {
+  outline: none;
+  box-shadow: 0 0 1px 2px white, 0 0 3px 3px rgba(0, 0, 255, 0.15);
+}
+.checkbox__input:active + .checkbox__label > .checkbox__presentation {
+  outline: none;
+  box-shadow: 0 0 1px 2px white, 0 0 3px 3px rgba(255, 0, 0, 0.3);
+}
+.checkbox__label {
+  color: rgba(31, 32, 65, 0.5);
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
 .date-picker-wrapper.date-range-picker .day.first-date-selected::after {
   background: none !important;
+}
+
+.first-date-selected.left::after {
+  left: 0px;
 }
 
 .body_ui-kit {
@@ -778,20 +931,33 @@ p.form-title {
   top: 1000px;
 }
 
+.form__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 .form__col {
   display: flex;
   width: 320px;
   flex-wrap: wrap;
+  align-content: flex-start;
   justify-content: space-between;
+  align-items: flex-start;
 }
-.form__col h3 {
+.form__h3 {
   margin: 20px 0 0 0;
 }
-.form__col p {
+.form__h3:first-child {
+  margin: 0;
+}
+.form__p {
   line-height: 15px;
   margin: 20px 0 0 0;
   text-transform: uppercase;
   color: rgba(31, 32, 65, 0.5);
+}
+.form__p:nth-child(2) {
+  margin: 0;
 }
 .form__text-field {
   margin-top: 5px;
@@ -802,7 +968,18 @@ p.form-title {
   border-color: rgba(31, 32, 65, 0.5);
 }
 .form__date-two {
+  margin-top: 40px;
   width: 150px;
+}
+.form__h3-40 {
+  margin-top: 40px;
+}
+.form__col:nth-child(2) {
+  margin-left: 126px;
+  width: 260px;
+}
+.form__Check {
+  width: 100%;
 }
 
 /*# sourceMappingURL=/ui-kit.5a5fbf02.css.map */

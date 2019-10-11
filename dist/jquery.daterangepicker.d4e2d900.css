@@ -55,19 +55,6 @@
   display: flex;
   justify-content: space-between;
 }
-.date-picker-wrapper .footer .button-date-two-inputs-clear,
-.date-picker-wrapper .footer .button-date-two-inputs-close {
-  border: none;
-  background: none;
-  font-size: 12px;
-  font-weight: bold;
-}
-.date-picker-wrapper .footer .button-date-two-inputs-clear {
-  color: rgba(31, 32, 65, 0.5);
-}
-.date-picker-wrapper .footer .button-date-two-inputs-close {
-  color: #BC9CFF;
-}
 .date-picker-wrapper b {
   color: #666;
   font-weight: 700;
@@ -381,6 +368,7 @@
   border-radius: 22px;
   font-weight: bold;
   position: relative;
+  z-index: 1;
 }
 .date-picker-wrapper .first-date-selected::after {
   background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%) !important;
@@ -389,6 +377,7 @@
   width: 50%;
   height: 100%;
   right: 0px;
+  z-index: -1;
 }
 .date-picker-wrapper .last-date-selected::before {
   background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%) !important;
@@ -397,6 +386,7 @@
   width: 50%;
   height: 100%;
   left: 0px;
+  z-index: -1;
 }
 .date-picker-wrapper .date-range-length-tip {
   position: absolute;

@@ -1,0 +1,9 @@
+mixin checkbox(name, id, checked, checkboxAttrs, inputAttrs, labelAttrs, presentationAttrs)
+  .checkbox&attributes(checkboxAttrs)
+    label.checkbox__label&attributes(labelAttrs)
+      input.checkbox__input(
+      type="checkbox"
+      name=name
+      checked=checked)&attributes(inputAttrs)
+      span.checkbox__presentation&attributes(presentationAttrs)
+      block

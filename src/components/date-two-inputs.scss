@@ -41,4 +41,21 @@
 
 
     }
+
+}
+
+.button-date-two-inputs-clear,
+.button-date-two-inputs-close {
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.button-date-two-inputs-clear {
+    color: $color-ds50;
+}
+
+.button-date-two-inputs-close {
+    color: $color-purple;
 }

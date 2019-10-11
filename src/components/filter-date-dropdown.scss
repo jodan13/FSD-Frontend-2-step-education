@@ -1,0 +1,53 @@
+@import "../base/variables.scss";
+
+
+.filter-date-dropdown {
+    margin-top: 5px;
+    box-sizing: border-box;
+    width: 266px;
+    background-color: white;
+    border: solid 1px $color-ds25;
+    border-radius: 4px;
+    color: $color-ds75;
+    background-image: url(../img/arrow-down.svg);
+    background-repeat: no-repeat;
+    background-position: 236px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    padding: 13px;
+
+    &::placeholder {
+        color: $color-ds25;
+    }
+
+    &:hover {
+        border-color: $color-ds50;
+
+    }
+
+    &:focus {
+        border-color: $color-ds50;
+
+        &::placeholder {
+            color: $color-ds75;
+        }
+
+        outline: none;
+    }
+}
+
+.button-filter-date-dropdown-clear,
+.button-filter-date-dropdown-close {
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.button-filter-date-dropdown-clear {
+    color: $color-ds50;
+}
+
+.button-filter-date-dropdown-close {
+    color: $color-purple;
+}
