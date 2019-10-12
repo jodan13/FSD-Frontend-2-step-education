@@ -184,12 +184,12 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"components/dropdown.scss":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"components/dropdown/dropdown.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\img\\arrow-down.svg":[["arrow-down.89ffe8bc.svg","img/arrow-down.svg"],"img/arrow-down.svg"],"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"./..\\..\\img\\arrow-down.svg":[["arrow-down.89ffe8bc.svg","img/arrow-down.svg"],"img/arrow-down.svg"],"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -29709,7 +29709,7 @@ var widgetsTooltip = $.ui.tooltip;
 
 
 }));
-},{}],"components/dropdown.js":[function(require,module,exports) {
+},{}],"components/dropdown/dropdown.js":[function(require,module,exports) {
 "use strict";
 
 require("./dropdown.scss");
@@ -29766,7 +29766,7 @@ var $input, $goriginalPlaceholder, $gparent, $gi, $gcategory, $gtext, $gname, $g
     //   // событие клика по веб-документу
     //   var div = $(this); // тут указываем ID элемента
     //   if (
-    //     !div.is(e.target) && // если клик был не по нашему блоку
+    //     div.is(e.target) && // если клик был не по нашему блоку
     //     div.has(e.target).length === 0
     //   ) {
     //     // и не по его дочерним элементам
@@ -30070,7 +30070,7 @@ var $input, $goriginalPlaceholder, $gparent, $gi, $gcategory, $gtext, $gname, $g
     showZero: false
   });
 })(jQuery);
-},{"./dropdown.scss":"components/dropdown.scss","jquery":"../node_modules/jquery/dist/jquery.js","jquery-ui-dist/jquery-ui.js":"../node_modules/jquery-ui-dist/jquery-ui.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./dropdown.scss":"components/dropdown/dropdown.scss","jquery":"../node_modules/jquery/dist/jquery.js","jquery-ui-dist/jquery-ui.js":"../node_modules/jquery-ui-dist/jquery-ui.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -30098,7 +30098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52795" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57884" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -30273,5 +30273,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","components/dropdown.js"], null)
-//# sourceMappingURL=/dropdown.08071cae.js.map
+},{}]},{},["C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","components/dropdown/dropdown.js"], null)
+//# sourceMappingURL=/dropdown.a91f52d8.js.map

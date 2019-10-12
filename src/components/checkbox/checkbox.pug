@@ -1,0 +1,8 @@
+mixin checkbox(name, checked, inputAttrs, presentationAttrs)
+  label.checkbox__label()&attributes()
+    input.checkbox__input(
+    type="checkbox"
+    name=name
+    checked=checked)&attributes(inputAttrs)
+    i.material-icons.checkbox__check-icon done
+    block

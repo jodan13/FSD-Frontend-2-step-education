@@ -1,0 +1,12 @@
+mixin toggle(text, checked)
+
+    if checked
+        label.label-toggle 
+            input(type="checkbox" name="checkbox" checked).label-toggle__input
+            p.label-toggle__text #{text}
+            
+    else
+        label.label-toggle 
+            input(type="checkbox" name="checkbox").label-toggle__input
+            p.label-toggle__text #{text}
+            

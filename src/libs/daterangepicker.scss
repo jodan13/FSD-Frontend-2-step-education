@@ -1,5 +1,13 @@
 @import "../base/variables.scss";
 
+.date-picker-wrapper.date-range-picker .day.first-date-selected::after {
+  background: none !important;
+}
+
+.first-date-selected.left::after {
+  left: 0px;
+}
+
 .date-picker {
   width: 170px;
   height: 25px;

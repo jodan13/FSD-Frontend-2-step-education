@@ -1,20 +1,14 @@
 @import "../base/variables.scss";
-@import "../base/global.scss";
+@import "../base/main.scss";
 @import "../layout/main.scss";
-@import "../components/text-field.scss";
-@import "../components/masked.scss";
-@import "../components/date-two-inputs.scss";
-@import "../components/filter-date-dropdown.scss";
-@import "../components/subscription-text-field.scss";
-@import "../components/checkbox.scss";
-
-.date-picker-wrapper.date-range-picker .day.first-date-selected::after {
-    background: none !important;
-}
-
-.first-date-selected.left::after {
-    left: 0px;
-}
+@import "../components/text-field/text-field.scss";
+@import "../components/masked/masked.scss";
+@import "../components/date-two-inputs/date-two-inputs.scss";
+@import "../components/filter-date-dropdown/filter-date-dropdown.scss";
+@import "../components/subscription-text-field/subscription-text-field.scss";
+@import "../components/checkbox/checkbox.scss";
+@import "../components/radiobutton/radiobutton.scss";
+@import "../components/toggle/toggle.scss";
 
 
 .body_ui-kit {
@@ -182,8 +176,6 @@ p.form-title {
 
     &__p:nth-child(2) {
         margin: 0;
-
-
     }
 
     &__text-field {
@@ -210,7 +202,18 @@ p.form-title {
         width: 260px;
     }
 
-    &__Check {
+    &__checkbox {
         width: 100%;
+
+    }
+
+    &__radio-buttons {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    &__toggle {
+        width: 100%;
+        margin-top: 36px;
     }
 }

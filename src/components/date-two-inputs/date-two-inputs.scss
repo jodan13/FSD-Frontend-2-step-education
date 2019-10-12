@@ -1,4 +1,4 @@
-@import "../base/variables.scss";
+@import "../../base/variables.scss";
 
 .date-two {
     width: 100%;
@@ -26,7 +26,6 @@
 
         &:hover {
             border-color: $color-ds50;
-
         }
 
         &:focus {
@@ -38,10 +37,7 @@
 
             outline: none;
         }
-
-
     }
-
 }
 
 .button-date-two-inputs-clear,

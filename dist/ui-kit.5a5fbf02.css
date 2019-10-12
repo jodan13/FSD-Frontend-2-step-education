@@ -51,7 +51,9 @@ h3 {
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
  */
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -62,7 +64,16 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
   display: block;
 }
 
@@ -87,9 +98,14 @@ hr {
   overflow: visible;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 p {
@@ -97,7 +113,8 @@ p {
   margin-bottom: 1rem;
 }
 
-abbr[data-original-title], abbr[title] {
+abbr[data-original-title],
+abbr[title] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
@@ -113,12 +130,17 @@ address {
   line-height: inherit;
 }
 
-dl, ol, ul {
+dl,
+ol,
+ul {
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
-ol ol, ol ul, ul ol, ul ul {
+ol ol,
+ol ul,
+ul ol,
+ul ul {
   margin-bottom: 0;
 }
 
@@ -135,7 +157,8 @@ blockquote {
   margin: 0 0 1rem;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bolder;
 }
 
@@ -143,7 +166,8 @@ small {
   font-size: 80%;
 }
 
-sub, sup {
+sub,
+sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
@@ -174,7 +198,8 @@ a:not([href]):not([tabindex]) {
   text-decoration: none;
 }
 
-a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
   color: inherit;
   text-decoration: none;
 }
@@ -183,7 +208,10 @@ a:not([href]):not([tabindex]):focus {
   outline: 0;
 }
 
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
 }
@@ -238,18 +266,24 @@ button:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
 
-button, input {
+button,
+input {
   overflow: visible;
 }
 
-button, select {
+button,
+select {
   text-transform: none;
 }
 
@@ -257,25 +291,38 @@ select {
   word-wrap: normal;
 }
 
-[type=button], [type=reset], [type=submit], button {
+[type=button],
+[type=reset],
+[type=submit],
+button {
   -webkit-appearance: button;
 }
 
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
   cursor: pointer;
 }
 
-[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
   padding: 0;
   border-style: none;
 }
 
-input[type=checkbox], input[type=radio] {
+input[type=checkbox],
+input[type=radio] {
   box-sizing: border-box;
   padding: 0;
 }
 
-input[type=date], input[type=datetime-local], input[type=month], input[type=time] {
+input[type=date],
+input[type=datetime-local],
+input[type=month],
+input[type=time] {
   -webkit-appearance: listbox;
 }
 
@@ -307,7 +354,8 @@ progress {
   vertical-align: baseline;
 }
 
-[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -742,71 +790,139 @@ h3 {
   border: none;
 }
 
-.checkbox {
+.checkbox__label {
+  max-width: 240px;
   position: relative;
-  min-height: 30px;
+  color: rgba(31, 32, 65, 0.5);
   padding-left: 30px;
+  line-height: 1.5rem;
+  cursor: pointer;
 }
 .checkbox__input {
-  position: absolute;
-  right: 10px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  padding: 0;
-  margin: -1px;
-  border: none;
-  outline: none;
-  clip: rect(1px, 1px, 1px, 1px);
+  display: none;
 }
-.checkbox__presentation {
-  display: block;
+.checkbox__input:hover + .checkbox__check-icon {
+  border-color: #BC9CFF;
+}
+.checkbox__check-icon {
+  position: absolute;
+  left: 0px;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  font-size: inherit;
+  font-weight: bolder;
+  user-select: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  padding: 3px;
+  background-image: black;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.checkbox__input:checked + .checkbox__check-icon {
+  background-image: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  border-color: #BC9CFF;
+}
+
+.label-radio {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(31, 32, 65, 0.5);
+}
+.label-radio:before {
   position: absolute;
   left: 0;
-  top: 0;
-  width: 18px;
-  height: 18px;
-  border: solid 1px #BC9CFF;
-  border-radius: 4px;
-  cursor: pointer;
+  bottom: 2px;
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-sizing: border-box;
+  border-radius: 10px;
 }
-.checkbox__input:checked + .checkbox__label > .checkbox__presentation {
-  background-image: url(/checkbox__tick.e500f428.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.checkbox__input:disabled + .checkbox__label {
-  cursor: auto;
-}
-.checkbox__input:disabled + .checkbox__label > .checkbox__presentation {
-  border-color: rgba(31, 32, 65, 0.25);
-  cursor: auto;
-}
-.checkbox__input:focus + .checkbox__label > .checkbox__presentation {
-  outline: none;
-  box-shadow: 0 0 1px 2px white, 0 0 3px 3px rgba(0, 0, 255, 0.15);
-}
-.checkbox__input:active + .checkbox__label > .checkbox__presentation {
-  outline: none;
-  box-shadow: 0 0 1px 2px white, 0 0 3px 3px rgba(255, 0, 0, 0.3);
-}
-.checkbox__label {
-  color: rgba(31, 32, 65, 0.5);
-  font-family: "Montserrat", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
-  cursor: pointer;
-  user-select: none;
+.label-radio:after {
+  position: absolute;
+  left: 4px;
+  bottom: 6px;
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 10px;
+  background: transparent;
+  -webkit-transition: right 0.4s ease;
+  -o-transition: right 0.4s ease;
+  transition: right 0.4s ease;
 }
 
-.date-picker-wrapper.date-range-picker .day.first-date-selected::after {
-  background: none !important;
+.input-radio {
+  display: none;
+}
+.input-radio:checked + .label-radio {
+  color: rgba(31, 32, 65, 0.75);
+}
+.input-radio:checked + .label-radio:before {
+  border: 1px solid #BC9CFF;
+}
+.input-radio:checked + .label-radio:after {
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
 }
 
-.first-date-selected.left::after {
-  left: 0px;
+.label-toggle {
+  display: block;
+  min-width: 200px;
+  cursor: pointer;
+  padding-left: 50px;
+  position: relative;
+}
+.label-toggle__text {
+  line-height: 20px;
+}
+.label-toggle__text:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: calc(50% - 6px);
+  left: 4px;
+  background: rgba(31, 32, 65, 0.25);
+  border-radius: 10px;
+  transition: right 0.4s ease;
+}
+.label-toggle__text:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  width: 40px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 20px;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+.label-toggle__input {
+  display: none;
+}
+.label-toggle__input:checked + .label-toggle__text {
+  border-color: #BC9CFF;
+}
+.label-toggle__input:checked + .label-toggle__text:after {
+  left: 24px;
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+}
+.label-toggle__input:checked + .label-toggle__text:before {
+  border-color: #BC9CFF;
 }
 
 .body_ui-kit {
@@ -978,8 +1094,16 @@ p.form-title {
   margin-left: 126px;
   width: 260px;
 }
-.form__Check {
+.form__checkbox {
   width: 100%;
+}
+.form__radio-buttons {
+  width: 100%;
+  margin-top: 40px;
+}
+.form__toggle {
+  width: 100%;
+  margin-top: 36px;
 }
 
 /*# sourceMappingURL=/ui-kit.5a5fbf02.css.map */

@@ -1,11 +1,13 @@
 doctype html
-include ../components/text-field.pug
-include ../components/dropdown.pug
-include ../components/masked.pug
-include ../components/date-two-inputs.pug
-include ../components/filter-date-dropdown.pug
-include ../components/subscription-text-field.pug
-include ../components/checkbox.pug
+include ../components/text-field/text-field.pug
+include ../components/dropdown/dropdown.pug
+include ../components/masked/masked.pug
+include ../components/date-two-inputs/date-two-inputs.pug
+include ../components/filter-date-dropdown/filter-date-dropdown.pug
+include ../components/subscription-text-field/subscription-text-field.pug
+include ../components/checkbox/checkbox.pug
+include ../components/radiobutton/radiobutton.pug
+include ../components/toggle/toggle.pug
 
 
 	
@@ -88,11 +90,21 @@ html(lang='ru')
 								+subscription-text-field()
 
 							.form__col
-								h3.form__Check Checkbox Buttons
-
-								+checkbox("myCheckbox", "canSmoke") Можно курить
-								+checkbox("myCheckbox", "petsAllowed", "checked") Можно c питомцами
-								+checkbox("myCheckbox", "invite guests") Можно пригласить гостей (до 10 человек)
+								h3.form__checkbox checkbox Buttons
+								+checkbox("myCheckbox") Можно курить
+								+checkbox("myCheckbox", "checked") Можно c питомцами
+								+checkbox("myCheckbox") Можно пригласить гостей (до 10 человек)
+								h3.form__radio-buttons radio buttons
+								.radio-button-wrapper
+									+radiobutton("Мужчина", "man", "man", "male", "checked")
+								.radio-button-wrapper
+									+radiobutton("Женщина", "woman", "woman", "male")
+								h3.form__toggle toggle
+								.toggle
+								.toggle-top-element
+									+toggle("Получать спецпредложения", "checked")
+								.toggle-lower-element
+									+toggle("Получать спецпредложения")
 							.form__col
 						.form__row
 							.form__col
@@ -107,7 +119,7 @@ html(lang='ru')
 	script(src="./libs/moment.js" type="text/javascript")
 	script(src="./libs/jquery.daterangepicker.js")
 	script(src='./pages/ui-kit.js')
-	script(src='./components/dropdown.js')
+	script(src='./components/dropdown/dropdown.js')
 block content
 		
 

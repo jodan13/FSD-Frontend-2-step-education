@@ -1,0 +1,57 @@
+.label-toggle {
+    display: block;
+    min-width: 200px;
+    cursor: pointer;
+    padding-left: 50px;
+    position: relative;
+
+    &__text {
+        line-height: 20px;
+
+        &:after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: calc(50% - 6px);
+            left: 4px;
+            background: $color-ds25;
+            border-radius: 10px;
+            transition: right 0.4s ease;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            width: 40px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 20px;
+            border: 1px solid $color-ds25;
+            box-sizing: border-box;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+        }
+    }
+}
+
+.label-toggle__input {
+    display: none;
+
+    &:checked+.label-toggle__text {
+        border-color: $color-purple;
+
+        &:after {
+            left: 24px;
+            background: $color-purple-gradient;
+        }
+
+        &:before {
+            border-color: $color-purple;
+        }
+
+    }
+}
