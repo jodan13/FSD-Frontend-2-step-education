@@ -1,7 +1,9 @@
-mixin radiobutton(text, id, value, group, checked)
+mixin radiobutton(text,value, group, checked)
 	if checked
-		input.input-radio(type="radio" id=id name=group value=value checked)
-		label.label-radio(for=id)&attributes(attributes) #{text}
+		label.label-radio&attributes(attributes) 
+			input.input-radio(type="radio" name=group value=value checked)
+			p.label-radio__text #{text}
 	else
-		input.input-radio(type="radio" id=id name=group value=value)
-		label.label-radio(for=id)&attributes(attributes) #{text}
+		label.label-radio&attributes(attributes)
+			input.input-radio(type="radio" name=group value=value)
+			p.label-radio__text #{text}

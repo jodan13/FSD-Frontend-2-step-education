@@ -1,0 +1,32 @@
+@import "../../base/variables.scss";
+
+.like-btn {
+	display: inline-flex;
+	min-width: 40px;
+	height: 20px;
+	justify-content: center;
+	color: $color-ds25;
+	background: transparent;
+	border: 1px solid $color-ds25;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all .1s;
+
+	&--clicked {
+		color: $color-purple;
+		border-color: $color-purple;
+	}
+}
+
+.like-btn__icon {
+	margin-right: 4px;
+	font-size: inherit;
+	font-size: 10px;
+	line-height: 1;
+}
+
+.like-btn__count {
+	margin: 0 auto;
+	font-size: 10px;
+	line-height: 1;
+}

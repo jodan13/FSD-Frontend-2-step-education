@@ -8,120 +8,127 @@ include ../components/subscription-text-field/subscription-text-field.pug
 include ../components/checkbox/checkbox.pug
 include ../components/radiobutton/radiobutton.pug
 include ../components/toggle/toggle.pug
+include ../components/like-button/like-button.pug
+include ../components/rate-btn/rate-btn.pug
 
 
-	
+  
 html(lang='ru')
-	head
-		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-		title ui-kit
-	body.body_ui-kit
-		main.ui-kit
-			p.colors-title Colors & Type
-			img(src='./img/logo-gray.svg')
-			section
-				.container
-					.colors
-						ul
-							li
-								h2 Dark Shade 100% 
-								p #1F2041
-							li 
-								h2 Dark Shade 75% 
-								p #1F2041
-							li 
-								h2 Dark Shade 50% 
-								p #1F2041
-							li 
-								h2 Dark Shade 25% 
-								p #1F2041
-							li 
-								h2 Dark Shade 5% 
-								p #1F2041
-							li 
-								h2 Purple 
-								p #BC9CFF
-							li 
-								h2 Green 
-								p #6FCF97
-					.font
-						.font_h(class='font_h1')
-							.font_type(class='font_type_h1') H1
-							.font_example 
-								h1 This one is the sub-section or widget title
-						.font_h(class='font_h2')
-							.font_type(class='font_type_h2') H2
-							.font_example 
-								h2 Next one is the item title inside widgets
-						.font_h(class='font_h3')
-							.font_type(class='font_type_h3') H3
-							.font_example 
-								h3 THIS IS A LABEL OR CTA TEXT
-						.font_h(class='font_body')
-							.font_type(class='font_type_body') Body
-							.font_example 
-								p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
-		main.ui-kit
-			p.form-title Form Elements
-			img(src='./img/logo-gray.svg')
-			section
-				.container
-					.form
-						.form__row
-							.form__col
-								h3.form__h3 text Field
-								p.form__p default
-								+text-field("email", "Email", {class: "form__text-field"})
-								h3.form__h3 text Field
-								p.form__p hover / Focus
-								+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
-								h3.form__h3 dropdown
-								p.form__p default
-								+dropdown("guest", "Сколько гостей")
-								h3.form__h3 masked text field
-								p.form__p default
-								+masked-inputs()
-								h3.form__date-two date dropdown
-								h3.form__date-two date dropdown
-								+date-two-inputs()
-								h3.form__h3-40 filter date dropdown
-								+filter-date-dropdown()
-								h3.form__h3-40 subscription text field
-								+subscription-text-field()
+  head
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    title ui-kit
+  body.body_ui-kit
+    main.ui-kit
+      p.colors-title Colors & Type
+      img(src='./img/logo-gray.svg')
+      section
+        .container
+          .colors
+            ul
+              li
+                h2 Dark Shade 100% 
+                p #1F2041
+              li 
+                h2 Dark Shade 75% 
+                p #1F2041
+              li 
+                h2 Dark Shade 50% 
+                p #1F2041
+              li 
+                h2 Dark Shade 25% 
+                p #1F2041
+              li 
+                h2 Dark Shade 5% 
+                p #1F2041
+              li 
+                h2 Purple 
+                p #BC9CFF
+              li 
+                h2 Green 
+                p #6FCF97
+          .font
+            .font_h(class='font_h1')
+              .font_type(class='font_type_h1') H1
+              .font_example 
+                h1 This one is the sub-section or widget title
+            .font_h(class='font_h2')
+              .font_type(class='font_type_h2') H2
+              .font_example 
+                h2 Next one is the item title inside widgets
+            .font_h(class='font_h3')
+              .font_type(class='font_type_h3') H3
+              .font_example 
+                h3 THIS IS A LABEL OR CTA TEXT
+            .font_h(class='font_body')
+              .font_type(class='font_type_body') Body
+              .font_example 
+                p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
+    main.ui-kit
+      p.form-title Form Elements
+      img(src='./img/logo-gray.svg')
+      section
+        .container
+          .form
+            .form__row
+              .form__col
+                h3.form__h3 text Field
+                p.form__p default
+                +text-field("email", "Email", {class: "form__text-field"})
+                h3.form__h3 text Field
+                p.form__p hover / Focus
+                +text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
+                h3.form__h3 dropdown
+                p.form__p default
+                +dropdown("guest", "Сколько гостей")
+                h3.form__h3 masked text field
+                p.form__p default
+                +masked-inputs()
+                h3.form__date-two date dropdown
+                h3.form__date-two date dropdown
+                +date-two-inputs()
+                h3.form__h3-40 filter date dropdown
+                +filter-date-dropdown()
+                h3.form__h3-40 subscription text field
+                +subscription-text-field()
 
-							.form__col
-								h3.form__checkbox checkbox Buttons
-								+checkbox("myCheckbox") Можно курить
-								+checkbox("myCheckbox", "checked") Можно c питомцами
-								+checkbox("myCheckbox") Можно пригласить гостей (до 10 человек)
-								h3.form__radio-buttons radio buttons
-								.radio-button-wrapper
-									+radiobutton("Мужчина", "man", "man", "male", "checked")
-								.radio-button-wrapper
-									+radiobutton("Женщина", "woman", "woman", "male")
-								h3.form__toggle toggle
-								.toggle
-								.toggle-top-element
-									+toggle("Получать спецпредложения", "checked")
-								.toggle-lower-element
-									+toggle("Получать спецпредложения")
-							.form__col
-						.form__row
-							.form__col
-								
-							.form__col
-							.form__col
-						.form__row
-							.form__col
-							.form__col
+              .form__col
+                h3.form__checkbox checkbox Buttons
+                +checkbox("myCheckbox") Можно курить
+                +checkbox("myCheckbox", "checked") Можно c питомцами
+                +checkbox("myCheckbox") Можно пригласить гостей (до 10 человек)
+                h3.form__radio-buttons radio buttons
+                +radiobutton("Мужчина","man", "male", "checked")
+                +radiobutton("Женщина","woman", "male")
+                h3.form__toggle toggle
+                +toggle("Получать спецпредложения", "checked")
+                +toggle("Получать спецпредложения")
+                h3.form__like-button like button
+                .form__like-button--wrapper
+                  +likeButton(2)
+                  +likeButton(12, true)
+                h3.form__rate-btn rate button
+                +rateBtn(4)
+                +rateBtn(5)
+
+              .form__col
+            .form__row
+              .form__col
+                
+              .form__col
+              .form__col
+            .form__row
+              .form__col
+              .form__col
 
 
-	script(src="./libs/moment.js" type="text/javascript")
-	script(src="./libs/jquery.daterangepicker.js")
-	script(src='./pages/ui-kit.js')
-	script(src='./components/dropdown/dropdown.js')
+  script(src="./libs/moment.js" type="text/javascript")
+  script(src="./libs/jquery.daterangepicker.js")
+  script(src='./pages/ui-kit.js')
+  script(src='./components/dropdown/dropdown.js')
+  script(src='./components/like-button/like-button.js')
+  script(src='./components/rate-btn/rate-btn.js')
 block content
-		
+    
 
-	
-	
+  
+  

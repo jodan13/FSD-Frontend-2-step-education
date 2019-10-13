@@ -216,4 +216,20 @@ p.form-title {
         width: 100%;
         margin-top: 36px;
     }
+
+    &__like-button {
+        width: 100%;
+        margin-top: 36px;
+    }
+
+    &__like-button--wrapper {
+        min-width: 90px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__rate-btn {
+        margin-top: 40px;
+        width: 100%
+    }
 }

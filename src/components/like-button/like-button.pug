@@ -1,0 +1,4 @@
+mixin likeButton(likesCount, isClicked)
+	button(class=`like-btn ${(isClicked) ? 'like-btn--clicked' : ''}` type='button')
+		i.like-btn__icon.material-icons= (isClicked) ? 'favorite' : 'favorite_border'
+		span.like-btn__count= likesCount

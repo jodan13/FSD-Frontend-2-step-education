@@ -830,11 +830,13 @@ h3 {
   cursor: pointer;
   position: relative;
   padding-left: 30px;
-  font-size: 14px;
+}
+.label-radio__text {
   line-height: 24px;
   color: rgba(31, 32, 65, 0.5);
+  margin-bottom: 0;
 }
-.label-radio:before {
+.label-radio__text:before {
   position: absolute;
   left: 0;
   bottom: 2px;
@@ -846,7 +848,7 @@ h3 {
   box-sizing: border-box;
   border-radius: 10px;
 }
-.label-radio:after {
+.label-radio__text:after {
   position: absolute;
   left: 4px;
   bottom: 6px;
@@ -864,13 +866,13 @@ h3 {
 .input-radio {
   display: none;
 }
-.input-radio:checked + .label-radio {
+.input-radio:checked + .label-radio__text {
   color: rgba(31, 32, 65, 0.75);
 }
-.input-radio:checked + .label-radio:before {
+.input-radio:checked + .label-radio__text:before {
   border: 1px solid #BC9CFF;
 }
-.input-radio:checked + .label-radio:after {
+.input-radio:checked + .label-radio__text:after {
   background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
 }
 
@@ -890,7 +892,7 @@ h3 {
   position: absolute;
   width: 12px;
   height: 12px;
-  top: calc(50% - 6px);
+  top: 4px;
   left: 4px;
   background: rgba(31, 32, 65, 0.25);
   border-radius: 10px;
@@ -1104,6 +1106,19 @@ p.form-title {
 .form__toggle {
   width: 100%;
   margin-top: 36px;
+}
+.form__like-button {
+  width: 100%;
+  margin-top: 36px;
+}
+.form__like-button--wrapper {
+  min-width: 90px;
+  display: flex;
+  justify-content: space-between;
+}
+.form__rate-btn {
+  margin-top: 40px;
+  width: 100%;
 }
 
 /*# sourceMappingURL=/ui-kit.5a5fbf02.css.map */
