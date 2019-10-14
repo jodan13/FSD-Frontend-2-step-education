@@ -1,9 +1,12 @@
 mixin dropdown(name, placeholder, textAttr)
-    label(for="dropdownGuest") 
+    label(for="dropdownGuest")
         input(
-            id="dropdownGuest", 
-            name=name, 
-            type="text", 
-            readonly, 
-            placeholder=placeholder)&attributes(textAttr)
+                id="dropdownGuest", 
+                name=name, 
+                type="text", 
+                readonly, 
+                placeholder=placeholder)&attributes(textAttr)
+        .dropdown-guest 
+
+            i.material-icons.dropdown-guest__icon expand_more
  

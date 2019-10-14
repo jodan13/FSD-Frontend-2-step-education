@@ -10,6 +10,9 @@ include ../components/radiobutton/radiobutton.pug
 include ../components/toggle/toggle.pug
 include ../components/like-button/like-button.pug
 include ../components/rate-btn/rate-btn.pug
+include ../components/range-slider/range-slider.pug
+include ../components/buttons/buttons.pug
+include ../components/pagination/pagination.pug
 
 
   
@@ -19,31 +22,30 @@ html(lang='ru')
     title ui-kit
   body.body_ui-kit
     main.ui-kit
-      p.colors-title Colors & Type
       img(src='./img/logo-gray.svg')
       section
         .container
           .colors
-            ul
-              li
+            ul.colors__ul
+              li.colors__li
                 h2 Dark Shade 100% 
                 p #1F2041
-              li 
+              li.colors__li 
                 h2 Dark Shade 75% 
                 p #1F2041
-              li 
+              li.colors__li 
                 h2 Dark Shade 50% 
                 p #1F2041
-              li 
+              li.colors__li 
                 h2 Dark Shade 25% 
                 p #1F2041
-              li 
+              li.colors__li 
                 h2 Dark Shade 5% 
                 p #1F2041
-              li 
+              li.colors__li 
                 h2 Purple 
                 p #BC9CFF
-              li 
+              li.colors__li 
                 h2 Green 
                 p #6FCF97
           .font
@@ -64,69 +66,89 @@ html(lang='ru')
               .font_example 
                 p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
     main.ui-kit
-      p.form-title Form Elements
       img(src='./img/logo-gray.svg')
       section
-        .container
-          .form
-            .form__row
-              .form__col
-                h3.form__h3 text Field
-                p.form__p default
-                +text-field("email", "Email", {class: "form__text-field"})
-                h3.form__h3 text Field
-                p.form__p hover / Focus
-                +text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
-                h3.form__h3 dropdown
-                p.form__p default
-                +dropdown("guest", "Сколько гостей")
-                h3.form__h3 masked text field
-                p.form__p default
-                +masked-inputs()
-                h3.form__date-two date dropdown
-                h3.form__date-two date dropdown
-                +date-two-inputs()
-                h3.form__h3-40 filter date dropdown
-                +filter-date-dropdown()
-                h3.form__h3-40 subscription text field
-                +subscription-text-field()
+        .form.container
+          .form__row
+            .form__col
+              h3.form__h3 text Field
+              p.form__p default
+              +text-field("email", "Email", {class: "form__text-field"})
+              h3.form__h3 text Field
+              p.form__p hover / Focus
+              +text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
+              h3.form__h3 dropdown
+              p.form__p default
+              +dropdown("guest", "Сколько гостей")
+              h3.form__h3-masked masked text field
+              p.form__p default
+              +masked-inputs()
+              h3.form__date-two date dropdown
+              h3.form__date-two date dropdown
+              +date-two-inputs()
+              h3.form__h3-40 filter date dropdown
+              +filter-date-dropdown()
+              h3.form__h3-40 subscription text field
+              +subscription-text-field()
 
-              .form__col
-                h3.form__checkbox checkbox Buttons
-                +checkbox("myCheckbox") Можно курить
-                +checkbox("myCheckbox", "checked") Можно c питомцами
-                +checkbox("myCheckbox") Можно пригласить гостей (до 10 человек)
-                h3.form__radio-buttons radio buttons
+            .form__col
+              h3.form__checkbox checkbox Buttons
+              +checkbox("myCheckbox") Можно курить
+              +checkbox("myCheckbox", "checked") Можно c питомцами
+              +checkbox("myCheckbox") Можно пригласить гостей (до 10 человек)
+              h3.form__radio-buttons radio buttons
+              .form__radio-button--wrapper
                 +radiobutton("Мужчина","man", "male", "checked")
                 +radiobutton("Женщина","woman", "male")
-                h3.form__toggle toggle
-                +toggle("Получать спецпредложения", "checked")
-                +toggle("Получать спецпредложения")
-                h3.form__like-button like button
-                .form__like-button--wrapper
-                  +likeButton(2)
-                  +likeButton(12, true)
-                h3.form__rate-btn rate button
-                +rateBtn(4)
-                +rateBtn(5)
+              h3.form__toggle toggle
+              +toggle("Получать спецпредложения", "checked")
+              +toggle("Получать спецпредложения")
+              h3.form__like-button like button
+              .form__like-button--wrapper
+                +likeButton(2)
+                +likeButton(12, true)
+              h3.form__rate-btn rate button
+              +rateBtn(4)
+              +rateBtn(5)
 
-              .form__col
-            .form__row
-              .form__col
-                
-              .form__col
-              .form__col
-            .form__row
-              .form__col
-              .form__col
+            .form__col
+              +range-slider({
+                label: 'Range Slider',
+                from: 0,
+                to: 20000,
+                minValue: 5000,
+                maxValue: 10000,
+              })
+              h3.form__buttons buttons
+              .form__button-primary-wrapper
+                +button-primary("click me", "#")
+                +button-primary("click me", "#").clicked-button
+              .form__button-secondary-wrapper
+                +button-secondary("click me", "#")
+                +button-secondary("click me", "#").clicked-button
+              .form__single-button--wrapper
+                +button-single("click me", "#")
+                +button-single-dark("click me", "#")
+              +button-wide("перейти к оплате", "#")
+              h3.form__pagination Pagination
+              +pagination("1 – 12 из 100+ вариантов аренды")
+          .form__row
+            .form__col
+              
+            .form__col
+            .form__col
+          .form__row
+            .form__col
+            .form__col
 
 
-  script(src="./libs/moment.js" type="text/javascript")
   script(src="./libs/jquery.daterangepicker.js")
   script(src='./pages/ui-kit.js')
   script(src='./components/dropdown/dropdown.js')
   script(src='./components/like-button/like-button.js')
   script(src='./components/rate-btn/rate-btn.js')
+  script(src='./components/range-slider/range-slider.js')
+  script(src='./components/pagination/pagination.js')
 block content
     
 

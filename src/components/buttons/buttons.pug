@@ -1,0 +1,27 @@
+mixin button-primary(text, link, small)
+	if small
+		button.button.button-primary.button-primary--small(href=link)&attributes(attributes) #{text}
+	else
+		button.button.button-primary(href=link)&attributes(attributes) #{text}
+
+mixin button-secondary(text, link, small)
+	if small
+		button.button.button-secondary(href=link)&attributes(attributes)
+			.button-secondary__inner.button-secondary__inner--small #{text}
+			.button-secondary__outer
+	else
+		button.button.button-secondary(href=link)&attributes(attributes)
+			.button-secondary__inner #{text}
+			.button-secondary__outer
+
+mixin button-single(text, link)
+	button.button.button-single(href=link)&attributes(attributes) #{text}
+	
+mixin button-single-dark(text, link)
+	button.button.button-single-dark(href=link)&attributes(attributes) #{text}
+
+
+mixin button-wide(text, link)
+	button.button.button-wide(href=link)&attributes(attributes) #{text}
+		.button-wide__arrow
+			i.material-icons arrow_forward

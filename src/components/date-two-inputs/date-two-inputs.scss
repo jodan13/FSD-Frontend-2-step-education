@@ -4,6 +4,22 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    position: relative;
+
+    &__icon,
+    &__icon2 {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        line-height: 44px;
+        color: $color-ds50;
+    }
+
+    &__icon2 {
+        left: 116px;
+    }
+
 
     &__inputs {
         margin-top: 5px;
@@ -13,12 +29,9 @@
         border: solid 1px $color-ds25;
         border-radius: 4px;
         color: $color-ds75;
-        background-image: url(../img/arrow-down.svg);
-        background-repeat: no-repeat;
-        background-position: 120px 22px;
         font-family: 'Montserrat', sans-serif;
         font-size: 14px;
-        padding: 13px;
+        padding: 12px 14px;
 
         &::placeholder {
             color: $color-ds25;
@@ -36,7 +49,11 @@
             }
 
             outline: none;
+
+
         }
+
+
     }
 }
 

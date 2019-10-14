@@ -1,0 +1,23 @@
+mixin range-slider(params)
+    -
+        const {
+            label = '',
+            from,
+            to,
+            minValue,
+            maxValue,
+            description,
+        } = params;
+
+    div.range-slider(
+        data-from=from
+        data-to=to
+        data-min-value=minValue
+        data-max-value=maxValue
+    )
+        label.range-slider__top
+            h3.range-slider__label.title.title--label= label
+            input.range-slider__output(type="text" readonly)
+
+        div.range-slider__slider
+        p.range-slider__description= description

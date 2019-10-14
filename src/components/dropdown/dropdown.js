@@ -268,7 +268,7 @@ let $input,
 
       switch (settings.align) {
         case "left":
-          $gparent.css("top", $input.position().top + $input.outerHeight() - 3);
+          $gparent.css("top", $input.position().top + $input.outerHeight() + 1);
           $gparent.css("left", $input.position().left);
           break;
       }

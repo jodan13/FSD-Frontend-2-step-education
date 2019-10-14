@@ -1,15 +1,24 @@
+.dropdown-guest {
+  position: relative;
+}
+.dropdown-guest__icon {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  line-height: 44px;
+  color: rgba(31, 32, 65, 0.5);
+}
+
 input[name=guest] {
   box-sizing: border-box;
   width: 320px;
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-radius: 4px;
-  padding: 13px;
+  padding: 12px 14px;
   font-size: 14px;
   margin-top: 5px;
   color: rgba(31, 32, 65, 0.75);
-  background-image: url(/arrow-down.89ffe8bc.svg);
-  background-repeat: no-repeat;
-  background-position: calc(50% + 292px) calc(50% + 22px);
   text-overflow: ellipsis;
   outline: none;
   cursor: pointer;

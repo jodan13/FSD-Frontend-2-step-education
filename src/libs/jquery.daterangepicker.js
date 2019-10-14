@@ -4,7 +4,8 @@
 // www.jszen.com
 "use strict";
 import "./daterangepicker.scss";
-import "./moment.js";
+var moment = require('moment');
+moment().format();
 import "./ru.js";
 
 // var jquery = require("jquery");

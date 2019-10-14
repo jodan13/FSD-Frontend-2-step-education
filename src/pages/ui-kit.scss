@@ -1,6 +1,5 @@
 @import "../base/variables.scss";
 @import "../base/main.scss";
-@import "../layout/main.scss";
 @import "../components/text-field/text-field.scss";
 @import "../components/masked/masked.scss";
 @import "../components/date-two-inputs/date-two-inputs.scss";
@@ -9,6 +8,7 @@
 @import "../components/checkbox/checkbox.scss";
 @import "../components/radiobutton/radiobutton.scss";
 @import "../components/toggle/toggle.scss";
+@import "../components/buttons/buttons.scss";
 
 
 .body_ui-kit {
@@ -21,35 +21,31 @@
     margin: 40px auto;
 }
 
-p.colors-title {
-    position: absolute;
-    top: 20px;
-}
-
 .ui-kit img {
     position: absolute;
     padding: 30px;
 }
 
 .container {
+    display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 145px 0;
+    padding: 140px 0;
 }
 
-ul {
+.colors__ul {
     list-style: none inside none;
     padding-left: 90px;
 }
 
-li {
+.colors__li {
     position: relative;
     margin: 20px;
     width: 180px;
     height: 70px;
 }
 
-.colors li:before {
+.colors .colors__li:before {
     content: "";
     display: block;
     position: absolute;
@@ -63,31 +59,31 @@ li {
     padding-top: 8px;
 }
 
-li:nth-child(1):before {
+.colors__li:nth-child(1):before {
     background-color: $color-ds100;
 }
 
-li:nth-child(2):before {
+.colors__li:nth-child(2):before {
     background: $color-ds75;
 }
 
-li:nth-child(3):before {
+.colors__li:nth-child(3):before {
     background: $color-ds50;
 }
 
-li:nth-child(4):before {
+.colors__li:nth-child(4):before {
     background: $color-ds25;
 }
 
-li:nth-child(5):before {
+.colors__li:nth-child(5):before {
     background: $color-ds5;
 }
 
-li:nth-child(6):before {
+.colors__li:nth-child(6):before {
     background: $color-purple;
 }
 
-li:nth-child(7):before {
+.colors__li:nth-child(7):before {
     background: $color-green;
 }
 
@@ -138,16 +134,12 @@ li:nth-child(7):before {
     }
 }
 
-p.form-title {
-    position: absolute;
-    top: 1000px;
-}
-
 .form {
     &__row {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        flex: 1 0 100%;
     }
 
     &__col {
@@ -164,10 +156,17 @@ p.form-title {
     }
 
     &__h3:first-child {
-        margin: 0;
+        margin-top: 3px;
+
+    }
+
+    &__h3-masked {
+        margin-top: 23px;
+
     }
 
     &__p {
+        font-size: 12px;
         line-height: 15px;
         margin: 20px 0 0 0;
         text-transform: uppercase;
@@ -198,28 +197,39 @@ p.form-title {
     }
 
     &__col:nth-child(2) {
-        margin-left: 126px;
-        width: 260px;
+        max-width: 265px;
     }
 
     &__checkbox {
+        margin-top: 3px;
+        margin-bottom: 6px;
         width: 100%;
 
     }
+
 
     &__radio-buttons {
         width: 100%;
         margin-top: 40px;
+        margin-bottom: 13px;
+    }
+
+    &__radio-button--wrapper {
+        width: 220px;
+        display: flex;
+        justify-content: space-between;
     }
 
     &__toggle {
         width: 100%;
-        margin-top: 36px;
+        margin-top: 39px;
+        margin-bottom: 3px;
     }
 
     &__like-button {
         width: 100%;
-        margin-top: 36px;
+        margin-top: 45px;
+        margin-bottom: 16px;
     }
 
     &__like-button--wrapper {
@@ -230,6 +240,36 @@ p.form-title {
 
     &__rate-btn {
         margin-top: 40px;
+        margin-bottom: 16px;
         width: 100%
+    }
+
+    &__buttons {
+        margin-top: 30px;
+        width: 100%
+    }
+
+    &__button-primary-wrapper {
+        margin-top: 16px;
+    }
+
+    &__button-secondary-wrapper {
+        margin-top: 30px;
+    }
+
+    &__single-button--wrapper {
+        margin-top: 25px;
+    }
+
+    .button-wide {
+        margin-top: 26px;
+    }
+
+    &__pagination {
+        margin-top: 40px;
+    }
+
+    .pagination {
+        margin-top: 16px;
     }
 }

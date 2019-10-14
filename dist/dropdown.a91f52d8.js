@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\..\\img\\arrow-down.svg":[["arrow-down.89ffe8bc.svg","img/arrow-down.svg"],"img/arrow-down.svg"],"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -29974,7 +29974,7 @@ var $input, $goriginalPlaceholder, $gparent, $gi, $gcategory, $gtext, $gname, $g
 
       switch (settings.align) {
         case "left":
-          $gparent.css("top", $input.position().top + $input.outerHeight() - 3);
+          $gparent.css("top", $input.position().top + $input.outerHeight() + 1);
           $gparent.css("left", $input.position().left);
           break;
       }
@@ -30098,7 +30098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57546" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52828" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

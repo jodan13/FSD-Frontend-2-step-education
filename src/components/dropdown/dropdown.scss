@@ -1,18 +1,29 @@
 @import "../../base/variables.scss";
 
+
+.dropdown-guest {
+    position: relative;
+
+    &__icon {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        line-height: 44px;
+        color: $color-ds50;
+    }
+}
+
 input[name='guest'] {
     box-sizing: border-box;
 
     width: 320px;
     border: 1px solid $color-ds25;
     border-radius: 4px;
-    padding: 13px;
+    padding: 12px 14px;
     font-size: 14px;
     margin-top: 5px;
     color: $color-ds75;
-    background-image: url(../../img/arrow-down.svg);
-    background-repeat: no-repeat;
-    background-position: calc(50% + 292px) calc(50% + 22px);
     text-overflow: ellipsis;
     outline: none;
     cursor: pointer;

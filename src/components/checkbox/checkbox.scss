@@ -1,11 +1,13 @@
 .checkbox {
     &__label {
         max-width: 240px;
+        margin-top: 10px;
         position: relative;
         color: $color-ds50;
         padding-left: 30px;
-        line-height: 1.5rem;
+        line-height: 1.3rem;
         cursor: pointer;
+
     }
 
     &__input {
