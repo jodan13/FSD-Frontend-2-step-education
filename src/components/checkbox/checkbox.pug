@@ -1,8 +1,45 @@
-mixin checkbox(name, checked, inputAttrs, presentationAttrs)
-  label.checkbox__label()&attributes()
-    input.checkbox__input(
-    type="checkbox"
-    name=name
-    checked=checked)&attributes(inputAttrs)
-    i.material-icons.checkbox__check-icon done
-    block
+mixin checkbox(name, text1, checked, inputAttrs, presentationAttrs)
+	label.checkbox__label()
+		input.checkbox__input(
+		type="checkbox"
+		name=name
+		checked=checked)&attributes(inputAttrs)
+		i.material-icons.checkbox__check-icon done
+		| #{text1}
+		
+mixin checkbox2(text, checked)
+
+	if checked
+		label.label-check&attributes(attributes)
+			input(type="checkbox" name="checkbox" checked).label-check__input
+			span.label-check__new-input 
+				.check-item
+			|#{text}
+	else
+		label.label-check&attributes(attributes)
+			input(type="checkbox" name="checkbox").label-check__input
+			span.label-check__new-input 
+				.check-item
+			|#{text}
+
+mixin checkboxList(header, list)
+	.expandable-checkbox&attributes(attributes)
+		.expandable-checkbox__header #{header}
+		if list
+			.expandable-checkbox__list
+				each item in list
+					.expandable-checkbox__list-item
+						if item[1] === "0"
+							+checkbox2(item[0])
+						else
+							+checkbox2(item[0], "checked")
+		.expandable-checkbox__arrow
+			i.material-icons expand_more
+			
+mixin checkboxRich(text, desc)
+	label.label-check-rich&attributes(attributes)
+		input(type="checkbox" name="checkbox").label-check-rich__input
+		span.label-check-rich__new-input 
+			.check-item
+		|#{text}
+		.label-check-rich__description #{desc}

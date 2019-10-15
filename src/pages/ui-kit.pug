@@ -13,144 +13,174 @@ include ../components/rate-btn/rate-btn.pug
 include ../components/range-slider/range-slider.pug
 include ../components/buttons/buttons.pug
 include ../components/pagination/pagination.pug
-
-
-  
+include ../components/dropdown-rooms/dropdown-rooms.pug
+include ../components/bulletlist/bulletlist.pug
+include ../components/comfort/comfort.pug
+include ../components/comment/comment.pug
+	
 html(lang='ru')
-  head
-    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-    title ui-kit
-  body.body_ui-kit
-    main.ui-kit
-      img(src='./img/logo-gray.svg')
-      section
-        .container
-          .colors
-            ul.colors__ul
-              li.colors__li
-                h2 Dark Shade 100% 
-                p #1F2041
-              li.colors__li 
-                h2 Dark Shade 75% 
-                p #1F2041
-              li.colors__li 
-                h2 Dark Shade 50% 
-                p #1F2041
-              li.colors__li 
-                h2 Dark Shade 25% 
-                p #1F2041
-              li.colors__li 
-                h2 Dark Shade 5% 
-                p #1F2041
-              li.colors__li 
-                h2 Purple 
-                p #BC9CFF
-              li.colors__li 
-                h2 Green 
-                p #6FCF97
-          .font
-            .font_h(class='font_h1')
-              .font_type(class='font_type_h1') H1
-              .font_example 
-                h1 This one is the sub-section or widget title
-            .font_h(class='font_h2')
-              .font_type(class='font_type_h2') H2
-              .font_example 
-                h2 Next one is the item title inside widgets
-            .font_h(class='font_h3')
-              .font_type(class='font_type_h3') H3
-              .font_example 
-                h3 THIS IS A LABEL OR CTA TEXT
-            .font_h(class='font_body')
-              .font_type(class='font_type_body') Body
-              .font_example 
-                p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
-    main.ui-kit
-      img(src='./img/logo-gray.svg')
-      section
-        .form.container
-          .form__row
-            .form__col
-              h3.form__h3 text Field
-              p.form__p default
-              +text-field("email", "Email", {class: "form__text-field"})
-              h3.form__h3 text Field
-              p.form__p hover / Focus
-              +text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
-              h3.form__h3 dropdown
-              p.form__p default
-              +dropdown("guest", "Сколько гостей")
-              h3.form__h3-masked masked text field
-              p.form__p default
-              +masked-inputs()
-              h3.form__date-two date dropdown
-              h3.form__date-two date dropdown
-              +date-two-inputs()
-              h3.form__h3-40 filter date dropdown
-              +filter-date-dropdown()
-              h3.form__h3-40 subscription text field
-              +subscription-text-field()
+	head
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+		title ui-kit
+	body.body_ui-kit
+		main.ui-kit
+			img.ui-kit__logo(src='./img/logo-gray.svg', alt="logo-gray")
+			section
+				.container
+					.colors
+						ul.colors__ul
+							li.colors__li
+								h2 Dark Shade 100% 
+								p #1F2041
+							li.colors__li 
+								h2 Dark Shade 75% 
+								p #1F2041
+							li.colors__li 
+								h2 Dark Shade 50% 
+								p #1F2041
+							li.colors__li 
+								h2 Dark Shade 25% 
+								p #1F2041
+							li.colors__li 
+								h2 Dark Shade 5% 
+								p #1F2041
+							li.colors__li 
+								h2 Purple 
+								p #BC9CFF
+							li.colors__li 
+								h2 Green 
+								p #6FCF97
+					.font
+						.font_h(class='font_h1')
+							.font_type(class='font_type_h1') H1
+							.font_example 
+								h1 This one is the sub-section or widget title
+						.font_h(class='font_h2')
+							.font_type(class='font_type_h2') H2
+							.font_example 
+								h2 Next one is the item title inside widgets
+						.font_h(class='font_h3')
+							.font_type(class='font_type_h3') H3
+							.font_example 
+								h3 THIS IS A LABEL OR CTA TEXT
+						.font_h(class='font_body')
+							.font_type(class='font_type_body') Body
+							.font_example 
+								p This is the body text which is used for most<br> of the design, like paragraphs, lists, etc.
+		main.ui-kit
+			img.ui-kit__logo(src='./img/logo-gray.svg', alt="logo-gray")
+			section
+				.form.container
+					.form__row
+						.form__col
+							h3.form__h3 text Field
+							p.form__p default
+							+text-field("email", "Email", {class: "form__text-field"})
+							h3.form__h3 text Field
+							p.form__p hover / Focus
+							+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
+							h3.form__h3 dropdown
+							p.form__p default
+							+dropdown-guest("guest", "Сколько гостей")
+							h3.form__h3-masked masked text field
+							p.form__p default
+							+masked-inputs()
+							h3.form__date-two date dropdown
+							h3.form__date-two date dropdown
+							+date-two-inputs()
+							h3.form__h3-40 filter date dropdown
+							+filter-date-dropdown()
+							h3.form__h3-40 subscription text field
+							+subscription-text-field()
 
-            .form__col
-              h3.form__checkbox checkbox Buttons
-              +checkbox("myCheckbox") Можно курить
-              +checkbox("myCheckbox", "checked") Можно c питомцами
-              +checkbox("myCheckbox") Можно пригласить гостей (до 10 человек)
-              h3.form__radio-buttons radio buttons
-              .form__radio-button--wrapper
-                +radiobutton("Мужчина","man", "male", "checked")
-                +radiobutton("Женщина","woman", "male")
-              h3.form__toggle toggle
-              +toggle("Получать спецпредложения", "checked")
-              +toggle("Получать спецпредложения")
-              h3.form__like-button like button
-              .form__like-button--wrapper
-                +likeButton(2)
-                +likeButton(12, true)
-              h3.form__rate-btn rate button
-              +rateBtn(4)
-              +rateBtn(5)
+						.form__col
+							h3.form__checkbox checkbox Buttons
+							+checkbox("myCheckbox", "Можно курить")
+							+checkbox("myCheckbox", "Можно c питомцами", "checked")
+							+checkbox("myCheckbox", "Можно пригласить гостей (до 10 человек)") 
+							h3.form__radio-buttons radio buttons
+							.form__radio-button--wrapper
+								+radiobutton("Мужчина","man", "male", "checked")
+								+radiobutton("Женщина","woman", "male")
+							h3.form__toggle toggle
+							+toggle("Получать спецпредложения", "checked")
+							+toggle("Получать спецпредложения")
+							h3.form__like-button like button
+							.form__like-button--wrapper
+								+likeButton(2)
+								+likeButton(12, true)
+							h3.form__rate-btn rate button
+							+rateBtn(4)
+							+rateBtn(5)
 
-            .form__col
-              +range-slider({
-                label: 'Range Slider',
-                from: 0,
-                to: 20000,
-                minValue: 5000,
-                maxValue: 10000,
-              })
-              h3.form__buttons buttons
-              .form__button-primary-wrapper
-                +button-primary("click me", "#")
-                +button-primary("click me", "#").clicked-button
-              .form__button-secondary-wrapper
-                +button-secondary("click me", "#")
-                +button-secondary("click me", "#").clicked-button
-              .form__single-button--wrapper
-                +button-single("click me", "#")
-                +button-single-dark("click me", "#")
-              +button-wide("перейти к оплате", "#")
-              h3.form__pagination Pagination
-              +pagination("1 – 12 из 100+ вариантов аренды")
-          .form__row
-            .form__col
-              
-            .form__col
-            .form__col
-          .form__row
-            .form__col
-            .form__col
+						.form__col
+							+range-slider({
+								label: 'Range Slider',
+								from: 0,
+								to: 20000,
+								minValue: 5000,
+								maxValue: 10000,
+							})
+							h3.form__buttons buttons
+							.form__button-primary-wrapper
+								.single-buttons-item
+									+button-primary("click me", "#")
+								+button-primary("click me", "#").clicked-button
+							.form__button-secondary-wrapper
+								.single-buttons-item
+									+button-secondary("click me", "#")
+								+button-secondary("click me", "#").clicked-button
+							.form__single-button--wrapper
+								.single-buttons-item
+									+button-single("click me", "#")
+								+button-single-dark("click me", "#")
+							+button-wide("перейти к оплате", "#")
+							h3.form__pagination Pagination
+							+pagination("1 – 12 из 100+ вариантов аренды")
+					.form__row
+						.form__col-dropdown
+							h3.form__h3 dropdown
+							p.form__p default
+							+dropdown("2 спальни, 2 кровати...", "", "", "").textfield-default
+							.dropdown-expanded-wrapper
+								h3 dropdown
+								+dropdown("2 спальни, 2 кровати...", "room", ['спальни', 'кровати', 'ванные комнаты'], "").dropdown--active.textfield-expanded
+							.expandable-checkbox-list-wrapper
+								+checkboxList("expandable checkbox list")
+							+checkboxList("expandable checkbox list", [['Завтрак', '0'],['Письменный стол', '1'],['Стул для кормления', '1'],['Кроватка', '1'],['Телевизор', '0'],['Шампунь', '0'],['Телевизор', '0'],['Шампунь', '0']]).expandable-checbox--active
+						.form__col-dropdown
+							h3 dropdown
+							+dropdown("Сколько гостей", "room", ['взрослые', 'дети', 'младенцы'],"apply").dropdown--active
+							h3.rich-checkbox-buttons rich checkbox buttons
+							.checkbox-rich-wrapper
+								+checkboxRich('Широкий коридор', 'Ширина коридоров в номере не менее 91 см.')
+							
+							+checkboxRich('Помощник для инвалидов', 'На 1 этаже вас встретит специалист и проводит до номера.').mr-60
+							
+						.form__col-dropdown
+							h3 dropdown
+							+dropdown3("3 гостя", "room", ['взрослые', 'дети', 'младенцы'],"apply").dropdown--active
+							h3.bullet_list bullet list
+							.bullet-list-wrapper
+								+bulletList(['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00'])
+					.form__row
+						.form__col-comfort
+							+comfort("Комфорт", "Шумопоглощающие стены", "material-icons", "insert_emoticon")
+							+comfort("Удобство", "Окно в каждой из спален", "material-icons", "location_city")
+						.form__col-comment
+							+comment()
 
+	script(src="./libs/jquery.daterangepicker.js")
+	script(src='./pages/ui-kit.js')
+	script(src='./components/dropdown/dropdown.js')
+	script(src='./components/like-button/like-button.js')
+	script(src='./components/rate-btn/rate-btn.js')
+	script(src='./components/range-slider/range-slider.js')
+	script(src='./components/pagination/pagination.js')
+	script(src='./components/dropdown-rooms/dropdown-rooms.js')
 
-  script(src="./libs/jquery.daterangepicker.js")
-  script(src='./pages/ui-kit.js')
-  script(src='./components/dropdown/dropdown.js')
-  script(src='./components/like-button/like-button.js')
-  script(src='./components/rate-btn/rate-btn.js')
-  script(src='./components/range-slider/range-slider.js')
-  script(src='./components/pagination/pagination.js')
 block content
-    
+		
 
-  
-  
+	
+	

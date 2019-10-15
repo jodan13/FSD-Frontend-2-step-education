@@ -1,0 +1,32 @@
+.comfort {
+	width: 100%;
+	padding-bottom: 20px;
+	font-size: 14px;
+	line-height: 24px;
+	position: relative;
+	padding-left: 58px;
+	border-bottom: 1px solid $color-ds5;
+	color: $color-ds75;
+
+	&__title {
+		font-weight: bold;
+		color: $color-ds75;
+	}
+
+	&__icon {
+		position: absolute;
+		top: 0;
+		left: 0px;
+
+
+	}
+
+	.icon-color {
+		font-size: 48px;
+		line-height: 41px;
+		background-image: $color-purple-gradient;
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}

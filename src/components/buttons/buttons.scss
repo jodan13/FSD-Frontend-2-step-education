@@ -11,9 +11,17 @@
 	padding: 0;
 }
 
+.button-primary.clicked-button {
+	background: $color-purple-gradient25;
+
+}
+
 .clicked-button {
-	opacity: 0.5;
-	margin-left: 18px;
+
+
+	.button-secondary__outer {
+		background: $color-purple-gradient25;
+	}
 }
 
 .button-primary {
@@ -22,7 +30,7 @@
 	padding: 15px 20px;
 
 	&:hover {
-		opacity: 0.5;
+		background: $color-purple-gradient25;
 	}
 
 	&--small {
@@ -39,7 +47,7 @@
 
 	&:hover {
 		.button-secondary__outer {
-			opacity: 0.5;
+			background: $color-purple-gradient25;
 		}
 	}
 
@@ -89,7 +97,6 @@
 
 .button-single-dark {
 	color: $color-ds50;
-	margin-left: 20px;
 
 	&:hover {
 		color: $color-ds75;

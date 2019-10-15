@@ -1,0 +1,44 @@
+.review {
+  display: flex;
+  flex-direction: column;
+
+  &__topBlock,
+  &__bottomBlock {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__topBlock {
+    flex-direction: row;
+  }
+
+  &__avatar {
+    margin-bottom: 10px;
+    max-width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 0.125rem solid #fff;
+    box-sizing: border-box;
+    box-shadow: 0rem 0.625rem 1.25rem rgba(31, 32, 65, 0.1);
+  }
+
+  &__name {
+    margin: 0rem 0 0 0.625rem;
+
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: rgba(31, 32, 65, 0.75);
+
+  }
+
+  &__like {
+    margin: 0 0 0 0.25rem;
+    text-align: center
+  }
+
+  &__content {
+    margin: 0.625rem 0 0 10px;
+    line-height: 1.5rem;
+    color: rgba(31, 32, 65, 0.75);
+  }
+}

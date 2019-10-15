@@ -9,6 +9,9 @@
 @import "../components/radiobutton/radiobutton.scss";
 @import "../components/toggle/toggle.scss";
 @import "../components/buttons/buttons.scss";
+@import "../components/bulletlist/bulletlist.scss";
+@import "../components/comfort/comfort.scss";
+@import "../components/comment/comment.scss";
 
 
 .body_ui-kit {
@@ -19,11 +22,11 @@
     background: #fff;
     width: 1440px;
     margin: 40px auto;
-}
 
-.ui-kit img {
-    position: absolute;
-    padding: 30px;
+    &__logo {
+        position: absolute;
+        padding: 30px;
+    }
 }
 
 .container {
@@ -135,11 +138,13 @@
 }
 
 .form {
+    flex-direction: column;
+
     &__row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        flex: 1 0 100%;
+        align-self: stretch;
     }
 
     &__col {
@@ -249,6 +254,11 @@
         width: 100%
     }
 
+    .single-buttons-item {
+        display: inline-block;
+        margin-right: 22px;
+    }
+
     &__button-primary-wrapper {
         margin-top: 16px;
     }
@@ -271,5 +281,74 @@
 
     .pagination {
         margin-top: 16px;
+    }
+
+    &__col-dropdown {
+
+        width: 320px;
+        margin-top: 100px;
+
+        &>.form__h3 {
+            margin-top: 0px;
+        }
+
+        &:first-child {
+            width: 266px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        &:nth-child(2) {
+            margin-left: 109px;
+        }
+    }
+
+    .dropdown-expanded-wrapper {
+        margin-top: 20px;
+    }
+
+    .expandable-checkbox-list-wrapper {
+        margin-top: 221px;
+
+    }
+
+    .expandable-checbox--active {
+        margin-top: 32px;
+    }
+
+    .rich-checkbox-buttons {
+        margin-top: 305px;
+        margin-bottom: 17px;
+        color: $color-ds100;
+    }
+
+    .checkbox-rich-wrapper {
+        width: 235px;
+    }
+
+    .bullet_list {
+        margin-top: 305px;
+        margin-bottom: 14px;
+        color: $color-ds100;
+    }
+
+    .bullet-list-wrapper {
+        width: 265px;
+    }
+
+    &__col-comfort {
+        margin-top: 10px;
+    }
+
+    .comfort {
+        margin-top: 20px;
+    }
+
+    &__col-comment {
+        margin-top: 39px;
+        width: 715px;
     }
 }

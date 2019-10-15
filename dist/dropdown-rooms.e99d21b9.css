@@ -1,0 +1,132 @@
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  position: relative;
+  border-color: rgba(31, 32, 65, 0.5);
+  border-radius: 4px 4px 0 0;
+}
+.dropdown--active {
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+  position: absolute;
+  min-width: 266px;
+}
+.dropdown--active .dropdown-list {
+  display: block;
+}
+.dropdown--active .dropdown__text {
+  border-color: rgba(31, 32, 65, 0.5);
+  border-radius: 4px 4px 0 0;
+}
+
+.dropdown__text {
+  width: 100%;
+  min-width: 150px;
+  background: white;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 9px 15px 9px;
+  position: relative;
+}
+
+.dropdown__text-arrow {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.dropdown-list {
+  top: 44px;
+  left: 0;
+  display: none;
+  background-color: #fff;
+  z-index: 1;
+  width: 100%;
+  border: 1px solid rgba(31, 32, 65, 0.5);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 5px 6px 0px 14px;
+}
+
+.dropdown-list__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #1f2041;
+  text-transform: uppercase;
+}
+.dropdown-list__item:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-list__item-text {
+  margin-top: 2px;
+}
+
+.dropdown-list__item-count {
+  display: flex;
+  justify-content: space-between;
+  width: 93px;
+}
+
+.dropdown-list__item-minus,
+.dropdown-list__item-plus,
+.dropdown-list__item-number {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-sizing: border-box;
+  border-radius: 50%;
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.dropdown-list__item-minus,
+.dropdown-list__item-plus {
+  padding-top: 2px;
+  font-size: 18px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.dropdown-list__item-minus--unavailable {
+  opacity: 0.5;
+}
+
+.dropdown-list__item-number {
+  border: none;
+  color: #1f2041;
+  margin-top: 2px;
+}
+
+.dropdown-list__action {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 7px;
+}
+
+.form-focus {
+  border-color: rgba(31, 32, 65, 0.5);
+}
+
+.hide {
+  display: none;
+}
+
+/*# sourceMappingURL=/dropdown-rooms.e99d21b9.css.map */
