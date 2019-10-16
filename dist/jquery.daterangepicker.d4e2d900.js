@@ -15831,6 +15831,8 @@ moment().format();
   moment.locale('ru');
 })(function ($, moment) {
   // mask
+  var left = 0;
+
   var Mask = function Mask(el, mask, options) {
     var p = {
       invalid: [],
@@ -18088,18 +18090,24 @@ moment().format();
     window.console.log = function () {};
   }
 
-  $("#date-range-birthday").mask("99.99.9999");
-  $("#date-range-birthday").dateRangePicker({
-    autoClose: true,
-    format: "DD.MM.YYYY",
-    singleDate: true,
-    singleMonth: true,
-    language: "ru",
-    showTopbar: false,
-    startOfWeek: "monday",
-    hoveringTooltip: false,
-    extraClass: 'date-range-picker'
-  });
+  $("#date-range-birthday2").mask("99.99.9999");
+
+  if ($("#date-range-birthday").length) {
+    $("#date-range-birthday").mask("99.99.9999");
+    $("#date-range-birthday").dateRangePicker({
+      autoClose: true,
+      format: "DD.MM.YYYY",
+      singleDate: true,
+      singleMonth: true,
+      language: "ru",
+      showTopbar: false,
+      startOfWeek: "monday",
+      hoveringTooltip: false,
+      extraClass: 'date-range-picker'
+    });
+  }
+
+  ;
   $("#date-range-two1").mask("99.99.9999");
   $("#date-range-two2").mask("99.99.9999");
   $("#date-two-inputs").dateRangePicker({
@@ -18138,29 +18146,66 @@ moment().format();
     evt.stopPropagation();
     $('#date-two-inputs').data('dateRangePicker').close();
   }); // filter-date-dropdown
-  // $("#filter-date-dropdown").mask("99.AAA-99.AAA");
 
-  $("#filter-date-dropdown").dateRangePicker({
-    singleMonth: true,
-    startDate: moment(),
-    autoClose: false,
-    showTopbar: false,
-    minDays: 2,
-    format: "DD MMM",
-    separator: " - ",
-    language: "ru",
-    startOfWeek: "monday",
-    showShortcuts: false,
-    showCustomValues: true,
-    customValues: //if return an array of two dates, it will select the date range between the two dates
-    [{
-      name: 'ОЧИСТИТЬ',
-      value: 'filter-date-dropdown-clear'
-    }, {
-      name: 'ПРИМЕНИТЬ',
-      value: 'filter-date-dropdown-close'
-    }]
-  });
+  if ($("#filter-date-dropdown").length) {
+    $("#filter-date-dropdown").mask("99.AAA-99.AAA");
+    $("#filter-date-dropdown").dateRangePicker({
+      singleMonth: true,
+      startDate: moment(),
+      autoClose: false,
+      showTopbar: false,
+      minDays: 2,
+      format: "DD MMM",
+      separator: " - ",
+      language: "ru",
+      startOfWeek: "monday",
+      showShortcuts: false,
+      showCustomValues: true,
+      customValues: //if return an array of two dates, it will select the date range between the two dates
+      [{
+        name: 'ОЧИСТИТЬ',
+        value: 'filter-date-dropdown-clear'
+      }, {
+        name: 'ПРИМЕНИТЬ',
+        value: 'filter-date-dropdown-close'
+      }]
+    });
+  }
+
+  ;
+
+  if ($("#always-open").length) {
+    $("#always-open").dateRangePicker({
+      getValue: function getValue() {
+        return this.innerHTML;
+      },
+      setValue: function setValue(s) {
+        this.innerHTML = s;
+      },
+      inline: true,
+      container: '#date-always-open',
+      alwaysOpen: true,
+      singleMonth: true,
+      startDate: moment(),
+      autoClose: false,
+      showTopbar: false,
+      minDays: 2,
+      language: "ru",
+      startOfWeek: "monday",
+      showShortcuts: false,
+      showCustomValues: true,
+      customValues: //if return an array of two dates, it will select the date range between the two dates
+      [{
+        name: 'ОЧИСТИТЬ',
+        value: 'filter-date-dropdown-clear'
+      }, {
+        name: 'ПРИМЕНИТЬ',
+        value: 'filter-date-dropdown-close'
+      }]
+    });
+  }
+
+  ;
   $('#filter-date-dropdown-clear').click(function (evt) {
     evt.stopPropagation();
     $('#filter-date-dropdown').data('dateRangePicker').clear();
@@ -18198,7 +18243,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57988" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65025" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

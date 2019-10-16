@@ -1,0 +1,29 @@
+-
+  var guests = [
+    {text: 'взрослые', dataID: 'adults', defaultCount: 0},
+    {text: 'дети', dataID: 'children', defaultCount: 0},
+    {text: 'младенцы', dataID: 'babies', defaultCount: 0}
+  ]
+  var rooms = [
+    {text: 'спальни', dataID: 'bedrooms', defaultCount: 0},
+    {text: 'кровати', dataID: 'beds', defaultCount: 0},
+    {text: 'ванные комнаты', dataID: 'bathrooms', defaultCount: 0}
+  ]
+//- +quantity-dropdown(options)(id="guests-quantity" class="guests || rooms")
+mixin quantity-dropdown(items, label, caption)
+  .iqdropdown&attributes(attributes)
+    label
+      h3.iqdropdown__caption= caption
+    button.iqdropdown__input-btn.iqdropdown-selection= label
+      span.iqdropdown__glyphicon
+    .iqdropdown-menu
+      - for (let i = 0; i < items.length; i++){
+          .iqdropdown-menu-option(
+            data-id= items[i].dataID
+            data-mincount= items[i].minCount || 0
+            data-maxcount= items[i].maxCount || 9
+            data-defaultcount= items[i].defaultcount || items[i].minCount || 0
+          )
+            div
+              h3.iqdropdown-item= items[i].text
+      - }

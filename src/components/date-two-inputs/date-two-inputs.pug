@@ -1,7 +1,7 @@
-mixin date-two-inputs()
-    .date-two#date-two-inputs
-        input.date-two__inputs#date-range-two1(placeholder="ДД.MМ.ГГГГ" name="daterange" autocomplete="off")
-        i.material-icons.date-two__icon expand_more
-        input.date-two__inputs#date-range-two2(placeholder="ДД.MМ.ГГГГ" name="daterange" autocomplete="off")
-        i.material-icons.date-two__icon2 expand_more
-        								
+mixin date-two-inputs(id1, id2, id)
+	label.date-two(id=id)
+		input.date-two__inputs(id=id1 placeholder="ДД.MМ.ГГГГ" name="daterange" autocomplete="off")
+		i.material-icons.date-two__icon expand_more
+		input.date-two__inputs(id=id2 placeholder="ДД.MМ.ГГГГ" name="daterange" autocomplete="off")
+		i.material-icons.date-two__icon2 expand_more
+											

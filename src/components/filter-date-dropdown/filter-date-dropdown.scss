@@ -1,65 +1,66 @@
 @import "../../base/variables.scss";
 
 .filter-date-dropdown {
-    border: solid 1px $color-ds25;
-    border-radius: 4px;
-    position: relative;
-    margin-top: 5px;
+	border: solid 1px $color-ds25;
+	border-radius: 4px;
+	position: relative;
+	margin-top: 5px;
 
-    &__input {
+	&__input {
 
-        box-sizing: border-box;
-        width: 265px;
-        background-color: white;
-        border-radius: 4px;
-        color: $color-ds75;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        padding: 13px 14px;
+		box-sizing: border-box;
+		width: 265px;
+		background-color: white;
+		border-radius: 4px;
+		color: $color-ds75;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 14px;
+		padding: 13px 14px;
 
 
-        &::placeholder {
-            color: $color-ds25;
-        }
+		&::placeholder {
+			color: $color-ds25;
+		}
 
-        &:hover {
-            border-color: $color-ds50;
+		&:hover {
+			border-color: $color-ds50;
 
-        }
+		}
 
-        &:focus {
-            border-color: $color-ds50;
+		&:focus {
+			border-color: $color-ds50;
 
-            &::placeholder {
-                color: $color-ds75;
-            }
+			&::placeholder {
+				color: $color-ds75;
+			}
 
-            outline: none;
-        }
-    }
+			outline: none;
+		}
+	}
 
-    &__icon {
-        display: inline-block;
-        position: absolute;
-        right: 10px;
-        bottom: 0;
-        line-height: 44px;
-        color: $color-ds50;
-    }
+	&__icon {
+		display: inline-block;
+		position: absolute;
+		right: 10px;
+		bottom: 0;
+		line-height: 44px;
+		color: $color-ds50;
+	}
 }
 
+.button-filter-date-dropdown-clear,
 .filter-date-dropdown .button-filter-date-dropdown-clear,
 .button-filter-date-dropdown-close {
-    border: none;
-    background: none;
-    font-size: 12px;
-    font-weight: bold;
+	border: none;
+	background: none;
+	font-size: 12px;
+	font-weight: bold;
 }
 
 .button-filter-date-dropdown-clear {
-    color: $color-ds50;
+	color: $color-ds50;
 }
 
 .button-filter-date-dropdown-close {
-    color: $color-purple;
+	color: $color-purple;
 }

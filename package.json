@@ -27,6 +27,7 @@
     "sass": "^1.23.0"
   },
   "dependencies": {
+    "item-quantity-dropdown": "^2.0.2",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-dist": "^1.12.1",

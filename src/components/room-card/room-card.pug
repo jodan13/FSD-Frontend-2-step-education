@@ -1,0 +1,30 @@
+mixin roomCard(img, num, price, stars, comment, lux, arrows )
+	.room-card&attributes(attributes)
+		.room-card__header
+			img(src=img alt="room photo" class="room-card__header-img")
+			if arrows
+				.room-card__header-shadow
+				.room-card__header-arrow-left
+					i.zmdi.zmdi-chevron-left
+				.room-card__header-arrow-right
+					i.zmdi.zmdi-chevron-right
+			.room-card__header-pagination
+				.room-card-pagination-item.room-card-pagination-item--active
+				.room-card-pagination-item
+				.room-card-pagination-item
+				.room-card-pagination-item
+		.room-card__title
+			h3.room-number
+				span.room-number__symbol №
+				span.room-number__number.room-number__number--small #{num}
+				span.room-number__type #{lux}
+			.price-per-day.price-per-day--lh-17
+				span.price-per-day__price #{price}
+				span.price-per-day__rub.rub P
+				span.price-per-day__text в сутки
+		.room-card__feedback
+			.room-card__feedback-stars
+				+rateBtn(5)
+			.room-card__feedback-comments 
+				span #{comment}
+				|  Отзывов

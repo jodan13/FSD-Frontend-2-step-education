@@ -1,0 +1,100 @@
+.room-card {
+	width: 270px;
+	background: #fff;
+	box-sizing: border-box;
+	box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+	border-radius: 4px;
+	margin-bottom: 40px;
+	overflow: hidden;
+	padding-bottom: 20px;
+
+	&__header {
+		height: 150px;
+		position: relative;
+	}
+
+	&__header-shadow {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		content: "";
+		background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 85%, rgba(0, 0, 0, 0.5) 100%);
+	}
+
+	&__header-arrow-left,
+	&__header-arrow-right {
+		position: absolute;
+		top: 53px;
+		left: 8px;
+		font-size: 24px;
+		line-height: 24px;
+		color: #fff;
+		padding: 10px;
+		cursor: pointer;
+		transition: all 0.4s ease;
+	}
+
+	&__header-arrow-right {
+		left: auto;
+		right: 8px;
+	}
+
+	&__header-pagination {
+		position: absolute;
+		right: 15px;
+		bottom: 7px;
+	}
+
+	&__title {
+		@extend .room-price__title;
+		border-bottom: 1px solid $color-ds5;
+		padding-top: 26px;
+		padding-bottom: 11px;
+		margin-left: 20px;
+		margin-right: 17px;
+		margin-bottom: 0;
+	}
+
+	&__feedback {
+		margin: 8px 20px 0 22px;
+		display: flex;
+		justify-content: space-between;
+		color: $color-ds50;
+		font-size: 14px;
+		line-height: 18px;
+		align-items: flex-end;
+	}
+
+	&__feedback-comments {
+		margin-bottom: 2px;
+
+		span {
+			font-weight: bold;
+			color: $color-ds50;
+		}
+	}
+}
+
+.room-number__number--small {
+	font-size: 19px;
+}
+
+.price-per-day--lh-17 {
+	line-height: 17px;
+}
+
+.room-card-pagination-item {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	border-radius: 4px;
+	border: 1px solid #fff;
+	margin-left: 4px;
+	cursor: pointer;
+
+	&--active {
+		background-color: #fff;
+	}
+}

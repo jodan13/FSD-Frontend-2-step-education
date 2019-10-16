@@ -1,12 +1,6 @@
-mixin dropdown-guest(name, placeholder, textAttr)
-    label()
-        input(
-                 
-                name=name, 
-                type="text", 
-                readonly, 
-                placeholder=placeholder)&attributes(textAttr)
-        .dropdown-guest 
-
-            i.material-icons.dropdown-guest__icon expand_more
+mixin dropdown-guest(id, name, placeholder, textAttr)
+	label()
+		input(id=id, name=name, type="text", readonly, placeholder=placeholder)&attributes(textAttr)
+		.dropdown-guest 
+			i.material-icons.dropdown-guest__icon expand_more
  

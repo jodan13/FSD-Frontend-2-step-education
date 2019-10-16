@@ -1,0 +1,38 @@
+mixin room-price()
+	.room-price
+		.room-price__title
+			h3.room-number
+				span.room-number__symbol №
+				span.room-number__number 888
+				span.room-number__type Люкс
+			.price-per-day
+				span.price-per-day__price 9 990
+				span.price-per-day__rub.rub P
+				span.price-per-day__text в сутки
+		.room-price__date
+			h3.room-price__date__h3 Прибытие
+			h3.room-price__date__h3 Выезд
+			+date-two-inputs("date-range-room-price1", "date-range-room-price2", "date-two-room-price-inputs")
+		.room-price__men
+			+quantity-dropdown(guests, "Сколько гостей", "Гости")(class="isSelectionGuests")
+		ul.room-price-list
+			li.room-price-list__item
+				.room-price-list__item-text
+					p 9 990₽ х 4 суток
+				.room-price-list__item-price 39 960₽
+			li.room-price-list__item
+				.room-price-list__item-text
+					p Сбор за услуги: скидка 2 179₽
+					.service-info i
+				.room-price-list__item-price 0₽
+			li.room-price-list__item
+				.room-price-list__item-text.room-price-list__item-text--lower
+					p Сбор за дополнительные услуги
+					.service-info i
+				.room-price-list__item-price 300₽
+		.room-price__total
+			h2.room-price__total-text Итого
+			.room-price__total-between
+			h2.room-price__total-price 38 081₽
+		.room-price__button
+			+button-wide("Забронировать", "#")

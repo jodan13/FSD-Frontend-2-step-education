@@ -12,343 +12,368 @@
 @import "../components/bulletlist/bulletlist.scss";
 @import "../components/comfort/comfort.scss";
 @import "../components/comment/comment.scss";
-
+@import "../components/find-room/find-room.scss";
+@import "../components/registration-card/registration-card.scss";
+@import "../components/room-price/room-price.scss";
+@import "../components/quantity-dropdown/quantity-dropdown.scss";
+@import "../components/login-card/login-card.scss";
+@import "../components/room-card/room-card.scss";
 
 .body_ui-kit {
-    background: #e5e5e5;
+	background: #e5e5e5;
+
 }
 
 .ui-kit {
-    background: #fff;
-    width: 1440px;
-    margin: 40px auto;
+	background: #fff;
+	width: 1440px;
+	margin: 40px auto;
 
-    &__logo {
-        position: absolute;
-        padding: 30px;
-    }
+
+	&__logo {
+		position: absolute;
+		padding: 30px;
+	}
+
+	&--gray {
+		background: #F4F4F6;
+	}
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 140px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 140px 0;
 }
 
 .colors__ul {
-    list-style: none inside none;
-    padding-left: 90px;
+	list-style: none inside none;
+	padding-left: 90px;
 }
 
 .colors__li {
-    position: relative;
-    margin: 20px;
-    width: 180px;
-    height: 70px;
+	position: relative;
+	margin: 20px;
+	width: 180px;
+	height: 70px;
 }
 
 .colors .colors__li:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: -110px;
-    width: 70px;
-    height: 70px;
-    border-radius: 6px;
+	content: "";
+	display: block;
+	position: absolute;
+	left: -110px;
+	width: 70px;
+	height: 70px;
+	border-radius: 6px;
 }
 
 .colors h2 {
-    padding-top: 8px;
+	padding-top: 8px;
 }
 
 .colors__li:nth-child(1):before {
-    background-color: $color-ds100;
+	background-color: $color-ds100;
 }
 
 .colors__li:nth-child(2):before {
-    background: $color-ds75;
+	background: $color-ds75;
 }
 
 .colors__li:nth-child(3):before {
-    background: $color-ds50;
+	background: $color-ds50;
 }
 
 .colors__li:nth-child(4):before {
-    background: $color-ds25;
+	background: $color-ds25;
 }
 
 .colors__li:nth-child(5):before {
-    background: $color-ds5;
+	background: $color-ds5;
 }
 
 .colors__li:nth-child(6):before {
-    background: $color-purple;
+	background: $color-purple;
 }
 
 .colors__li:nth-child(7):before {
-    background: $color-green;
+	background: $color-green;
 }
 
 .font {
-    width: 417px;
+	width: 417px;
 
-    &_h {
-        display: flex;
-    }
+	&_h {
+		display: flex;
+	}
 
-    &_h2 {
-        margin-top: 54px;
-    }
+	&_h2 {
+		margin-top: 54px;
+	}
 
-    &_h3 {
-        margin-top: 53px;
-    }
+	&_h3 {
+		margin-top: 53px;
+	}
 
-    &_body {
-        margin-top: 53px;
-    }
+	&_body {
+		margin-top: 53px;
+	}
 
-    &_type {
-        margin-right: 30px;
-        width: 37px;
-        color: $color-ds25;
-        text-align: right;
-    }
+	&_type {
+		margin-right: 30px;
+		width: 37px;
+		color: $color-ds25;
+		text-align: right;
+	}
 
-    &_type_h1 {
-        font-size: 24px;
-    }
+	&_type_h1 {
+		font-size: 24px;
+	}
 
-    &_type_h2 {
-        font-size: 19px;
-    }
+	&_type_h2 {
+		font-size: 19px;
+	}
 
-    &_type_h3 {
-        font-size: 12px;
-    }
+	&_type_h3 {
+		font-size: 12px;
+	}
 
-    &_type_body {
-        font-size: 14px;
-    }
+	&_type_body {
+		font-size: 14px;
+	}
 
-    &_example {
-        width: 350px;
-    }
+	&_example {
+		width: 350px;
+	}
 }
 
 .form {
-    flex-direction: column;
+	flex-direction: column;
 
-    &__row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-self: stretch;
-    }
+	&__row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-self: stretch;
+	}
 
-    &__col {
-        display: flex;
-        width: 320px;
-        flex-wrap: wrap;
-        align-content: flex-start;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
+	&__col {
+		display: flex;
+		width: 320px;
+		flex-wrap: wrap;
+		align-content: flex-start;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
 
-    &__h3 {
-        margin: 20px 0 0 0;
-    }
+	&__h3 {
+		margin: 20px 0 0 0;
+	}
 
-    &__h3:first-child {
-        margin-top: 3px;
+	&__h3:first-child {
+		margin-top: 3px;
 
-    }
+	}
 
-    &__h3-masked {
-        margin-top: 23px;
+	&__h3-masked {
+		margin-top: 23px;
 
-    }
+	}
 
-    &__p {
-        font-size: 12px;
-        line-height: 15px;
-        margin: 20px 0 0 0;
-        text-transform: uppercase;
-        color: $color-ds50;
-    }
+	&__p {
+		font-size: 12px;
+		line-height: 15px;
+		margin: 20px 0 0 0;
+		text-transform: uppercase;
+		color: $color-ds50;
+	}
 
-    &__p:nth-child(2) {
-        margin: 0;
-    }
+	&__p:nth-child(2) {
+		margin: 0;
+	}
 
-    &__text-field {
-        margin-top: 5px;
-        width: 320px;
-    }
+	&__text-field {
+		margin-top: 5px;
+		width: 320px;
+	}
 
-    &__text-field--hover {
-        margin-top: 5px;
-        border-color: $color-ds50;
-    }
+	&__text-field--hover {
+		margin-top: 5px;
+		border-color: $color-ds50;
+	}
 
-    &__date-two {
-        margin-top: 40px;
-        width: 150px;
-    }
+	&__date-two {
+		margin-top: 40px;
+		width: 150px;
+	}
 
-    &__h3-40 {
-        margin-top: 40px;
-    }
+	&__h3-40 {
+		margin-top: 40px;
+	}
 
-    &__col:nth-child(2) {
-        max-width: 265px;
-    }
+	&__col:nth-child(2) {
+		max-width: 265px;
+	}
 
-    &__checkbox {
-        margin-top: 3px;
-        margin-bottom: 6px;
-        width: 100%;
+	&__checkbox {
+		margin-top: 3px;
+		margin-bottom: 6px;
+		width: 100%;
 
-    }
+	}
 
 
-    &__radio-buttons {
-        width: 100%;
-        margin-top: 40px;
-        margin-bottom: 13px;
-    }
+	&__radio-buttons {
+		width: 100%;
+		margin-top: 40px;
+		margin-bottom: 13px;
+	}
 
-    &__radio-button--wrapper {
-        width: 220px;
-        display: flex;
-        justify-content: space-between;
-    }
+	&__radio-button--wrapper {
+		width: 220px;
+		display: flex;
+		justify-content: space-between;
+	}
 
-    &__toggle {
-        width: 100%;
-        margin-top: 39px;
-        margin-bottom: 3px;
-    }
+	&__toggle {
+		width: 100%;
+		margin-top: 39px;
+		margin-bottom: 3px;
+	}
 
-    &__like-button {
-        width: 100%;
-        margin-top: 45px;
-        margin-bottom: 16px;
-    }
+	&__like-button {
+		width: 100%;
+		margin-top: 45px;
+		margin-bottom: 16px;
+	}
 
-    &__like-button--wrapper {
-        min-width: 90px;
-        display: flex;
-        justify-content: space-between;
-    }
+	&__like-button--wrapper {
+		min-width: 90px;
+		display: flex;
+		justify-content: space-between;
+	}
 
-    &__rate-btn {
-        margin-top: 40px;
-        margin-bottom: 16px;
-        width: 100%
-    }
+	&__rate-btn {
+		margin-top: 40px;
+		margin-bottom: 16px;
+		width: 100%
+	}
 
-    &__buttons {
-        margin-top: 30px;
-        width: 100%
-    }
+	&__buttons {
+		margin-top: 30px;
+		width: 100%
+	}
 
-    .single-buttons-item {
-        display: inline-block;
-        margin-right: 22px;
-    }
+	.single-buttons-item {
+		display: inline-block;
+		margin-right: 22px;
+	}
 
-    &__button-primary-wrapper {
-        margin-top: 16px;
-    }
+	&__button-primary-wrapper {
+		margin-top: 16px;
+	}
 
-    &__button-secondary-wrapper {
-        margin-top: 30px;
-    }
+	&__button-secondary-wrapper {
+		margin-top: 30px;
+	}
 
-    &__single-button--wrapper {
-        margin-top: 25px;
-    }
+	&__single-button--wrapper {
+		margin-top: 25px;
+	}
 
-    .button-wide {
-        margin-top: 26px;
-    }
+	.button-wide {
+		margin-top: 26px;
+	}
 
-    &__pagination {
-        margin-top: 40px;
-    }
+	&__pagination {
+		margin-top: 40px;
+	}
 
-    .pagination {
-        margin-top: 16px;
-    }
+	.pagination {
+		margin-top: 16px;
+	}
 
-    &__col-dropdown {
+	&__col-dropdown {
 
-        width: 320px;
-        margin-top: 100px;
+		width: 320px;
+		margin-top: 100px;
 
-        &>.form__h3 {
-            margin-top: 0px;
-        }
+		&>.form__h3 {
+			margin-top: 0px;
+		}
 
-        &:first-child {
-            width: 266px;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
+		&:first-child {
+			width: 266px;
+			display: flex;
+			flex-wrap: wrap;
+			align-content: flex-start;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
 
-        &:nth-child(2) {
-            margin-left: 109px;
-        }
-    }
+		&:nth-child(2) {
+			margin-left: 109px;
+		}
+	}
 
-    .dropdown-expanded-wrapper {
-        margin-top: 20px;
-    }
+	.dropdown-expanded-wrapper {
+		margin-top: 20px;
+	}
 
-    .expandable-checkbox-list-wrapper {
-        margin-top: 221px;
+	.expandable-checkbox-list-wrapper {
+		margin-top: 221px;
+		width: 100%;
+	}
 
-    }
+	.expandable-checbox--active {
+		margin-top: 32px;
+	}
 
-    .expandable-checbox--active {
-        margin-top: 32px;
-    }
+	.rich-checkbox-buttons {
+		margin-top: 305px;
+		margin-bottom: 17px;
+		color: $color-ds100;
+	}
 
-    .rich-checkbox-buttons {
-        margin-top: 305px;
-        margin-bottom: 17px;
-        color: $color-ds100;
-    }
+	.checkbox-rich-wrapper {
+		width: 235px;
+	}
 
-    .checkbox-rich-wrapper {
-        width: 235px;
-    }
+	.bullet_list {
+		margin-top: 305px;
+		margin-bottom: 14px;
+		color: $color-ds100;
+	}
 
-    .bullet_list {
-        margin-top: 305px;
-        margin-bottom: 14px;
-        color: $color-ds100;
-    }
+	.bullet-list-wrapper {
+		width: 265px;
+	}
 
-    .bullet-list-wrapper {
-        width: 265px;
-    }
+	&__col-comfort {
+		margin-top: 10px;
+	}
 
-    &__col-comfort {
-        margin-top: 10px;
-    }
+	.comfort {
+		margin-top: 20px;
+	}
 
-    .comfort {
-        margin-top: 20px;
-    }
+	&__col-comment {
+		margin-top: 39px;
+		width: 715px;
+	}
 
-    &__col-comment {
-        margin-top: 39px;
-        width: 715px;
-    }
+
+}
+
+.registration {
+	margin-top: 40px;
+}
+
+.always-open-span {
+	position: absolute;
+}
+
+.always-open {
+	margin-bottom: 40px;
 }

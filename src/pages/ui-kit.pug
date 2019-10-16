@@ -17,6 +17,13 @@ include ../components/dropdown-rooms/dropdown-rooms.pug
 include ../components/bulletlist/bulletlist.pug
 include ../components/comfort/comfort.pug
 include ../components/comment/comment.pug
+include ../components/find-room/find-room.pug
+include ../components/registration-card/registration-card.pug
+include ../components/quantity-dropdown/quantity-dropdown.pug
+include ../components/room-price/room-price.pug
+include ../components/login-card/login-card.pug
+include ../components/room-card/room-card.pug
+
 	
 html(lang='ru')
 	head
@@ -75,19 +82,19 @@ html(lang='ru')
 						.form__col
 							h3.form__h3 text Field
 							p.form__p default
-							+text-field("email", "Email", {class: "form__text-field"})
+							+text-field("text", "email", "Email", {class: "form__text-field"})
 							h3.form__h3 text Field
 							p.form__p hover / Focus
-							+text-field("email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
+							+text-field("text", "email", "Email", {class: "form__text-field--hover", value: "This is pretty awesome"})
 							h3.form__h3 dropdown
 							p.form__p default
-							+dropdown-guest("guest", "Сколько гостей")
+							+dropdown("Сколько гостей").textfield-default
 							h3.form__h3-masked masked text field
 							p.form__p default
-							+masked-inputs()
+							+masked-inputs("date-range-birthday2")
 							h3.form__date-two date dropdown
 							h3.form__date-two date dropdown
-							+date-two-inputs()
+							+date-two-inputs("form__date-two1", "form__date-two2", "form__date-two")
 							h3.form__h3-40 filter date dropdown
 							+filter-date-dropdown()
 							h3.form__h3-40 subscription text field
@@ -169,6 +176,22 @@ html(lang='ru')
 							+comfort("Удобство", "Окно в каждой из спален", "material-icons", "location_city")
 						.form__col-comment
 							+comment()
+		main.ui-kit.ui-kit--gray
+			img.ui-kit__logo(src='./img/logo-gray.svg', alt="logo-gray")
+			section
+				.cards.container
+					.cards__col
+						+find-room()
+						+registration()
+					.cards__col
+						+room-price()
+						+login-card()
+					.cards__col
+						span.always-open-span#always-open
+						.always-open#date-always-open
+						+roomCard("./img/image_888.jpg", "888", "9 990", "5", "145", "люкс", "arrows")
+						+roomCard("./img/image_840.jpg", "840", "9 900", "4", "65")
+
 
 	script(src="./libs/jquery.daterangepicker.js")
 	script(src='./pages/ui-kit.js')
@@ -178,6 +201,7 @@ html(lang='ru')
 	script(src='./components/range-slider/range-slider.js')
 	script(src='./components/pagination/pagination.js')
 	script(src='./components/dropdown-rooms/dropdown-rooms.js')
+	script(src='./components/quantity-dropdown/quantity-dropdown.js')
 
 block content
 		

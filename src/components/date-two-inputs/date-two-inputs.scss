@@ -1,74 +1,76 @@
 @import "../../base/variables.scss";
 
 .date-two {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
+	width: 320px;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
 
-    &__icon,
-    &__icon2 {
-        display: inline-block;
-        position: absolute;
-        right: 10px;
-        bottom: 0;
-        line-height: 44px;
-        color: $color-ds50;
-    }
+	&__icon,
+	&__icon2 {
+		display: inline-block;
+		position: absolute;
+		right: 0px;
+		left: 286px;
+		bottom: 0;
+		line-height: 44px;
+		color: $color-ds50;
+	}
 
-    &__icon2 {
-        left: 116px;
-    }
-
-
-    &__inputs {
-        margin-top: 5px;
-        box-sizing: border-box;
-        width: 150px;
-        background-color: white;
-        border: solid 1px $color-ds25;
-        border-radius: 4px;
-        color: $color-ds75;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        padding: 12px 14px;
-
-        &::placeholder {
-            color: $color-ds25;
-        }
-
-        &:hover {
-            border-color: $color-ds50;
-        }
-
-        &:focus {
-            border-color: $color-ds50;
-
-            &::placeholder {
-                color: $color-ds75;
-            }
-
-            outline: none;
+	&__icon2 {
+		left: 116px;
+		right: 176px;
+	}
 
 
-        }
+	&__inputs {
+		margin-top: 5px;
+		box-sizing: border-box;
+		width: 150px;
+		background-color: white;
+		border: solid 1px $color-ds25;
+		border-radius: 4px;
+		color: $color-ds75;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 14px;
+		padding: 12px 14px;
+
+		&::placeholder {
+			color: $color-ds25;
+		}
+
+		&:hover {
+			border-color: $color-ds50;
+		}
+
+		&:focus {
+			border-color: $color-ds50;
+
+			&::placeholder {
+				color: $color-ds75;
+			}
+
+			outline: none;
 
 
-    }
+		}
+
+
+	}
 }
 
 .button-date-two-inputs-clear,
 .button-date-two-inputs-close {
-    border: none;
-    background: none;
-    font-size: 12px;
-    font-weight: bold;
+	border: none;
+	background: none;
+	font-size: 12px;
+	font-weight: bold;
 }
 
 .button-date-two-inputs-clear {
-    color: $color-ds50;
+	color: $color-ds50;
 }
 
 .button-date-two-inputs-close {
-    color: $color-purple;
+	color: $color-purple;
 }

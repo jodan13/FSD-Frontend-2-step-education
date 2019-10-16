@@ -18,7 +18,7 @@ mixin dropdown(text, dataAttribute, list, apply)
 							+button-single-dark("очистить", "#")
 								        
 			.dropdown__text-arrow
-				i.zmdi.zmdi-chevron-down
+				i.material-icons expand_more
 mixin dropdown3(text, dataAttribute, list, apply)
 	.dropdown-wrapper
 		.dropdown&attributes(attributes)
@@ -45,11 +45,11 @@ mixin dateDropdown(text)
 		//- .dropdown__label
 		.dropdown__text #{text}
 		.dropdown__text-arrow
-			i.zmdi.zmdi-chevron-down
+			i.material-icons expand_more
 
 mixin filterDateDropdown(text)
 	.dropdown&attributes(attributes)
 		//- .dropdown__label
 		.dropdown__text #{text}
 		.dropdown__text-arrow
-			i.zmdi.zmdi-chevron-down
+			i.material-icons expand_more

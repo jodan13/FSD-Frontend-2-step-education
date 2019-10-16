@@ -1,0 +1,133 @@
+.room-price {
+	width: 380px;
+	padding: 47px 29px 29px;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	margin-bottom: 40px;
+
+	&__title {
+		font-weight: bold;
+		font-size: 14px;
+		line-height: 17px;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 20px;
+	}
+
+	&__date {
+		width: 320px;
+		display: flex;
+		margin-bottom: 21px;
+		position: relative;
+		flex-flow: row wrap;
+		justify-content: space-between;
+
+		&__h3 {
+			width: 47%;
+		}
+	}
+
+	&__men {
+		margin-top: 20px;
+		margin-bottom: 19px;
+	}
+
+	&__total {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 30px;
+		margin-bottom: 24px;
+		height: 19px;
+
+	}
+
+	&__total-text {
+		background-color: #fff;
+	}
+
+	&__total-price {
+		background-color: #fff;
+	}
+
+	&__total-between {
+		flex-grow: 1;
+		margin: 0 5px;
+		border-bottom: 1px dotted $color-ds25;
+	}
+}
+
+.room-number {
+
+	&__symbol {
+		font-size: 14px;
+	}
+
+	&__number {
+		font-size: 24px;
+		padding-left: 4px;
+		padding-right: 6px;
+	}
+
+	&__type {
+		color: $color-purple;
+	}
+}
+
+.price-per-day {
+	color: $color-ds50;
+	line-height: 22px;
+
+	&__text {
+		font-weight: normal;
+		font-size: 12px;
+		line-height: 18px;
+		margin-left: 8px;
+	}
+}
+
+.room-price-list {
+	margin-left: 1px;
+
+	&__item-price {
+		min-width: 80px;
+		text-align: right;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+
+	&__item-text {
+		position: relative;
+		padding-right: 22px;
+		display: flex;
+		flex-grow: 1;
+
+		&--lower {
+			line-height: 18px;
+			margin-top: 2px;
+		}
+	}
+}
+
+.service-info {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	border: 1px solid $color-ds25;
+	box-sizing: border-box;
+	border-radius: 10px;
+	text-align: center;
+	padding-bottom: 3px;
+	color: $color-ds25;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 20px;
+}

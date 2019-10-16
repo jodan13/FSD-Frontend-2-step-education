@@ -194,16 +194,16 @@ module.hot.accept(reloadCSS);
 
 require("./rate-btn.scss");
 
-var $rateBtn = $('.rate-btn');
-var $rateStars = $('.rate-btn__star');
-var emptyModifier = 'rate-btn__star--empty';
+var $rateBtn = $(".rate-btn");
+var $rateStars = $(".rate-btn__star");
+var emptyModifier = "rate-btn__star--empty";
 /**
  * @param {jQuery} $rateBtn
  * @param {number} targetIdx - Last filled star index
  */
 
 var fillStars = function fillStars($rateBtn, targetIdx) {
-  $('.rate-btn__star', $rateBtn).each(function (idx, star) {
+  $(".rate-btn__star", $rateBtn).each(function (idx, star) {
     if (idx <= targetIdx) {
       $(star).removeClass(emptyModifier);
     } else {
@@ -214,7 +214,7 @@ var fillStars = function fillStars($rateBtn, targetIdx) {
 
 var handleHover = function handleHover(_ref) {
   var hoveredStar = _ref.currentTarget;
-  var $rateBtn = $(hoveredStar).parent('.rate-btn');
+  var $rateBtn = $(hoveredStar).parent(".rate-btn");
   fillStars($rateBtn, $(hoveredStar).index());
 };
 
@@ -225,9 +225,9 @@ var handleLeave = function handleLeave(_ref2) {
 
 var handleClick = function handleClick(_ref3) {
   var clickedStar = _ref3.currentTarget;
-  var $rateBtn = $(clickedStar).parent('.rate-btn');
+  var $rateBtn = $(clickedStar).parent(".rate-btn");
   var newRate = $(clickedStar).index() + 1;
-  $rateBtn.attr('data-rate', newRate);
+  $rateBtn.attr("data-rate", newRate);
 };
 
 $rateStars.mouseover(handleHover);
@@ -261,7 +261,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57988" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65025" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

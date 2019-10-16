@@ -1,0 +1,14 @@
+mixin login-card()
+	.login-card
+		.login-card__title 
+			h1 Войти
+		.login-card__name
+			+text-field("text", "email", "Email")
+		.login-card__secondname
+			+text-field("password", "password", "Пароль")
+		.login-card__login
+			+button-wide("Войти", "#")
+		.login-card__account-login
+			.registration__account-login-text Hет аккаунта на Toxin?
+			+button-secondary("Создать", "#")
+	

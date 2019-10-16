@@ -29718,13 +29718,12 @@ var jquery = require("jquery");
 
 window.$ = window.jQuery = jquery; // notice the definition of global variables here
 
-require("jquery-ui-dist/jquery-ui.js");
-/*
- * numbercategoryselector.js
- * Author & copyright (c) 2017: Sakri Koskimies
- *
- * MIT license
- */
+require("jquery-ui-dist/jquery-ui.js"); // /*
+//  * numbercategoryselector.js
+//  * Author & copyright (c) 2017: Sakri Koskimies
+//  *
+//  * MIT license
+//  */
 
 
 var $input, $goriginalPlaceholder, $gparent, $gi, $gcategory, $gtext, $gname, $gbuttons, $gbutton_minus, $gvalue, $gbutton_plus, $gclose, $gadded, $gsum, $gnum, $baby, $last, $gzero;
@@ -30056,7 +30055,7 @@ var $input, $goriginalPlaceholder, $gparent, $gi, $gcategory, $gtext, $gname, $g
     }
   };
 
-  $("input[name='guest']").guest({
+  $("#dropdown-guest").guest({
     categoryNames: ["Взрослые", "Дети", "Младенцы"],
     categoryValues: false,
     minValue: 0,
@@ -30098,7 +30097,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57988" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65025" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

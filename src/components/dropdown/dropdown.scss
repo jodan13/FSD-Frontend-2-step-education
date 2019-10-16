@@ -2,124 +2,124 @@
 
 
 .dropdown-guest {
-    position: relative;
+	position: relative;
 
-    &__icon {
-        display: inline-block;
-        position: absolute;
-        right: 10px;
-        bottom: 0;
-        line-height: 44px;
-        color: $color-ds50;
-    }
+	&__icon {
+		display: inline-block;
+		position: absolute;
+		right: 10px;
+		bottom: 0;
+		line-height: 44px;
+		color: $color-ds50;
+	}
 }
 
 input[name='guest'] {
-    box-sizing: border-box;
+	box-sizing: border-box;
 
-    width: 320px;
-    border: 1px solid $color-ds25;
-    border-radius: 4px;
-    padding: 12px 14px;
-    font-size: 14px;
-    margin-top: 5px;
-    color: $color-ds75;
-    text-overflow: ellipsis;
-    outline: none;
-    cursor: pointer;
+	width: 320px;
+	border: 1px solid $color-ds25;
+	border-radius: 4px;
+	padding: 12px 14px;
+	font-size: 14px;
+	margin-top: 5px;
+	color: $color-ds75;
+	text-overflow: ellipsis;
+	outline: none;
+	cursor: pointer;
 
-    &:focus,
-    &:hover {
-        border-color: $color-ds50;
+	&:focus,
+	&:hover {
+		border-color: $color-ds50;
 
-    }
+	}
 }
 
 div.guest.parent {
-    position: absolute;
-    z-index: 1000;
-    background: white;
-    border: 1px solid $color-ds50;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0px 10px 20px $color-ds5;
-    padding: 6px 7px 13px 15px;
-    text-align: center;
-    overflow: hidden;
-    min-width: 320px;
-    box-sizing: border-box;
+	position: absolute;
+	z-index: 1000;
+	background: white;
+	border: 1px solid $color-ds50;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0px 10px 20px $color-ds5;
+	padding: 6px 7px 13px 15px;
+	text-align: center;
+	overflow: hidden;
+	min-width: 320px;
+	box-sizing: border-box;
 
 }
 
 div.guest.category {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 }
 
 div.guest.text {
-    clear: both;
-    display: inline-block;
-    padding: 0 0 16px 0;
-    margin: 7px 0 0 0;
+	clear: both;
+	display: inline-block;
+	padding: 0 0 16px 0;
+	margin: 7px 0 0 0;
 }
 
 div.guest.name,
 a.guest.close,
 div.guest.value {
-    font-weight: bold;
-    color: $color-ds100;
-    text-transform: uppercase;
-    font-size: 12px;
-    line-height: 15px;
+	font-weight: bold;
+	color: $color-ds100;
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: 15px;
 }
 
 div.guest.buttons {
-    display: flex;
-    width: 92px;
-    height: 30px;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	width: 92px;
+	height: 30px;
+	justify-content: space-between;
+	align-items: center;
 }
 
 a.guest.button {
-    color: $color-ds50;
-    text-decoration: none;
-    width: 30px;
-    height: 30px;
+	color: $color-ds50;
+	text-decoration: none;
+	width: 30px;
+	height: 30px;
 
-    display: inline-block;
-    text-align: center;
-    background: #fff;
-    border: 1px solid $color-ds25;
-    box-sizing: border-box;
-    border-radius: 22px;
-    box-sizing: border-box;
-    font-size: 18px;
-    font-weight: normal;
-    line-height: 28px;
+	display: inline-block;
+	text-align: center;
+	background: #fff;
+	border: 1px solid $color-ds25;
+	box-sizing: border-box;
+	border-radius: 22px;
+	box-sizing: border-box;
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 28px;
 }
 
 a.guest.button.inactive {
-    background: #fff;
-    opacity: 0.38;
+	background: #fff;
+	opacity: 0.38;
 }
 
 .NCSG.reset {
-    float: left;
-    padding: 13px 0 0 0;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 15px;
-    text-transform: uppercase;
-    color: $color-ds50;
+	float: left;
+	padding: 13px 0 0 0;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15px;
+	text-transform: uppercase;
+	color: $color-ds50;
 }
 
 .NCSG.close {
-    float: right;
-    padding: 13px 0 0 0;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 15px;
-    text-transform: uppercase;
-    color: $color-purple;
+	float: right;
+	padding: 13px 0 0 0;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15px;
+	text-transform: uppercase;
+	color: $color-purple;
 }
