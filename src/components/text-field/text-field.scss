@@ -1,4 +1,4 @@
-@import "../base/variables.scss";
+// @import "../base/variables.scss";
 
 
 .text-field {
@@ -29,5 +29,72 @@
 		}
 
 		outline: none;
+	}
+}
+
+.input-text {
+	border: 1px solid $color-ds25;
+	box-sizing: border-box;
+	border-radius: 4px;
+	width: 100%;
+	padding: 9px 14px;
+	font-size: 14px;
+	line-height: 24px;
+	color: $color-ds75;
+
+	&:hover,
+	&:focus {
+		color: $color-ds75;
+		border: 1px solid $color-ds50;
+	}
+
+	&::placeholder {
+
+		font-size: 14px;
+		line-height: 18px;
+		color: $color-ds25;
+	}
+}
+
+.label__arrow {
+	display: block;
+	position: absolute;
+	right: 0;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 40px;
+	padding: 0 13px;
+	height: 100%;
+	cursor: pointer;
+
+	&>.icon-color {
+		line-height: 40px;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#bc9cff), to(#8ba4f9));
+		background-image: -o-linear-gradient(top, #bc9cff 0, #8ba4f9 100%);
+		background-image: linear-gradient(180deg, #bc9cff, #8ba4f9);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		-webkit-text-fill-color: rgba(0, 0, 0, 0);
+	}
+}
+
+.label {
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15px;
+	text-transform: uppercase;
+	color: $color-ds100;
+	margin-top: 5px;
+	position: relative;
+}
+
+.textfield-hover-focus .input-text {
+	border: 1px solid $color-ds50;
+
+	&::placeholder {
+		color: $color-ds75;
 	}
 }

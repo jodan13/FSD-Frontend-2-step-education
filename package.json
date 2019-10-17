@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.pug --open",
-    "build": "parcel build src/index.pug -d docs --public-url ./"
+    "start": "parcel src/ui-kit.pug --open",
+    "build": "parcel build src/ui-kit.pug -d docs/ui-kit --public-url ./"
   },
   "keywords": [],
   "author": "",
@@ -23,12 +23,12 @@
     "@fortawesome/fontawesome-free": "^5.11.2",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
+    "jquery": "^3.4.1",
     "pug": "^2.0.4",
     "sass": "^1.23.0"
   },
   "dependencies": {
     "item-quantity-dropdown": "^2.0.2",
-    "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-dist": "^1.12.1",
     "moment": "^2.24.0"

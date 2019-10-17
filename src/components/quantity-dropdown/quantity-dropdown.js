@@ -1,5 +1,8 @@
 import "../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js";
-
+// var jquery = require("jquery");
+// import $ from "jquery";
+// window.$ = window.jQuery = jquery; // notice the definition of global variables here
+// require("jquery-ui-dist/jquery-ui.js");
 const guests = {
   adults: 0,
   children: 0,

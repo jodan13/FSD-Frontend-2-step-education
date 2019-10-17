@@ -3,3 +3,9 @@ mixin text-field(type, name, placeholder, textAttr)
 		name=name
 		type=type
 		placeholder=placeholder)&attributes(textAttr)
+
+mixin subscriptionField(placeholder)
+	label.label(class="label--arrow")
+		.label__arrow
+			i.material-icons.icon-color arrow_forward
+		input.input-text.subscribe-input(type='text' placeholder= placeholder)&attributes(attributes)

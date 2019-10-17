@@ -14,7 +14,7 @@ mixin room-price()
 			h3.room-price__date__h3 Выезд
 			+date-two-inputs("date-range-room-price1", "date-range-room-price2", "date-two-room-price-inputs")
 		.room-price__men
-			+quantity-dropdown(guests, "Сколько гостей", "Гости")(class="isSelectionGuests")
+			+quantity-dropdown(guests, "Сколько гостей", "Гости")(class="isSelectionGuests" name="dropdownRoomPrice")
 		ul.room-price-list
 			li.room-price-list__item
 				.room-price-list__item-text

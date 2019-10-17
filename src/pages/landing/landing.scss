@@ -1,6 +1,7 @@
 @import "../../base/variables.scss";
 @import "../../libs/daterangepicker.scss";
 @import "../../components/dropdown/dropdown.scss";
+@import "../../components/text-field/text-field.scss";
 
 .main {
 	height: 830px;
@@ -11,6 +12,7 @@
 
 	&__inspiration {
 		color: $color-ds75;
+		font-size: 14px;
 		text-align: right;
 		vertical-align: bottom;
 		align-self: flex-end;

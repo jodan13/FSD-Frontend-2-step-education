@@ -18,6 +18,9 @@
 @import "../components/quantity-dropdown/quantity-dropdown.scss";
 @import "../components/login-card/login-card.scss";
 @import "../components/room-card/room-card.scss";
+@import "../modules/header-guest.scss";
+@import "../modules/footer.scss";
+@import "../modules/footer-single.scss";
 
 .body_ui-kit {
 	background: #e5e5e5;
@@ -44,6 +47,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
+
+}
+
+.colors {
 	padding: 140px 0;
 }
 
@@ -102,6 +109,7 @@
 }
 
 .font {
+	padding: 140px 0;
 	width: 417px;
 
 	&_h {
@@ -150,6 +158,7 @@
 
 .form {
 	flex-direction: column;
+	padding: 140px 0;
 
 	&__row {
 		display: flex;
@@ -375,5 +384,18 @@
 }
 
 .always-open {
+	margin-bottom: 40px;
+}
+
+.cards {
+	padding: 150px 0;
+
+	&__col {
+		min-width: 320px;
+	}
+}
+
+.header-wrapper {
+	background-color: white;
 	margin-bottom: 40px;
 }

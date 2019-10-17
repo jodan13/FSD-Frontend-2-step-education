@@ -8,9 +8,9 @@ var moment = require('moment');
 moment().format();
 import "./ru.js";
 
-// var jquery = require("jquery");
-// window.$ = window.jQuery = jquery; // notice the definition of global variables here
-// require("jquery-ui-dist/jquery-ui.js");
+var jquery = require("jquery");
+window.$ = window.jQuery = jquery; // notice the definition of global variables here
+require("jquery-ui-dist/jquery-ui.js");
 
 (function(factory) {
 	if (typeof define === "function" && define.amd) {
@@ -1104,7 +1104,7 @@ var left = 0;
 					} else {
 						box.css({
 							top: offset.top + 5 + $(self).outerHeight() + parseInt($("body").css("border-top") || 0, 10),
-							left: offset.left + $(self).width() - box.width() - 16
+							left: offset.left + $(self).width() - box.width() - 40
 						});
 					}
 				}
@@ -2683,7 +2683,56 @@ var left = 0;
 		$('#date-two-inputs').data('dateRangePicker').close();
 	});
 
-
+	if ($("#date-two-room-price-inputs").length){
+		$("#date-range-room-price1").mask("99.99.9999");
+		$("#date-range-room-price2").mask("99.99.9999");
+		$("#date-two-room-price-inputs").dateRangePicker({
+			singleMonth: true,
+			startDate: moment(),
+			autoClose: false,
+			showTopbar: false,
+			minDays: 2,
+			format: "DD.MM.YYYY",
+			language: "ru",
+			startOfWeek: "monday",
+			showShortcuts: false,
+			showCustomValues: true,
+			customValues:
+				//if return an array of two dates, it will select the date range between the two dates
+				[
+					{
+						name: 'ОЧИСТИТЬ',
+						value: 'date-two-inputs-room-price-clear'
+					},
+					{
+						name: 'ПРИМЕНИТЬ',
+						value: 'date-two-inputs-room-price-close'
+					}
+				],
+			separator: " ",
+			getValue: function() {
+				if ($("#date-range-room-price1").val() && $("#date-range-room-price2").val())
+					return $("#date-range-room-price1").val() + " " + $("#date-range-room-price2").val();
+				else return "";
+			},
+			setValue: function(s, s1, s2) {
+				$("#date-range-room-price1").val(s1);
+				$("#date-range-room-price2").val(s2);
+			},
+		 
+		});
+		$('#date-two-inputs-room-price-clear').click(function(evt)
+		{
+			evt.stopPropagation();
+			$('#date-two-room-price-inputs').data('dateRangePicker').clear();
+		});
+		
+		$('#date-two-inputs-room-price-close').click(function(evt)
+		{
+			evt.stopPropagation();
+			$('#date-two-inputs').data('dateRangePicker').close();
+		});
+	};
 	// filter-date-dropdown
 
 	if ($("#filter-date-dropdown").length){
@@ -2715,6 +2764,17 @@ var left = 0;
 			],
 	 
 	});
+	$('#filter-date-dropdown-clear').click(function(evt)
+	{
+		evt.stopPropagation();
+		$('#filter-date-dropdown').data('dateRangePicker').clear();
+	});
+	
+	$('#filter-date-dropdown-close').click(function(evt)
+	{
+		evt.stopPropagation();
+		$('#filter-date-dropdown').data('dateRangePicker').close();
+	});
 };
 if ($("#always-open").length){
 $("#always-open").dateRangePicker({
@@ -2743,26 +2803,26 @@ $("#always-open").dateRangePicker({
 		[
 			{
 				name: 'ОЧИСТИТЬ',
-				value: 'filter-date-dropdown-clear'
+				value: 'open-dada-to-clear'
 			},
 			{
 				name: 'ПРИМЕНИТЬ',
-				value: 'filter-date-dropdown-close'
+				value: 'open-dada-to-close'
 			}
 		],
  
 });
 };
 
-	$('#filter-date-dropdown-clear').click(function(evt)
+	$('#open-dada-to-clear').click(function(evt)
 	{
 		evt.stopPropagation();
-		$('#filter-date-dropdown').data('dateRangePicker').clear();
+		$('#always-open').data('dateRangePicker').clear();
 	});
 	
-	$('#filter-date-dropdown-close').click(function(evt)
+	$('#open-dada-to-close').click(function(evt)
 	{
 		evt.stopPropagation();
-		$('#filter-date-dropdown').data('dateRangePicker').close();
+		$('#always-open').data('dateRangePicker').close();
 	});
 });

@@ -11,10 +11,11 @@
 .nav {
 	display: flex;
 	justify-content: space-between;
-	padding-top: 26px;
-	padding-bottom: 23px;
+	padding-top: 25px;
+	padding-bottom: 22px;
 	margin: 0;
 	list-style-type: none;
+	line-height: 17px;
 
 	&__link {
 		color: $color-ds50;
@@ -32,36 +33,22 @@
 
 }
 
-.button_default {
-
-	margin: 0 auto;
-	background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-	border-radius: 22px;
-	border: none;
-	padding: 2px;
-	margin-right: 20px;
-
-	h3 {
-		margin: 0;
-		color: #BC9CFF;
-		background: #fff;
-		border-radius: 22px;
-		line-height: 14px;
-		padding: 8px 19px;
-
+.header-login {
+	&__user {
+		margin-top: 1px;
+		padding-left: 31px;
+		padding-bottom: 3px;
+		padding-top: 3px;
+		border-left: 1px solid $color-ds5;
+		color: $color-ds50;
 	}
-}
 
-.button_gradient {
-	color: #fff;
-	margin: 0 auto;
-	font-size: 12px;
-	font-weight: bold;
-	line-height: 14px;
-	background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-	border-radius: 22px;
-	border: none;
-	padding: 10px 19px;
-	text-transform: uppercase;
+	&__guest {
+		display: flex;
+		margin-top: -1px;
+	}
 
+	&__guest-login {
+		margin-right: 21px;
+	}
 }

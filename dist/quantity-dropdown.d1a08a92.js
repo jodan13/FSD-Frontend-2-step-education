@@ -126,6 +126,10 @@ var define;
 
 require("../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js");
 
+// var jquery = require("jquery");
+// import $ from "jquery";
+// window.$ = window.jQuery = jquery; // notice the definition of global variables here
+// require("jquery-ui-dist/jquery-ui.js");
 var guests = {
   adults: 0,
   children: 0,
@@ -437,7 +441,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65025" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64345" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

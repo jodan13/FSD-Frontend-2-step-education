@@ -1,7 +1,7 @@
 @import "../../base/variables.scss";
 
 .date-two {
-	width: 320px;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	position: relative;
@@ -26,7 +26,7 @@
 	&__inputs {
 		margin-top: 5px;
 		box-sizing: border-box;
-		width: 150px;
+		width: 47%;
 		background-color: white;
 		border: solid 1px $color-ds25;
 		border-radius: 4px;
@@ -60,17 +60,26 @@
 }
 
 .button-date-two-inputs-clear,
-.button-date-two-inputs-close {
+.button-date-two-inputs-close,
+.button-open-dada-to-clear,
+.button-open-dada-to-close,
+.button-date-two-inputs-room-price-clear,
+.button-date-two-inputs-room-price-close {
 	border: none;
 	background: none;
 	font-size: 12px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
-.button-date-two-inputs-clear {
+.button-date-two-inputs-clear,
+.button-open-dada-to-clear,
+.button-date-two-inputs-room-price-clear {
 	color: $color-ds50;
 }
 
-.button-date-two-inputs-close {
+.button-date-two-inputs-close,
+.button-open-dada-to-close,
+.button-date-two-inputs-room-price-close {
 	color: $color-purple;
 }

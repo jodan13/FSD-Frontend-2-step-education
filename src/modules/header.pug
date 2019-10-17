@@ -3,7 +3,7 @@ header
 		a(href='#').header__logo: img(src='./img/logo.svg')
 		ul.nav
 			li.nav__item
-				a(href='./ui-kit.pug').nav__link О нас
+				a(href='ui-kit').nav__link О нас  
 			li.nav__item
 				a(href='#').nav__link Услуги<i class="material-icons">expand_more</i>
 			li.nav__item
@@ -12,7 +12,11 @@ header
 				a(href='#').nav__link Новости
 			li.nav__item
 				a(href='#').nav__link Соглашения <i class="material-icons">expand_more</i>
-		button(class=`button_default`) <h3>войти</h3>
-		button(class=`button_gradient`) зарегистрироваться
+				.header-login
+		.header-login__guest
+			.header-login__guest-login
+				+button-secondary("Войти", "#", "small")
+			.header-login__guest-register
+				+button-primary("зарегистрироваться", "#", "small")
 		div 
 		

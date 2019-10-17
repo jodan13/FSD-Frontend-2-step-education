@@ -7,7 +7,6 @@ mixin find-room()
 			h3.find-room__h3 Выезд
 			+date-two-inputs("date-range-two1", "date-range-two2", "date-two-inputs")
 		.find-room__men.mb-30
-			h3 Гости
-			+dropdown-guest("dropdown-guest", "guest", "Сколько гостей")
+			+quantity-dropdown(guests, "Сколько гостей", "Гости")(class="isSelectionGuests" name="dropdownFindRoom")
 		.find-room__button
 			+button-wide("Подобрать номер", "#")
