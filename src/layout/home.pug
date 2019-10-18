@@ -4,6 +4,12 @@ include ../components/quantity-dropdown/quantity-dropdown.pug
 include ../components/buttons/buttons.pug
 include ../components/find-room/find-room.pug
 include ../components/text-field/text-field.pug
+include ../components/filter-date-dropdown/filter-date-dropdown.pug
+include ../components/range-slider/range-slider.pug
+include ../components/checkbox/checkbox.pug
+include ../components/room-card/room-card.pug
+include ../components/rate-btn/rate-btn.pug
+include ../components/pagination/pagination.pug
 link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
 link(rel="shortcut icon" type="image/png" href="./img/favicon.ico")
 html(lang='ru')
@@ -12,8 +18,7 @@ html(lang='ru')
 	body
 		include ../modules/header
 		
-		include ../pages/landing/landing
+		block content
 
 		include ../modules/footer
 
-block content

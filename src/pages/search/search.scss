@@ -1,0 +1,89 @@
+@import '../../base/variables.scss';
+@import "../../components/filter-date-dropdown/filter-date-dropdown.scss";
+@import "../../components/quantity-dropdown/quantity-dropdown.scss";
+@import "../../components/checkbox/checkbox.scss";
+@import "../../components/room-price/room-price.scss";
+@import "../../components/room-card/room-card.scss";
+
+.header {
+  background-color: #fff;
+  -webkit-box-shadow: 0 10px 20px rgba(31, 32, 65, .05);
+  box-shadow: 0 10px 20px rgba(31, 32, 65, .05);
+  min-height: 70px;
+}
+
+.main {
+  border-bottom: 1px solid rgba(31, 32, 65, .25);
+}
+
+.search-room-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 75px;
+  align-items: flex-start;
+  padding-top: 30px;
+
+  &.container {
+    align-items: flex-start;
+  }
+}
+
+.search-room-filter {
+  width: 265px;
+  margin-right: 60px;
+}
+
+.iqdropdown,
+.range-slider,
+.expandable-checkbox {
+  margin-top: 30px;
+}
+
+.iqdropdown-menu {
+
+  width: 265px;
+}
+
+.checkbox-column {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.checkbox-rich-wrapper {
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+
+.search-room-main {
+  flex-grow: 1;
+
+  &__rooms {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: flex-end;
+    justify-content: space-between;
+  }
+
+  &__rooms-item {
+    float: left;
+    // margin-left: 10px;
+  }
+}
+
+.search-room-main__pagination {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search-room-main__header {
+  margin-bottom: 20px;
+}
+
+.slider-description {
+  font-size: 12px;
+  line-height: 14px;
+  color: $color-ds50;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}

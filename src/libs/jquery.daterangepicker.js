@@ -2632,7 +2632,7 @@ var left = 0;
 	});
 	
 	};
-
+	if ($("#date-two-inputs").length){
 	$("#date-range-two1").mask("99.99.9999");
 	$("#date-range-two2").mask("99.99.9999");
 
@@ -2682,7 +2682,7 @@ var left = 0;
 		evt.stopPropagation();
 		$('#date-two-inputs').data('dateRangePicker').close();
 	});
-
+	}
 	if ($("#date-two-room-price-inputs").length){
 		$("#date-range-room-price1").mask("99.99.9999");
 		$("#date-range-room-price2").mask("99.99.9999");

@@ -10,16 +10,14 @@ mixin checkbox(name, text1, checked, inputAttrs, presentationAttrs)
 mixin checkbox2(text, checked)
 
 	if checked
-		label.label-check&attributes(attributes)
-			input(type="checkbox" name="checkbox" checked).label-check__input
-			span.label-check__new-input 
-				.check-item
+		label.checkbox__label&attributes(attributes)
+			input(type="checkbox" name="checkbox" checked).checkbox__input
+			i.material-icons.checkbox__check-icon done
 			|#{text}
 	else
-		label.label-check&attributes(attributes)
-			input(type="checkbox" name="checkbox").label-check__input
-			span.label-check__new-input 
-				.check-item
+		label.checkbox__label&attributes(attributes)
+			input(type="checkbox" name="checkbox").checkbox__input
+			i.material-icons.checkbox__check-icon done
 			|#{text}
 
 mixin checkboxList(header, list)
@@ -34,12 +32,11 @@ mixin checkboxList(header, list)
 						else
 							+checkbox2(item[0], "checked")
 		.expandable-checkbox__arrow
-			i.material-icons expand_more
+			i.material-icons expand_less
 			
 mixin checkboxRich(text, desc)
 	label.label-check-rich&attributes(attributes)
 		input(type="checkbox" name="checkbox").label-check-rich__input
-		span.label-check-rich__new-input 
-			.check-item
+		i.material-icons.checkbox__check-icon done
 		|#{text}
 		.label-check-rich__description #{desc}

@@ -5,7 +5,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/ui-kit.pug --open",
-    "build": "parcel build src/ui-kit.pug -d docs/ui-kit --public-url ./"
+    "build": "parcel build src/ui-kit.pug -d docs/ui-kit --public-url ./",
+    "starti": "parcel src/index.pug --open",
+    "buildi": "parcel build src/index.pug -d docs --public-url ./",
+    "starts": "parcel src/search.pug --open",
+    "builds": "parcel build src/search.pug -d docs/search --public-url ./"
   },
   "keywords": [],
   "author": "",

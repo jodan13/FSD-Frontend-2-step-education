@@ -1,0 +1,43 @@
+section.main
+	.container.search-room-wrapper
+		.search-room-filter
+			h3 Даты пребывания в отеле
+			+filter-date-dropdown()
+			+quantity-dropdown(guests, "Сколько гостей", "Гости")(class="isSelectionGuests" name="dropdownFindRoom")
+			+range-slider({
+							label: 'Диапазон цены',
+							from: 0,
+							to: 20000,
+							minValue: 5000,
+							maxValue: 10000,
+						})
+			.slider-description Стоимость за сутки пребывания в номере
+			h3 checkbox buttons
+			.checkbox-column
+				+checkbox("myCheckbox", "Можно курить")
+				+checkbox("myCheckbox", "Можно c питомцами", "checked")
+				+checkbox("myCheckbox", "Можно пригласить гостей (до 10 человек)") 
+			h3 Доступность
+			.checkbox-rich-wrapper
+				+checkboxRich('Широкий коридор', 'Ширина коридоров в номере не менее 91 см.')
+			
+			+checkboxRich('Помощник для инвалидов', 'На 1 этаже вас встретит специалист и проводит до номера.')
+			+quantity-dropdown(rooms, "сколько удобств", "удобства номера")(class="isSelectionGuests" name="dropdownRoomPrice")
+			+checkboxList("Дополнительные удобства", [['Завтрак', '0'],['Письменный стол', '1'],['Стул для кормления', '1'],['Кроватка', '1'],['Телевизор', '0'],['Шампунь', '0'],['Телевизор', '0'],['Шампунь', '0']])(data-search-room-expand)
+		.search-room-main
+			h1.search-room-main__header Номера, которые мы для вас подобрали
+			.search-room-main__rooms
+				+roomCard("./img/room-1.jpg", "888", "9 990", "5", "145", "люкс", "arrows").search-room-main__rooms-item
+				+roomCard("./img/room-2.jpg", "840", "9 900", "4", "65").search-room-main__rooms-item
+				+roomCard("./img/room-3.jpg", "980", "8 500", "3", "35", "люкс").search-room-main__rooms-item
+				+roomCard("./img/room-4.jpg", "856", "7 300", "5", "19").search-room-main__rooms-item
+				+roomCard("./img/room-5.jpg", "740", "6 000", "4", "44").search-room-main__rooms-item
+				+roomCard("./img/room-6.jpg", "982", "5 800", "3", "56").search-room-main__rooms-item
+				+roomCard("./img/room-7.jpg", "678", "5 500", "5", "45").search-room-main__rooms-item
+				+roomCard("./img/room-8.jpg", "450", "5 300", "4", "39").search-room-main__rooms-item
+				+roomCard("./img/room-9.jpg", "350", "5 000", "3", "77").search-room-main__rooms-item
+				+roomCard("./img/room-10.jpg", "666", "5 000", "5", "25").search-room-main__rooms-item
+				+roomCard("./img/room-11.jpg", "444", "5 000", "3", "15").search-room-main__rooms-item
+				+roomCard("./img/room-12.jpg", "352", "5 000", "3", "55").search-room-main__rooms-item
+			.search-room-main__pagination
+				+pagination("1 – 12 из 100+ вариантов аренды")
