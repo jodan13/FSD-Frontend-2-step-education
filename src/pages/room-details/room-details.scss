@@ -1,0 +1,204 @@
+@import '../../base/variables.scss';
+@import "../../components/room-price/room-price.scss";
+@import "../../components/room-card/room-card.scss";
+@import "../../components/quantity-dropdown/quantity-dropdown.scss";
+@import "../../components/comment/comment.scss";
+@import "../../components/comfort/comfort.scss";
+@import "../../components/bulletlist/bulletlist.scss";
+
+.main {
+  border-bottom: 1px solid rgba(31, 32, 65, .25);
+}
+
+.collage {
+  height: 485px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  &__main {
+    height: 100%;
+    width: 68%;
+  }
+
+  &__secondary {
+    height: 50%;
+    width: 32%;
+  }
+}
+
+.room-info {
+  display: flex;
+  padding-bottom: 60px;
+  padding-top: 70px;
+
+  &__desc {
+    flex-grow: 1;
+    margin-right: 70px;
+  }
+}
+
+.room-comfort {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  &__info {
+    width: 280px;
+
+    .comfort:last-child {
+      border: none;
+
+    }
+  }
+
+  &__voites {
+    width: 50%;
+    padding-left: 15px;
+  }
+}
+
+.room-comments {
+  margin-bottom: 40px;
+}
+
+.room-comments__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.room-comments__comment {
+  margin-top: 20px;
+}
+
+.comments-count {
+  font-size: 14px;
+  line-height: 14px;
+  color: $color-ds50;
+}
+
+.room-rules {
+  display: flex;
+  justify-content: space-between;
+
+  &__rules {
+    width: 260px;
+  }
+
+  &__cancel {
+    width: 50%;
+  }
+
+  &__rules-header {
+    margin-bottom: 20px;
+    color: $color-ds100;
+  }
+}
+
+.border-none {
+  border: none;
+}
+
+.room-comfort__voites-diagramm {
+  display: flex;
+  margin-top: 21px;
+}
+
+.diagramm-circle {
+  width: 120px;
+  height: 120px;
+  // border: 2px solid red;
+  // border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.acceptable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 100% 0 0;
+  border-top: 10px solid #B19EFE;
+  border-right: 10px solid #B19EFE;
+  width: 59px;
+  height: 59px;
+}
+
+.good {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 0 0 100% 0;
+  border-bottom: 4px solid #6FD0A0;
+  border-right: 4px solid #6FD0A0;
+  width: 59px;
+  height: 59px;
+}
+
+.great {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  border-top: 4px solid #FFCE9C;
+  border-left: 4px solid #FFCE9C;
+  border-bottom: 4px solid #FFCE9C;
+  width: 59px;
+  height: 120px;
+}
+
+.text {
+  // position: absolute;
+  color: #BC9CFF;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+
+  h1 {
+    color: #BC9CFF;
+  }
+}
+
+.diagramm-types {
+  margin-top: 27px;
+  margin-left: 45px;
+
+  &__item {
+    position: relative;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 7px;
+      left: -17px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.diagramm-types__item_color_orange:before {
+  background: linear-gradient(180deg, #FFE29C 0%, #FFBA9C 100%);
+}
+
+.diagramm-types__item_color_green:before {
+  background: $color-green-gradient;
+}
+
+.diagramm-types__item_color_violet:before {
+  background: $color-purple-gradient;
+}
+
+.diagramm-types__item_color_dark:before {
+  background: linear-gradient(180deg, #8A8B8F 0%, #434E76 100%);
+}

@@ -1,0 +1,31 @@
+.like-btn {
+  display: inline-flex;
+  min-width: 40px;
+  height: 20px;
+  justify-content: center;
+  color: rgba(31, 32, 65, 0.25);
+  background: transparent;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.like-btn--clicked {
+  color: #BC9CFF;
+  border-color: #BC9CFF;
+}
+
+.like-btn__icon {
+  margin-right: 4px;
+  font-size: inherit;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.like-btn__count {
+  margin: 0 auto;
+  font-size: 10px;
+  line-height: 1;
+}
+
+/*# sourceMappingURL=/like-button.c9a5cadb.css.map */

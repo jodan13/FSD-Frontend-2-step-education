@@ -1,10 +1,8 @@
 doctype html
 include ../components/text-field/text-field.pug
-//- include ../components/dropdown/dropdown.pug
 include ../components/masked/masked.pug
 include ../components/date-two-inputs/date-two-inputs.pug
 include ../components/filter-date-dropdown/filter-date-dropdown.pug
-include ../components/subscription-text-field/subscription-text-field.pug
 include ../components/checkbox/checkbox.pug
 include ../components/radiobutton/radiobutton.pug
 include ../components/toggle/toggle.pug
@@ -23,6 +21,7 @@ include ../components/quantity-dropdown/quantity-dropdown.pug
 include ../components/room-price/room-price.pug
 include ../components/login-card/login-card.pug
 include ../components/room-card/room-card.pug
+include ../components/text-field/text-field.pug
 	
 html(lang='ru')
 	head
@@ -97,7 +96,7 @@ html(lang='ru')
 							h3.form__h3-40 filter date dropdown
 							+filter-date-dropdown()
 							h3.form__h3-40 subscription text field
-							+subscription-text-field()
+							+subscriptionField()
 
 						.form__col
 							h3.form__checkbox checkbox Buttons
@@ -161,7 +160,7 @@ html(lang='ru')
 							.checkbox-rich-wrapper
 								+checkboxRich('Широкий коридор', 'Ширина коридоров в номере не менее 91 см.')
 							
-							+checkboxRich('Помощник для инвалидов', 'На 1 этаже вас встретит специалист и проводит до номера.').mr-60
+							+checkboxRich('Помощник для инвалидов', 'На 1 этаже вас встретит специалист и проводит до номера.')
 							
 						.form__col-dropdown
 							h3 dropdown
@@ -205,7 +204,6 @@ html(lang='ru')
 
 	script(src="./libs/jquery.daterangepicker.js")
 	script(src='./pages/ui-kit.js')
-	//- script(src='./components/dropdown/dropdown.js')
 	script(src='./components/like-button/like-button.js')
 	script(src='./components/rate-btn/rate-btn.js')
 	script(src='./components/range-slider/range-slider.js')

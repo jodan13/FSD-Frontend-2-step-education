@@ -1,10 +1,10 @@
-mixin comment(authorc, avatarLink, timec, textc, likeCount, likeCheck)
+mixin comment(author, avatarLink, time, text, likeCount, likeCheck)
 		.review
 			.review__topBlock
 				.review__like
-					img.review__avatar(src="./img/avatar.png", alt="avatar")
-					+likeButton(12)
+					img.review__avatar(src=avatarLink, alt="avatar")
+					+likeButton(likeCount, likeCheck)
 				.review__bottomBlock
-					p.review__name <b>Мурад Сарафанов</b>
-					p.review__name 5 дней назад
-					p.review__content Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.
+					p.review__name <b>#{author}</b>
+					p.review__name #{time}
+					p.review__content #{text}

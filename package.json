@@ -9,7 +9,9 @@
     "starti": "parcel src/index.pug --open",
     "buildi": "parcel build src/index.pug -d docs --public-url ./",
     "starts": "parcel src/search.pug --open",
-    "builds": "parcel build src/search.pug -d docs/search --public-url ./"
+    "builds": "parcel build src/search.pug -d docs/search --public-url ./",
+    "startr": "parcel src/room-details.pug --open",
+    "buildr": "parcel build src/room-details.pug -d docs/room-details --public-url ./"
   },
   "keywords": [],
   "author": "",

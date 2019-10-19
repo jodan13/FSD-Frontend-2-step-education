@@ -2730,7 +2730,7 @@ var left = 0;
 		$('#date-two-inputs-room-price-close').click(function(evt)
 		{
 			evt.stopPropagation();
-			$('#date-two-inputs').data('dateRangePicker').close();
+			$('#date-two-room-price-inputs').data('dateRangePicker').close();
 		});
 	};
 	// filter-date-dropdown

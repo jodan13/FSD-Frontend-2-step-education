@@ -1,0 +1,53 @@
+include ../../components/comfort/comfort.pug
+include ../../components/like-button/like-button.pug
+include ../../components/comment/comment.pug
+include ../../components/bulletlist/bulletlist.pug
+include ../../components/room-price/room-price.pug
+
+section.main
+	.main-content
+		.collage
+			.collage__main(style="background: url(./img/room-details1.jpg) no-repeat 100%;")
+			.collage__secondary(style="background: url(./img/room-details2.jpg) no-repeat 0 0;")
+			.collage__secondary(style="background: url(./img/room-details3.jpg) no-repeat 0 100%;")
+	.container
+		.room-info
+			.room-info__desc
+				.room-comfort
+					.room-comfort__info
+						h2 Сведения о номере
+						+comfort("Комфорт", "Шумопоглощающие стены", "material-icons", "insert_emoticon")
+						+comfort("Удобство", "Окно в каждой из спален", "material-icons", "location_city")
+						+comfort("Уют", "Номер оснащён камином", "material-icons", "whatshot")
+					.room-comfort__voites
+						h2 Впечатления от номера
+						.room-comfort__voites-diagramm
+							.diagramm-circle
+								.great
+								.acceptable
+								.good
+								.text 
+									h1 260
+									span голосов
+							ul.diagramm-types
+								li.diagramm-types__item.diagramm-types__item_color_orange Великолепно
+								li.diagramm-types__item.diagramm-types__item_color_green Хорошо
+								li.diagramm-types__item.diagramm-types__item_color_violet Удовлетворительно
+								li.diagramm-types__item.diagramm-types__item_color_dark Разочарован
+				.room-comments
+					.room-comments__header
+						h2 Отзывы посетителей номера
+						.comments-count 2 отзыва
+					.room-comments__comment
+						+comment("Мурад Сарафанов", "./img/avatar.png", "5 дней назад", "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.", "12", "check")
+					.room-comments__comment
+						+comment("Патрисия Стёклышкова", "./img/avatar2.png", "Неделю назад", "Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент", "2", "")
+				.room-rules
+					.room-rules__rules
+						h2.room-rules__rules-header Правила
+						+bulletList(['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00'])
+					.room-rules__cancel
+						h2.room-rules__rules-header Отмена
+						p Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+			.room-info__room-price-card
+				+room-price()
