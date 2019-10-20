@@ -1,0 +1,14 @@
+@import '../../base/variables.scss';
+@import "../../components/login-card/login-card.scss";
+@import '../../components/buttons/buttons.scss';
+@import '../../components/text-field/text-field.scss';
+
+.login-page {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	padding-top: 160px;
+	padding-bottom: 160px;
+	background-size: cover;
+	background-position: center;
+}

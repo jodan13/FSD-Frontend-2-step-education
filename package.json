@@ -11,7 +11,9 @@
     "starts": "parcel src/search.pug --open",
     "builds": "parcel build src/search.pug -d docs/search --public-url ./",
     "startr": "parcel src/room-details.pug --open",
-    "buildr": "parcel build src/room-details.pug -d docs/room-details --public-url ./"
+    "buildr": "parcel build src/room-details.pug -d docs/room-details --public-url ./",
+    "startn": "parcel src/sign-in.pug --open",
+    "buildn": "parcel build src/sign-in.pug -d docs/sign-in --public-url ./"
   },
   "keywords": [],
   "author": "",
