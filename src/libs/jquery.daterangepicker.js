@@ -1104,7 +1104,7 @@ var left = 0;
 					} else {
 						box.css({
 							top: offset.top + 5 + $(self).outerHeight() + parseInt($("body").css("border-top") || 0, 10),
-							left: offset.left + $(self).width() - box.width() - 40
+							left: offset.left + $(self).width() - box.width() - 10
 						});
 					}
 				}

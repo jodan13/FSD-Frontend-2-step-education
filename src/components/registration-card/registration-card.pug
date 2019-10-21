@@ -13,7 +13,7 @@ mixin registration()
 			h3 Дата рождения
 			+masked-inputs("date-range-birthday")
 		.registration__login
-			h3 Данные для входа в сервис
+			h3.registration__login__h3 Данные для входа в сервис
 			+text-field("text", "email", "Email")
 		.registration__password
 			+text-field("password", "password", "Пароль")

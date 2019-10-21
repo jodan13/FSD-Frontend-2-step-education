@@ -35527,7 +35527,7 @@ require("jquery-ui-dist/jquery-ui.js");
           } else {
             box.css({
               top: offset.top + 5 + $(self).outerHeight() + parseInt($("body").css("border-top") || 0, 10),
-              left: offset.left + $(self).width() - box.width() - 40
+              left: offset.left + $(self).width() - box.width() - 10
             });
           }
         }
@@ -37008,7 +37008,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51670" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51222" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
