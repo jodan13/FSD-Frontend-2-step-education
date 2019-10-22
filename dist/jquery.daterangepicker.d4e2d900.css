@@ -36,6 +36,11 @@
   box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
   box-sizing: initial;
 }
+@media (max-width: 575.98px) {
+  .date-picker-wrapper {
+    padding: 2px;
+  }
+}
 
 .dp-clearfix {
   clear: both;
@@ -56,6 +61,11 @@
 }
 .date-picker-wrapper.no-topbar {
   padding-top: 20px;
+}
+@media (max-width: 575.98px) {
+  .date-picker-wrapper.no-topbar {
+    padding-top: 0px;
+  }
 }
 .date-picker-wrapper .footer {
   font-size: 11px;

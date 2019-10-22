@@ -37,6 +37,10 @@
 	font-family: Arial, sans-serif;
 	box-shadow: 0px 10px 20px $color-ds5;
 	box-sizing: initial;
+
+	@media (max-width: 575.98px) {
+		padding: 2px;
+	}
 }
 
 .dp-clearfix {
@@ -62,6 +66,10 @@
 
 	&.no-topbar {
 		padding-top: 20px;
+
+		@media (max-width: 575.98px) {
+			padding-top: 0px;
+		}
 	}
 
 	.footer {

@@ -54,7 +54,8 @@
   &-menu {
     position: absolute;
     display: none;
-    width: 320px;
+    max-width: 320px;
+    width: 89.5%;
     padding: 13px 7px 13px 15px;
     border: 1px solid $color-ds50;
     border-bottom-left-radius: 4px;
@@ -177,18 +178,5 @@
 
   .iqdropdown-menu {
     width: 266px;
-  }
-}
-
-
-@media screen and (max-width: 320px) {
-  .iqdropdown__input-btn {
-    width: 280px;
-  }
-
-  .isSelectionGuests {
-    .iqdropdown-menu {
-      width: 280px;
-    }
   }
 }
