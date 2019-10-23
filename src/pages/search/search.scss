@@ -25,12 +25,21 @@
 
   &.container {
     align-items: flex-start;
+
+    @media (max-width: 767.98px) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   }
 }
 
 .search-room-filter {
   width: 265px;
   margin-right: 60px;
+
+  @media (max-width: 767.98px) {
+    margin-right: 0px;
+  }
 }
 
 .iqdropdown,
@@ -61,8 +70,7 @@
   &__rooms {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: flex-end;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   &__rooms-item {

@@ -1,5 +1,5 @@
 .room-price {
-	width: 380px;
+	max-width: 380px;
 	padding: 47px 29px 29px;
 	background: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.12);
@@ -7,6 +7,10 @@
 	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
 	border-radius: 4px;
 	margin-bottom: 40px;
+
+	@media (max-width: 367.98px) {
+		padding: 15px
+	}
 
 	&__title {
 		font-weight: bold;
@@ -18,7 +22,7 @@
 	}
 
 	&__date {
-		width: 320px;
+		max-width: 320px;
 		display: flex;
 		margin-bottom: 21px;
 		position: relative;

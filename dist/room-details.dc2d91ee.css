@@ -1,5 +1,5 @@
 .room-price {
-  width: 380px;
+  max-width: 380px;
   padding: 47px 29px 29px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -7,6 +7,11 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   margin-bottom: 40px;
+}
+@media (max-width: 367.98px) {
+  .room-price {
+    padding: 15px;
+  }
 }
 .room-price__title, .room-card__title {
   font-weight: bold;
@@ -17,7 +22,7 @@
   margin-bottom: 20px;
 }
 .room-price__date {
-  width: 320px;
+  max-width: 320px;
   display: flex;
   margin-bottom: 21px;
   position: relative;
@@ -250,7 +255,8 @@
 .iqdropdown-menu {
   position: absolute;
   display: none;
-  width: 320px;
+  max-width: 320px;
+  width: 89.5%;
   padding: 13px 7px 13px 15px;
   border: 1px solid rgba(31, 32, 65, 0.5);
   border-bottom-left-radius: 4px;
@@ -351,15 +357,6 @@
   width: 266px;
 }
 
-@media screen and (max-width: 320px) {
-  .iqdropdown__input-btn {
-    width: 280px;
-  }
-
-  .isSelectionGuests .iqdropdown-menu {
-    width: 280px;
-  }
-}
 .review {
   display: flex;
   flex-direction: column;
@@ -447,37 +444,99 @@
   border-bottom: 1px solid rgba(31, 32, 65, 0.25);
 }
 
-.collage {
-  height: 485px;
-  max-width: 1440px;
+.main-content {
+  display: flex;
+  max-width: 1648px;
   margin: 0 auto;
+  line-height: 0;
+}
+@media screen and (max-width: 750px) {
+  .main-content {
+    flex-direction: column;
+  }
+}
+.main-content .collage:nth-of-type(1) .collage__main {
+  width: 1120px;
+  max-width: 100%;
+  height: auto;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 750px) {
+  .main-content .collage:nth-of-type(1) {
+    width: 68%;
+    height: 100%;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (max-width: 750px) {
+  .main-content .collage:nth-of-type(1) {
+    width: 100%;
+    height: 50%;
+  }
+}
+.main-content .collage:nth-of-type(2) {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 }
-.collage__main {
-  height: 100%;
-  width: 68%;
+@media screen and (max-width: 750px) {
+  .main-content .collage:nth-of-type(2) {
+    flex-direction: row;
+  }
 }
-.collage__secondary {
-  height: 50%;
-  width: 32%;
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 750px) {
+  .main-content .collage:nth-of-type(2) {
+    width: 32%;
+    height: 100%;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (max-width: 750px) {
+  .main-content .collage:nth-of-type(2) {
+    width: 100%;
+    height: 100%;
+  }
+}
+.main-content .collage:nth-of-type(2) .collage__secondary {
+  width: 524px;
+  max-width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 750px) {
+  .main-content .collage:nth-of-type(2) .collage__secondary {
+    max-width: 50%;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 750px) {
+  .main-content .collage:nth-of-type(2) .collage__secondary {
+    width: 100%;
+    height: 49.7%;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (max-width: 750px) {
+  .main-content .collage:nth-of-type(2) .collage__secondary {
+    width: 50%;
+    height: 100%;
+  }
 }
 
 .room-info {
   display: flex;
   padding-bottom: 60px;
   padding-top: 70px;
+  flex-wrap: wrap;
 }
 .room-info__desc {
   flex-grow: 1;
   margin-right: 70px;
+}
+@media screen and (max-width: 750px) {
+  .room-info__desc {
+    margin-right: 0px;
+  }
 }
 
 .room-comfort {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 .room-comfort__info {
   width: 280px;
@@ -492,6 +551,7 @@
 
 .room-comments {
   margin-bottom: 40px;
+  max-width: 712px;
 }
 
 .room-comments__header {
@@ -513,12 +573,14 @@
 .room-rules {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .room-rules__rules {
   width: 260px;
 }
 .room-rules__cancel {
-  width: 50%;
+  max-width: 356px;
+  margin: 40px 0;
 }
 .room-rules__rules-header {
   margin-bottom: 20px;
@@ -532,10 +594,11 @@
 .room-comfort__voites-diagramm {
   display: flex;
   margin-top: 21px;
+  flex-wrap: wrap;
 }
 
 .diagramm-circle {
-  width: 120px;
+  min-width: 120px;
   height: 120px;
   position: relative;
   display: flex;
