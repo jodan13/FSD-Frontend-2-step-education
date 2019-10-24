@@ -189,11 +189,92 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"pages/sign-in/sign-in.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"modules/header.js":[function(require,module,exports) {
+"use strict";
+
+var anchors = document.querySelectorAll('a[href*="#"]');
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  var _loop = function _loop() {
+    var anchor = _step.value;
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      var blockID = anchor.getAttribute("href").substr(1);
+      document.getElementById(blockID).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  };
+
+  for (var _iterator = anchors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    _loop();
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return != null) {
+      _iterator.return();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  var menu = document.querySelector(".nav"),
+      menuItem = document.querySelectorAll(".nav_item"),
+      button = document.querySelector(".header-login__guest"),
+      hamburger = document.querySelector(".hamburger");
+  hamburger.addEventListener("click", function () {
+    hamburger.classList.toggle("hamburger_active");
+    button.classList.toggle("header-login__guest_active");
+    menu.classList.toggle("nav_active");
+  });
+
+  function addListenerMulti(element, eventNames, listener) {
+    var events = eventNames.split(" ");
+
+    for (var i = 0, iLen = events.length; i < iLen; i++) {
+      element.addEventListener(events[i], listener, false);
+    }
+  }
+
+  addListenerMulti(window, "scroll touchstart", function () {
+    if (hamburger.classList.contains("hamburger_active")) {
+      hamburger.classList.remove("hamburger_active");
+    }
+
+    if (menu.classList.contains("nav_active")) {
+      menu.classList.remove("nav_active");
+    }
+
+    if (button.classList.contains("header-login__guest_active")) {
+      button.classList.remove("header-login__guest_active");
+    }
+  });
+  menuItem.forEach(function (item) {
+    item.addEventListener("click", function () {
+      hamburger.classList.toggle("hamburger_active");
+      button.classList.toggle("header-login__guest_active");
+      menu.classList.toggle("nav_active");
+    });
+  });
+});
+},{}],"pages/sign-in/sign-in.js":[function(require,module,exports) {
 "use strict";
 
 require("./sign-in.scss");
-},{"./sign-in.scss":"pages/sign-in/sign-in.scss"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+require("../../modules/header.js");
+},{"./sign-in.scss":"pages/sign-in/sign-in.scss","../../modules/header.js":"modules/header.js"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -221,7 +302,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59486" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58692" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -42,6 +42,7 @@
 	padding: 2px;
 	position: relative;
 	z-index: 1;
+	max-height: 43px;
 
 	&:hover {
 		.button-secondary__outer {

@@ -1,5 +1,5 @@
 .login-card {
-  width: 380px;
+  max-width: 380px;
   padding: 39px 29px 30px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -63,6 +63,7 @@
   padding: 2px;
   position: relative;
   z-index: 1;
+  max-height: 43px;
 }
 .button-secondary:hover .button-secondary__outer {
   background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%);

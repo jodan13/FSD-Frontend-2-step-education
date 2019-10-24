@@ -1,14 +1,19 @@
 .header
-	.header__logo.logo
-		.logo__icon(style="background-image: url(./img/logo.svg);")
-	.header__nav
-		ul.navigation
-			li.navigation__item.navigation__item--active Home
-			li.navigation__item About us
-			li.navigation__item.navigation__item--chevron Services 
-				i.zmdi.zmdi-chevron-down.navigation-chevron
-			li.navigation__item Careers
-			li.navigation__item News
-			li.navigation__item Documentation
+	.container
+		a(href='#').header__logo: img(src='./img/logo.svg')
+		ul.nav
+			li.nav__item 
+				a(href='#').nav__link.nav__link--active Home
+			li.nav__item
+				a(href='#').nav__link About us
+			li.nav__item 
+				a(href='#').nav__link Services 
+					i.material-icons expand_more
+			li.nav__item 
+				a(href='#').nav__link Careers
+			li.nav__item 
+				a(href='#').nav__link News
+			li.nav__item 
+				a(href='#').nav__link Documentation
 		.header-login
 			.header-login__user Cosmin Negoita

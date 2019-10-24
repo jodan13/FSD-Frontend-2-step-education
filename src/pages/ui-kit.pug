@@ -25,7 +25,13 @@ include ../components/text-field/text-field.pug
 	
 html(lang='ru')
 	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="ie=edge")
+
 		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+		
+		meta(name='description' content=description)
 		title ui-kit
 	body.body_ui-kit
 		main.ui-kit
@@ -173,7 +179,7 @@ html(lang='ru')
 							+comfort("Комфорт", "Шумопоглощающие стены", "material-icons", "insert_emoticon")
 							+comfort("Удобство", "Окно в каждой из спален", "material-icons", "location_city")
 						.form__col-comment
-							+comment()
+							+comment("Мурад Сарафанов", "./img/avatar.png", "5 дней назад", "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.", "12", "check")
 		main.ui-kit.ui-kit--gray
 			img.ui-kit__logo(src='./img/logo-gray.svg', alt="logo-gray")
 			section
@@ -194,7 +200,7 @@ html(lang='ru')
 			section
 				.cards
 					.header-wrapper
-						include ../modules/header-guest.pug
+						include ../modules/header.pug
 					.header-wrapper
 						include ../modules/header-user.pug
 					.header-wrapper
