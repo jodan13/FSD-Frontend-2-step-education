@@ -2,18 +2,18 @@
 
 const anchors = document.querySelectorAll('a[href*="#"]');
 
-for (let anchor of anchors) {
-  anchor.addEventListener("click", function(e) {
-    e.preventDefault();
+// for (let anchor of anchors) {
+//   anchor.addEventListener("click", function(e) {
+//     e.preventDefault();
 
-    const blockID = anchor.getAttribute("href").substr(1);
+//     const blockID = anchor.getAttribute("href").substr(1);
 
-    document.getElementById(blockID).scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  });
-}
+//     document.getElementById(blockID).scrollIntoView({
+//       behavior: "smooth",
+//       block: "start"
+//     });
+//   });
+// }
 window.addEventListener("DOMContentLoaded", () => {
   const menu = document.querySelector(".nav"),
     menuItem = document.querySelectorAll(".nav_item"),
@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  addListenerMulti(window, "scroll touchstart", function() {
+  addListenerMulti(window, "scroll touchmove mouseup", function() {
     if (hamburger.classList.contains("hamburger_active")) {
       hamburger.classList.remove("hamburger_active");
     }

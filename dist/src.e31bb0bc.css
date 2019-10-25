@@ -1479,6 +1479,10 @@ h3 {
   font-size: 14px;
   font-weight: 300;
 }
+.nav__link--active {
+  font-weight: bold;
+  color: rgba(31, 32, 65, 0.75);
+}
 .nav__link:hover {
   color: rgba(31, 32, 65, 0.5);
 }
@@ -1521,7 +1525,7 @@ h3 {
     padding: 20px 15px;
     background-color: rgba(0, 0, 0, 0.8);
     transition: 0.6s all;
-    z-index: 1;
+    z-index: 2;
   }
   .nav_active {
     left: 0;
@@ -1631,6 +1635,7 @@ h3 {
   display: flex;
   margin-left: 7px;
   margin-right: 20px;
+  justify-content: space-around;
 }
 @media (max-width: 767.98px) {
   .footer__navigation {
@@ -1861,6 +1866,7 @@ h3 {
   padding: 2px;
   position: relative;
   z-index: 1;
+  max-height: 43px;
 }
 .button-secondary:hover .button-secondary__outer {
   background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%);
@@ -2060,7 +2066,7 @@ h3 {
 }
 
 .registration {
-  width: 380px;
+  max-width: 380px;
   padding: 39px 29px 29px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -2097,6 +2103,7 @@ h3 {
 .registration__account-login-text {
   display: inline-block;
   padding-top: 9px;
+  margin-right: 31px;
 }
 
 .label-radio {
