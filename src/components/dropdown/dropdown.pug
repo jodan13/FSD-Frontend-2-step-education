@@ -1,6 +1,38 @@
-mixin dropdown-guest(id, name, placeholder, textAttr)
-	label()
-		input(id=id, name=name, type="text", readonly, placeholder=placeholder)&attributes(textAttr)
-		.dropdown-guest 
-			i.material-icons.dropdown-guest__icon expand_more
- 
+//- include ./../buttons/buttons
+
+mixin quantityDropdown(params)
+	-
+		const {
+			label,
+			items,
+			initialSelection = '',
+			controls = false
+		} = params;
+
+	div.dropdown(data-initial-selection=initialSelection)
+		if label
+			p.dropdown__title.title.title--label= label
+
+		div.iqdropdown
+			div.dropdown__selection-wrapper
+				input.dropdown__selection(readonly)
+				i.dropdown__more-icon.material-icons expand_more
+
+			div.dropdown__menu.iqdropdown-menu
+				for item in items
+					- const { label, name, nouns } = item;
+					div.dropdown__option.iqdropdown-menu-option(data-id = name)
+						input.dropdown__input.visuallyhidden(
+							type = "number"
+							name = name
+							data-nouns = nouns
+						)
+						div
+							p.dropdown__item.iqdropdown-item= label
+
+				if controls
+					div.dropdown__controls
+						div.dropdown__reset-btn.hidden
+							+button-single-dark("очистить", "#")
+						div.dropdown__apply-btn
+							+button-single("применить", "#")

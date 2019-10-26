@@ -192,41 +192,16 @@ module.hot.accept(reloadCSS);
 },{"./..\\fonts\\Montserrat-Bold.woff2":[["Montserrat-Bold.71aa32d1.woff2","fonts/Montserrat-Bold.woff2"],"fonts/Montserrat-Bold.woff2"],"./..\\fonts\\Montserrat-Bold.woff":[["Montserrat-Bold.73e94c2c.woff","fonts/Montserrat-Bold.woff"],"fonts/Montserrat-Bold.woff"],"./..\\fonts\\Montserrat-Bold.ttf":[["Montserrat-Bold.f3410305.ttf","fonts/Montserrat-Bold.ttf"],"fonts/Montserrat-Bold.ttf"],"./..\\fonts\\Montserrat-Bold.svg":[["Montserrat-Bold.0fff2121.svg","fonts/Montserrat-Bold.svg"],"fonts/Montserrat-Bold.svg"],"./..\\fonts\\Montserrat-Regular.woff2":[["Montserrat-Regular.6f086254.woff2","fonts/Montserrat-Regular.woff2"],"fonts/Montserrat-Regular.woff2"],"./..\\fonts\\Montserrat-Regular.woff":[["Montserrat-Regular.1b35f2ae.woff","fonts/Montserrat-Regular.woff"],"fonts/Montserrat-Regular.woff"],"./..\\fonts\\Montserrat-Regular.ttf":[["Montserrat-Regular.44e710c1.ttf","fonts/Montserrat-Regular.ttf"],"fonts/Montserrat-Regular.ttf"],"./..\\fonts\\Montserrat-Regular.svg":[["Montserrat-Regular.6f6bdac5.svg","fonts/Montserrat-Regular.svg"],"fonts/Montserrat-Regular.svg"],"./..\\img\\twitter.svg":[["twitter.8ee17f67.svg","img/twitter.svg"],"img/twitter.svg"],"./..\\img\\facebook.svg":[["facebook.75b20807.svg","img/facebook.svg"],"img/facebook.svg"],"./..\\img\\instagram.svg":[["instagram.d9b27572.svg","img/instagram.svg"],"img/instagram.svg"],"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"modules/header.js":[function(require,module,exports) {
 "use strict";
 
-var anchors = document.querySelectorAll('a[href*="#"]');
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
-
-try {
-  var _loop = function _loop() {
-    var anchor = _step.value;
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      var blockID = anchor.getAttribute("href").substr(1);
-      document.getElementById(blockID).scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    });
-  };
-
-  for (var _iterator = anchors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    _loop();
-  }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator.return != null) {
-      _iterator.return();
-    }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
-}
+var anchors = document.querySelectorAll('a[href*="#"]'); // for (let anchor of anchors) {
+//   anchor.addEventListener("click", function(e) {
+//     e.preventDefault();
+//     const blockID = anchor.getAttribute("href").substr(1);
+//     document.getElementById(blockID).scrollIntoView({
+//       behavior: "smooth",
+//       block: "start"
+//     });
+//   });
+// }
 
 window.addEventListener("DOMContentLoaded", function () {
   var menu = document.querySelector(".nav"),
@@ -247,7 +222,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  addListenerMulti(window, "scroll touchstart", function () {
+  addListenerMulti(window, "scroll touchmove mouseup", function () {
     if (hamburger.classList.contains("hamburger_active")) {
       hamburger.classList.remove("hamburger_active");
     }
@@ -302,7 +277,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55022" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60788" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

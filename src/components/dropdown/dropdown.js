@@ -1,362 +1,94 @@
+import "../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js";
+import "../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.css";
 import "./dropdown.scss";
-var jquery = require("jquery");
-window.$ = window.jQuery = jquery; // notice the definition of global variables here
-require("jquery-ui-dist/jquery-ui.js");
-// /*
-//  * numbercategoryselector.js
-//  * Author & copyright (c) 2017: Sakri Koskimies
-//  *
-//  * MIT license
-//  */
-let $input,
-	$goriginalPlaceholder,
-	$gparent,
-	$gi,
-	$gcategory,
-	$gtext,
-	$gname,
-	$gbuttons,
-	$gbutton_minus,
-	$gvalue,
-	$gbutton_plus,
-	$gclose,
-	$gadded,
-	$gsum,
-	$gnum,
-	$baby,
-	$last,
-	$gzero;
-(function($) {
-	$.fn.guest = function(options) {
-		$input = $(this);
-		$goriginalPlaceholder = $input.attr("placeholder");
 
-		let settings = $.extend(
-			{
-				// Defaults.
-				categoryNames: ["Adults", "Children"],
-				categoryValues: false,
-				minValue: 0,
-				maxValue: 10,
-				closeOnOutsideClick: true,
-				showText: true,
-				delimiter: ", ",
-				align: "left",
-				fade: true,
-				useDisplay: true,
-				showZero: false,
-				callback: function(values) {}
-			},
-			options
-		);
+const getNoun = function(num, one, two, five) {
+  let lastDigits = num % 100;
 
-		if (!settings.categoryValues) {
-			settings.categoryValues = newFilledArray(settings.categoryNames.length, 0);
-		}
+  if (lastDigits > 4 && lastDigits < 21) {
+    return five;
+  }
 
-		$gparent = createHTML();
+  lastDigits %= 10;
 
-		$(document).mouseup(function(e) {
-			if (
-				!$input.is(e.target) &&
-				!$gparent.is(e.target) &&
-				$gparent.has(e.target).length === 0 &&
-				!$("div.guest.display").is(e.target) &&
-				$("div.guest.display").has(e.target).length === 0
-			) {
-				if (settings.fade) {
-					$gparent.fadeOut(200);
-				} else {
-					$gparent.hide();
-				}
-			}
-		});
+  if (lastDigits === 1) {
+    return one;
+  } else if (lastDigits > 4 || lastDigits === 0) {
+    return five;
+  } else {
+    return two;
+  }
+};
 
-		// $(document).mouseup(function(e) {
-		//   // событие клика по веб-документу
-		//   var div = $(this); // тут указываем ID элемента
-		//   if (
-		//     div.is(e.target) && // если клик был не по нашему блоку
-		//     div.has(e.target).length === 0
-		//   ) {
-		//     // и не по его дочерним элементам
-		//     $gparent.hide(); // скрываем его
-		//   }
-		// });
-		$(this).click(function() {
-			switchSelector();
-		});
+const showInitialSelection = function($dropdown) {
+  $dropdown.find(".dropdown__selection").val($dropdown.data("initialSelection"));
+};
 
-		$(window).resize(function() {
-			setPositions();
-		});
+const setValue = function($dropdown, itemName, itemCount) {
+  $dropdown
+    .find(`.dropdown__input[name=${itemName}]`)
+    .first()
+    .val(itemCount);
+};
 
-		function doCallback() {
-			if (typeof options.callback == "function") {
-				let callbackResult = {};
-				for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
-					callbackResult[settings.categoryNames[$gi]] = settings.categoryValues[$gi];
-				}
-				options.callback.call(this, callbackResult);
-			}
-		}
+// If there is fields with same nouns, combine them
+// Plugin uses data-id for counter, so I can't repeat them
+const showSelection = function($dropdown) {
+  const $inputs = $dropdown.find(".dropdown__input");
+  const selectionData = {}; // nounsArray: count
 
-		function setPositions() {
-			switch (settings.align) {
-				case "left":
-					$gparent.css("top", $input.position().top + $input.outerHeight());
-					$gparent.css("left", $input.position().left);
-					break;
-			}
-			if (settings.useDisplay) {
-				$gdisplay = $("div.guest.display");
-				$gdisplay.css("top", $input.position().top + 1);
-				$gdisplay.css("left", $input.position().left + 1);
-				$gdisplay.css("width", $input.width() - 1);
-				$gdisplay.css("height", $input.height() - 1);
-			}
-		}
+  // Collect all values in case there will be identical nouns
+  $inputs.each(function() {
+    const $currentInput = $(this);
+    const nounsKey = $currentInput.attr("data-nouns");
+    let count = Number($currentInput.val());
 
-		$("a.guest.button.plus").click(function() {
-			$gcategory = $(this).attr("category");
-			if (settings.categoryValues[$gcategory] < settings.maxValue) {
-				settings.categoryValues[$gcategory]++;
-				$gnum = settings.categoryValues[$gcategory];
-				$("div.guest.value[category='" + $gcategory + "']").text($gnum);
-				doCallback();
-				if (settings.categoryValues[$gcategory] == settings.maxValue) {
-					$(this).addClass("inactive");
-				} else {
-					$(this).removeClass("inactive");
-				}
-				if (settings.categoryValues[$gcategory] > settings.minValue) {
-					$("a.guest.button.minus[category='" + $gcategory + "']").removeClass("inactive");
-				} else {
-					$("a.guest.button.minus[category='" + $gcategory + "']").addClass("inactive");
-				}
-			}
-			if (settings.showText) {
-				if (!settings.useDisplay) {
-					updateText();
-				} else {
-					updateElement();
-				}
-			}
-			return false;
-		});
+    if (nounsKey in selectionData) {
+      // Check if object already contains a value
+      count += selectionData[nounsKey];
+    }
+    selectionData[nounsKey] = count;
+  });
 
-		$("a.guest.button.minus").click(function() {
-			$gcategory = $(this).attr("category");
-			if (settings.categoryValues[$gcategory] > settings.minValue) {
-				settings.categoryValues[$gcategory]--;
-				$gnum = settings.categoryValues[$gcategory];
-				$("div.guest.value[category='" + $gcategory + "']").text($gnum);
-				doCallback();
-				if (settings.categoryValues[$gcategory] == settings.minValue) {
-					$(this).addClass("inactive");
-				} else {
-					$(this).removeClass("inactive");
-				}
-				if (settings.categoryValues[$gcategory] < settings.maxValue) {
-					$("a.guest.button.plus[category='" + $gcategory + "']").removeClass("inactive");
-				} else {
-					$("a.guest.button.plus[category='" + $gcategory + "']").addClass("inactive");
-				}
-			}
-			if (settings.showText) {
-				if (!settings.useDisplay) {
-					updateText();
-				} else {
-					updateElement();
-				}
-			}
-			return false;
-		});
+  const selection = [];
+  for (let nounsStr in selectionData) {
+    const count = selectionData[nounsStr];
+    if (!count) continue; // Don't show item in selection if 0
 
-		function updateElement() {
-			$input.val("");
-			$gdisplay = $("div.guest.inlinedisplay");
-			$gdisplay.empty();
-			$gdisplayelements = 0;
-			for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
-				if (settings.categoryValues[$gi] != 0 || settings.showZero) {
-					$gdisplayelement = $("<div class='guest displayelement'></div>").appendTo($gdisplay);
-					$gdisplayelement.text(settings.categoryValues[$gi] + " " + settings.categoryNames[$gi] + ", ");
-					$gdisplayelements++;
-				}
-			}
-			if ($gdisplayelements == 0) {
-				$input.attr("placeholder", $goriginalPlaceholder);
-			} else {
-				$input.attr("placeholder", "");
-			}
-			updateText();
-		}
+    const noun = getNoun(count, ...JSON.parse(nounsStr)); // Get noun
+    selection.push(`${count} ${noun}`);
+  }
 
-		function updateText() {
-			$gtext = "";
-			$gadded = 0;
-			$gsum = 0;
-			$baby = 0;
-			$last = settings.categoryNames.length - 1;
-			for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
-				if (settings.categoryValues[$gi] != 0 || settings.showZero) {
-					$gsum += settings.categoryValues[$gi];
-					$gadded++;
-				}
-			}
-			$baby += settings.categoryValues[$last];
+  $dropdown.find(".dropdown__selection").val(selection.join(", ")); // Set selection text
+};
 
-			if ($baby != 0) {
-				//$gtext+=$gsum + " гостя, " + $baby + " младенцы";   Если младенец != гость
-				let formsgb = ["гость", "гостя", "гостей"];
-				let xgb10 = ($gsum - $baby) % 10,
-					xgb100 = ($gsum - $baby) % 100,
-					formgb = formsgb[2]; // гостей
-				if (xgb10 == 1 && xgb100 != 11) formgb = formsgb[0];
-				// гость
-				else if (xgb10 > 1 && xgb10 < 5 && (xgb100 < 10 || xgb100 > 21)) formgb = formsgb[1]; // гостя
-				let formsb = ["младенец", "младенца", "младенцев"];
-				let xb10 = $baby % 10,
-					xb100 = $baby % 100,
-					formb = formsb[2]; // младенцев
-				if (xb10 == 1 && xb100 != 11) formb = formsb[0];
-				// младенец
-				else if (xb10 > 1 && xb10 < 5 && (xb100 < 10 || xb100 > 21)) formb = formsb[1]; // младенца
-				$gtext += $gsum - $baby + " " + formgb + ", " + $baby + " " + formb;
-			} else {
-				let forms = ["гость", "гостя", "гостей"];
-				let x10 = $gsum % 10,
-					x100 = $gsum % 100,
-					form = forms[2]; // гостей
-				if (x10 == 1 && x100 != 11) form = forms[0];
-				// гость
-				else if (x10 > 1 && x10 < 5 && (x100 < 10 || x100 > 21)) form = forms[1]; // гостя
-				$gtext += $gsum + " " + form;
-			}
+const resetSelection = function($dropdown) {
+  $dropdown.find(".dropdown__input").val(0);
+  showInitialSelection($dropdown);
+};
 
-			if ($gsum == 0) {
-				$input.val($goriginalPlaceholder);
-				$(".NCSG.reset").hide();
-			} else {
-				$input.val($gtext);
-				$(".NCSG.reset").show();
-			}
-		}
+$(".dropdown").each(function() {
+  const $dropdown = $(this);
+  const $controls = $(".dropdown__controls", $dropdown);
 
-		function createHTML() {
-			$input.attr("type", "text");
-			if (settings.useDisplay) {
-				$input.attr("placeholder", "");
+  $(".iqdropdown", $dropdown).iqDropdown({
+    onChange(itemName, itemCount, total) {
+      setValue($dropdown, itemName, itemCount);
+      showSelection($dropdown);
 
-				$gdisplay = $("<div class='guest display'></div>").prependTo("body");
-				$gdisplay.css("top", $input.position().top + 1);
-				$gdisplay.css("left", $input.position().left + 1);
-				$gdisplay.css("width", $input.width() - 1);
-				$gdisplay.css("height", $input.height() - 1);
+      if (total) {
+        $(".dropdown__reset-btn", $dropdown).removeClass("hidden");
+      } else {
+        showInitialSelection($dropdown);
+        $(".dropdown__reset-btn", $dropdown).addClass("hidden");
+      }
+    }
+  });
 
-				$("<div class='guest inlinedisplay'></div>").prependTo($gdisplay);
+  // Prevent close if controls is clicked (click handler in item-quantity-dropdown)
+  $controls.click(e => e.stopPropagation());
 
-				$gdisplay.click(function() {
-					switchSelector();
-				});
-			}
+  $controls.find(".dropdown__reset-btn").click(() => resetSelection($dropdown));
 
-			$gparent = $("<div class='guest parent'></div>")
-				.prependTo("body")
-				.hide();
-
-			switch (settings.align) {
-				case "left":
-					$gparent.css("top", $input.position().top + $input.outerHeight() + 1);
-					$gparent.css("left", $input.position().left);
-					break;
-			}
-
-			for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
-				$gcategory = $("<div class='guest category'></div>").appendTo($gparent);
-				$gtext = $("<div class='guest text'></div>").appendTo($gcategory);
-				$gname = $("<div class='guest name' category='" + $gi + "'>" + settings.categoryNames[$gi] + "</div>").appendTo($gtext);
-				$gbuttons = $("<div class='guest buttons'></div>").appendTo($gcategory);
-				$gbutton_minus = $("<a href='' class='guest button minus' category='" + $gi + "'>&#8211;</a>").appendTo($gbuttons);
-				$gvalue = $("<div class='guest value' category='" + $gi + "'>" + settings.categoryValues[$gi] + "</div>").appendTo(
-					$gbuttons
-				);
-				$gbutton_plus = $("<a href='' class='guest button plus' category='" + $gi + "'>&#43;</a>").appendTo($gbuttons);
-
-				if (settings.categoryValues[$gi] == settings.maxValue) {
-					$gbutton_plus.addClass("inactive");
-				}
-
-				if (settings.categoryValues[$gi] == settings.minValue) {
-					$gbutton_minus.addClass("inactive");
-				}
-			}
-			$gclose = $("<div class='NCSG room'></div><a class='NCSG close' href=''>Применить</a>").appendTo($gparent);
-			$gclose.click(function() {
-				if (settings.fade) {
-					$gparent.fadeOut(200);
-				} else {
-					$gparent.hide();
-				}
-				return false;
-			});
-
-			$gzero = $("<div class='NCSG room'></div><a class='NCSG reset' href=''>Очистить</a>").appendTo($gparent);
-			$gzero.click(function() {
-				for ($gi = 0; $gi < settings.categoryNames.length; $gi++) {
-					if (settings.categoryValues[$gi] != 0 || settings.showZero) {
-						settings.categoryValues[$gi] = 0;
-						$("div.guest.value[category='" + $gi + "']").text("0");
-						$(".guest.button.minus").addClass("inactive");
-						doCallback();
-					}
-				}
-				updateText();
-				return false;
-			});
-			if (settings.showText) {
-				if (!settings.useDisplay) {
-					updateText();
-				} else {
-					updateElement();
-				}
-			}
-
-			if (settings.useDisplay) {
-				$input.css("color", "transparent");
-			}
-
-			return $gparent;
-		}
-
-		function switchSelector() {
-			if (settings.fade) {
-				$gparent.fadeToggle(200);
-			} else {
-				$gparent.toggle();
-			}
-		}
-
-		function newFilledArray(len, val) {
-			let rv = new Array(len);
-			while (--len >= 0) {
-				rv[len] = val;
-			}
-			return rv;
-		}
-	};
-	$("#dropdown-guest").guest({
-		categoryNames: ["Взрослые", "Дети", "Младенцы"],
-		categoryValues: false,
-		minValue: 0,
-		maxValue: 10,
-		closeOnOutsideClick: false,
-		showText: true,
-		delimiter: ", ",
-		align: "left",
-		fade: true,
-		useDisplay: false,
-		showZero: false
-	});
-})(jQuery);
+  showInitialSelection($dropdown);
+});

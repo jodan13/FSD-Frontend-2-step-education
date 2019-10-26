@@ -117,7 +117,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js":[function(require,module,exports) {
+var define;
+!function(n,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("item-quantity-dropdown",[],t):"object"==typeof exports?exports["item-quantity-dropdown"]=t():n["item-quantity-dropdown"]=t()}(window,function(){return function(n){var t={};function e(o){if(t[o])return t[o].exports;var r=t[o]={i:o,l:!1,exports:{}};return n[o].call(r.exports,r,r.exports,e),r.l=!0,r.exports}return e.m=n,e.c=t,e.d=function(n,t,o){e.o(n,t)||Object.defineProperty(n,t,{enumerable:!0,get:o})},e.r=function(n){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(n,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(n,"__esModule",{value:!0})},e.t=function(n,t){if(1&t&&(n=e(n)),8&t)return n;if(4&t&&"object"==typeof n&&n&&n.__esModule)return n;var o=Object.create(null);if(e.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:n}),2&t&&"string"!=typeof n)for(var r in n)e.d(o,r,function(t){return n[t]}.bind(null,r));return o},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,"a",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p="",e(e.s=0)}([function(n,t,e){"use strict";e.r(t);e(1);!function(n){var t={maxItems:1/0,minItems:0,selectionText:"item",textPlural:"items",controls:{position:"right",displayCls:"iqdropdown-content",controlsCls:"iqdropdown-item-controls",counterCls:"counter"},items:{},onChange:function(){},beforeDecrement:function(){return!0},beforeIncrement:function(){return!0}};n.fn.iqDropdown=function(e){return this.each(function(){var o=n(this),r=o.find("p.iqdropdown-selection").last(),i=o.find("div.iqdropdown-menu").find("div.iqdropdown-menu-option"),u=n.extend(!0,{},t,e),c={},a=0;function l(){var n=1!==a&&u.textPlural.length>0?u.textPlural:u.selectionText;r.html("".concat(a," ").concat(n))}o.click(function(){o.toggleClass("menu-open")}),i.each(function(){var t=n(this),e=t.data("id"),o=Number(t.data("defaultcount")||"0");c[e]=o,a+=o,function(n,t){var e=Number(t.data("mincount")),o=Number(t.data("maxcount"));u.items[n]={minCount:Number.isNaN(Number(e))?0:e,maxCount:Number.isNaN(Number(o))?1/0:o}}(e,t),function(t,e){var o=n("<div />").addClass(u.controls.controlsCls),r=n('\n          <button class="button-decrement">\n            <i class="icon-decrement"></i>\n          </button>\n        '),i=n('\n          <button class="button-increment">\n            <i class="icon-decrement icon-increment"></i>\n          </button>\n        '),s=n("<span>".concat(c[t],"</span>")).addClass(u.controls.counterCls);e.children("div").addClass(u.controls.displayCls),o.append(r,s,i),"right"===u.controls.position?e.append(o):e.prepend(o),r.click(function(n){var e=u.items,o=u.minItems,r=u.beforeDecrement,i=u.onChange;r(t,c)&&a>o&&c[t]>e[t].minCount&&(c[t]-=1,a-=1,s.html(c[t]),l(),i(t,c[t],a)),n.preventDefault()}),i.click(function(n){var e=u.items,o=u.maxItems,r=u.beforeIncrement,i=u.onChange;r(t,c)&&a<o&&c[t]<e[t].maxCount&&(c[t]+=1,a+=1,s.html(c[t]),l(),i(t,c[t],a)),n.preventDefault()}),e.click(function(n){return n.stopPropagation()})}(e,t)}),l()}),this}}(jQuery)},function(n,t,e){}])});
+
+},{}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -184,56 +188,124 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"components/rate-btn/rate-btn.scss":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+},{"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/dropdown/dropdown.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/rate-btn/rate-btn.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/dropdown/dropdown.js":[function(require,module,exports) {
 "use strict";
 
-require("./rate-btn.scss");
+require("../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js");
 
-var $rateBtn = $(".rate-btn");
-var $rateStars = $(".rate-btn__star");
-var emptyModifier = "rate-btn__star--empty";
-/**
- * @param {jQuery} $rateBtn
- * @param {number} targetIdx - Last filled star index
- */
+require("../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.css");
 
-var fillStars = function fillStars($rateBtn, targetIdx) {
-  $(".rate-btn__star", $rateBtn).each(function (idx, star) {
-    if (idx <= targetIdx) {
-      $(star).removeClass(emptyModifier);
-    } else {
-      $(star).addClass(emptyModifier);
+require("./dropdown.scss");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var getNoun = function getNoun(num, one, two, five) {
+  var lastDigits = num % 100;
+
+  if (lastDigits > 4 && lastDigits < 21) {
+    return five;
+  }
+
+  lastDigits %= 10;
+
+  if (lastDigits === 1) {
+    return one;
+  } else if (lastDigits > 4 || lastDigits === 0) {
+    return five;
+  } else {
+    return two;
+  }
+};
+
+var showInitialSelection = function showInitialSelection($dropdown) {
+  $dropdown.find(".dropdown__selection").val($dropdown.data("initialSelection"));
+};
+
+var setValue = function setValue($dropdown, itemName, itemCount) {
+  $dropdown.find(".dropdown__input[name=".concat(itemName, "]")).first().val(itemCount);
+}; // If there is fields with same nouns, combine them
+// Plugin uses data-id for counter, so I can't repeat them
+
+
+var showSelection = function showSelection($dropdown) {
+  var $inputs = $dropdown.find(".dropdown__input");
+  var selectionData = {}; // nounsArray: count
+  // Collect all values in case there will be identical nouns
+
+  $inputs.each(function () {
+    var $currentInput = $(this);
+    var nounsKey = $currentInput.attr("data-nouns");
+    var count = Number($currentInput.val());
+
+    if (nounsKey in selectionData) {
+      // Check if object already contains a value
+      count += selectionData[nounsKey];
     }
+
+    selectionData[nounsKey] = count;
   });
+  var selection = [];
+
+  for (var nounsStr in selectionData) {
+    var count = selectionData[nounsStr];
+    if (!count) continue; // Don't show item in selection if 0
+
+    var noun = getNoun.apply(void 0, [count].concat(_toConsumableArray(JSON.parse(nounsStr)))); // Get noun
+
+    selection.push("".concat(count, " ").concat(noun));
+  }
+
+  $dropdown.find(".dropdown__selection").val(selection.join(", ")); // Set selection text
 };
 
-var handleHover = function handleHover(_ref) {
-  var hoveredStar = _ref.currentTarget;
-  var $rateBtn = $(hoveredStar).parent(".rate-btn");
-  fillStars($rateBtn, $(hoveredStar).index());
+var resetSelection = function resetSelection($dropdown) {
+  $dropdown.find(".dropdown__input").val(0);
+  showInitialSelection($dropdown);
 };
 
-var handleLeave = function handleLeave(_ref2) {
-  var rateBtn = _ref2.currentTarget;
-  fillStars($(rateBtn), +rateBtn.dataset.rate - 1);
-};
+$(".dropdown").each(function () {
+  var $dropdown = $(this);
+  var $controls = $(".dropdown__controls", $dropdown);
+  $(".iqdropdown", $dropdown).iqDropdown({
+    onChange: function onChange(itemName, itemCount, total) {
+      setValue($dropdown, itemName, itemCount);
+      showSelection($dropdown);
 
-var handleClick = function handleClick(_ref3) {
-  var clickedStar = _ref3.currentTarget;
-  var $rateBtn = $(clickedStar).parent(".rate-btn");
-  var newRate = $(clickedStar).index() + 1;
-  $rateBtn.attr("data-rate", newRate);
-};
+      if (total) {
+        $(".dropdown__reset-btn", $dropdown).removeClass("hidden");
+      } else {
+        showInitialSelection($dropdown);
+        $(".dropdown__reset-btn", $dropdown).addClass("hidden");
+      }
+    }
+  }); // Prevent close if controls is clicked (click handler in item-quantity-dropdown)
 
-$rateStars.mouseover(handleHover);
-$rateBtn.mouseleave(handleLeave);
-$rateStars.click(handleClick);
-},{"./rate-btn.scss":"components/rate-btn/rate-btn.scss"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  $controls.click(function (e) {
+    return e.stopPropagation();
+  });
+  $controls.find(".dropdown__reset-btn").click(function () {
+    return resetSelection($dropdown);
+  });
+  showInitialSelection($dropdown);
+});
+},{"../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js":"../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.js","../../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.css":"../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.css","./dropdown.scss":"components/dropdown/dropdown.scss"}],"C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -436,5 +508,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","components/rate-btn/rate-btn.js"], null)
-//# sourceMappingURL=/rate-btn.58368718.js.map
+},{}]},{},["C:/Users/Евгений/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","components/dropdown/dropdown.js"], null)
+//# sourceMappingURL=/dropdown.a91f52d8.js.map

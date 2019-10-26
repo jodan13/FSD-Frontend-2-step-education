@@ -1,125 +1,166 @@
 @import "../../base/variables.scss";
 
-
-.dropdown-guest {
-	position: relative;
-
-	&__icon {
-		display: inline-block;
-		position: absolute;
-		right: 10px;
-		bottom: 0;
-		line-height: 44px;
-		color: $color-ds50;
-	}
+.dropdown>*,
+.dropdown>*::before,
+.dropdown>*::after {
+    box-sizing: border-box;
 }
 
-input[name='guest'] {
-	box-sizing: border-box;
-
-	width: 320px;
-	border: 1px solid $color-ds25;
-	border-radius: 4px;
-	padding: 12px 14px;
-	font-size: 14px;
-	margin-top: 5px;
-	color: $color-ds75;
-	text-overflow: ellipsis;
-	outline: none;
-	cursor: pointer;
-
-	&:focus,
-	&:hover {
-		border-color: $color-ds50;
-
-	}
+.visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
-div.guest.parent {
-	position: absolute;
-	z-index: 1000;
-	background: white;
-	border: 1px solid $color-ds50;
-	border-radius: 0 0 4px 4px;
-	box-shadow: 0px 10px 20px $color-ds5;
-	padding: 6px 7px 13px 15px;
-	text-align: center;
-	overflow: hidden;
-	min-width: 320px;
-	box-sizing: border-box;
+.dropdown__selection {
+    width: 100%;
+    font-size: 14px;
+    line-height: 24px;
+    color: $color-ds75;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
+    border: none;
+    cursor: pointer;
 }
 
-div.guest.category {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+.dropdown__more-icon {
+    position: absolute;
+    right: 8px;
+    transform: translateY(2px);
+
+    color: $color-ds50;
+    //transform: translateX(6px);
 }
 
-div.guest.text {
-	clear: both;
-	display: inline-block;
-	padding: 0 0 16px 0;
-	margin: 7px 0 0 0;
+.dropdown__controls {
+    display: flex;
+    margin-top: -15px; // last option item margin-bottom
+    padding-top: 20px; // controls should receive click
 }
 
-div.guest.name,
-a.guest.close,
-div.guest.value {
-	font-weight: bold;
-	color: $color-ds100;
-	text-transform: uppercase;
-	font-size: 12px;
-	line-height: 15px;
+.dropdown__apply-btn {
+    margin-left: auto;
 }
 
-div.guest.buttons {
-	display: flex;
-	width: 92px;
-	height: 30px;
-	justify-content: space-between;
-	align-items: center;
-}
+.dropdown {
 
-a.guest.button {
-	color: $color-ds50;
-	text-decoration: none;
-	width: 30px;
-	height: 30px;
+    // Important for overriding specificity of rules in item-quantity-dropdown
+    .iqdropdown {
+        height: auto !important;
+        padding: 10px 15px !important;
 
-	display: inline-block;
-	text-align: center;
-	background: #fff;
-	border: 1px solid $color-ds25;
-	box-sizing: border-box;
-	border-radius: 22px;
-	box-sizing: border-box;
-	font-size: 18px;
-	font-weight: normal;
-	line-height: 28px;
-}
+        border: 1px solid $color-ds25 !important;
+        border-radius: 2px !important;
 
-a.guest.button.inactive {
-	background: #fff;
-	opacity: 0.38;
-}
+        transition: border-color .2s;
 
-.NCSG.reset {
-	float: left;
-	padding: 13px 0 0 0;
-	font-weight: bold;
-	font-size: 12px;
-	line-height: 15px;
-	text-transform: uppercase;
-	color: $color-ds50;
-}
+        &:hover,
+        &:focus,
+        &:active,
+        &.menu-open {
+            border-radius: 2px 2px 0 0 !important;
+            border-color: $color-ds50 !important;
+        }
+    }
 
-.NCSG.close {
-	float: right;
-	padding: 13px 0 0 0;
-	font-weight: bold;
-	font-size: 12px;
-	line-height: 15px;
-	text-transform: uppercase;
-	color: $color-purple;
+    .dropdown__menu {
+        top: calc(100% + 2px) !important;
+        width: 101%;
+        padding: 7px 14px 14px !important;
+
+        border: 1px solid $color-ds50 !important;
+        border-radius: 0 0 2px 2px !important;
+        box-shadow: 0px 10px 20px $color-ds5;
+    }
+
+    .dropdown__option {
+        height: auto !important;
+        padding: 0 0 7px !important;
+    }
+
+    .dropdown__item {
+        font-weight: bold !important;
+        font-size: 12px !important;
+        line-height: 15px !important;
+        text-transform: uppercase !important;
+        color: $color-ds100 !important;
+    }
+
+    .iqdropdown-item-controls {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: auto !important;
+    }
+
+    .iqdropdown-item-controls button {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 30px !important;
+        height: 30px !important;
+        padding: 0 !important;
+
+        border: 1px solid $color-ds25 !important;
+        border-radius: 50% !important;
+
+        font-size: 18px !important;
+        line-height: 1 !important;
+        text-align: center !important;
+
+        color: $color-ds50 !important;
+
+
+        i {
+            min-width: auto !important;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+
+            &::before,
+            // Reset lib
+            &::after {
+                position: static !important;
+                transform: none !important;
+
+                width: auto !important;
+                height: auto !important;
+
+                font-style: normal !important;
+                text-align: center !important;
+                background: none !important;
+            }
+        }
+    }
+
+    .icon-decrement::before {
+        content: '-' !important;
+    }
+
+    .icon-increment::before {
+        content: '+' !important;
+    }
+
+    .counter {
+        display: inline-block !important;
+        width: 30px !important;
+        padding: 0 !important;
+        font-weight: bold !important;
+        font-size: 12px !important;
+        line-height: 1 !important;
+        text-align: center !important;
+        color: $color-ds100 !important;
+
+        border: none !important;
+    }
 }

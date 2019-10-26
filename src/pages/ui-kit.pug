@@ -22,6 +22,8 @@ include ../components/room-price/room-price.pug
 include ../components/login-card/login-card.pug
 include ../components/room-card/room-card.pug
 include ../components/text-field/text-field.pug
+include ../components/dropdown/dropdown.pug
+include ../components/dropdown-guests/dropdown-guests.pug
 	
 html(lang='ru')
 	head
@@ -152,7 +154,8 @@ html(lang='ru')
 						.form__col-dropdown
 							h3.form__h3 dropdown
 							p.form__p default
-							+dropdown("2 спальни, 2 кровати...", "", "", "").textfield-default
+							+dropdown-guests()
+							//- +dropdown("2 спальни, 2 кровати...", "", "", "").textfield-default
 							.dropdown-expanded-wrapper
 								h3 dropdown
 								+dropdown("2 спальни, 2 кровати...", "room", ['спальни', 'кровати', 'ванные комнаты'], "").dropdown--active.textfield-expanded
@@ -216,6 +219,7 @@ html(lang='ru')
 	script(src='./components/pagination/pagination.js')
 	script(src='./components/dropdown-rooms/dropdown-rooms.js')
 	script(src='./components/quantity-dropdown/quantity-dropdown.js')
+	script(src='./components/dropdown/dropdown.js')
 
 
 block content
